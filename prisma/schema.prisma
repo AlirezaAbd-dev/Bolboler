@@ -20,6 +20,7 @@ model Tweet {
     user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
     likes Like[]
 
+    @@unique([id, createdAt])
     @@index([userId])
 }
 
