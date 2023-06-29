@@ -11,6 +11,14 @@ function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
 
 const NewTweetForm = () => {
   const session = useSession();
+
+  if (session.status !== "authenticated") return null;
+
+  return <Form />;
+};
+
+function Form() {
+  const session = useSession();
   const [inputValue, setInputValue] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>();
   const inputRef = useCallback((textArea: HTMLTextAreaElement) => {
@@ -41,6 +49,6 @@ const NewTweetForm = () => {
       <Button className="self-end">Tweet</Button>
     </form>
   );
-};
+}
 
 export default NewTweetForm;
