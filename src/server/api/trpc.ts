@@ -7,14 +7,6 @@
  * need to use are documented accordingly near the end.
  */
 
-import { initTRPC, TRPCError } from "@trpc/server";
-import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { type Session } from "next-auth";
-import superjson from "superjson";
-import { ZodError } from "zod";
-import { getServerAuthSession } from "~/server/auth";
-import { prisma } from "~/server/db";
-
 /**
  * 1. CONTEXT
  *
@@ -22,9 +14,24 @@ import { prisma } from "~/server/db";
  *
  * These allow you to access things when processing a request, like the database, the session, etc.
  */
+import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
+import { type Session } from "next-auth";
+
+import { getServerAuthSession } from "~/server/auth";
+import { prisma } from "~/server/db";
 
 type CreateContextOptions = {
   session: Session | null;
+  revalidateSSG:
+    | ((
+        urlPath: string,
+        opts?:
+          | {
+              unstable_onlyGenerated?: boolean | undefined;
+            }
+          | undefined
+      ) => Promise<void>)
+    | null;
 };
 
 /**
@@ -37,9 +44,10 @@ type CreateContextOptions = {
  *
  * @see https://create.t3.gg/en/usage/trpc#-serverapitrpcts
  */
-const createInnerTRPCContext = (opts: CreateContextOptions) => {
+export const createInnerTRPCContext = (opts: CreateContextOptions) => {
   return {
     session: opts.session,
+    revalidateSSG: opts.revalidateSSG,
     prisma,
   };
 };
@@ -58,6 +66,7 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
 
   return createInnerTRPCContext({
     session,
+    revalidateSSG: res.revalidate,
   });
 };
 
@@ -68,6 +77,9 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
  * ZodErrors so that you get typesafety on the frontend if your procedure fails due to validation
  * errors on the backend.
  */
+import { initTRPC, TRPCError } from "@trpc/server";
+import superjson from "superjson";
+import { ZodError } from "zod";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,

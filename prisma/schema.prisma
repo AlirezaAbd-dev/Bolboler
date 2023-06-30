@@ -20,7 +20,7 @@ model Tweet {
     user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
     likes Like[]
 
-    @@unique([id, createdAt])
+    @@unique([createdAt, id])
     @@index([userId])
 }
 
@@ -28,7 +28,7 @@ model Like {
     userId  String
     tweetId String
     user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-    tweet   Tweet  @relation(fields: [tweetId], references: [id], onDelete: Cascade)
+    Tweet   Tweet  @relation(fields: [tweetId], references: [id], onDelete: Cascade)
 
     @@id([userId, tweetId])
     @@index([userId])

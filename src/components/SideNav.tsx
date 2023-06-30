@@ -1,9 +1,9 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import IconHoverEffect from "./IconHoverEffect";
 import { VscAccount, VscHome, VscSignIn, VscSignOut } from "react-icons/vsc";
+import { IconHoverEffect } from "./IconHoverEffect";
 
-const SideNav = () => {
+export function SideNav() {
   const session = useSession();
   const user = session.data?.user;
 
@@ -20,10 +20,9 @@ const SideNav = () => {
             </IconHoverEffect>
           </Link>
         </li>
-
         {user != null && (
           <li>
-            <Link href={`/prodiles/${user.id}`}>
+            <Link href={`/profiles/${user.id}`}>
               <IconHoverEffect>
                 <span className="flex items-center gap-4">
                   <VscAccount className="h-8 w-8" />
@@ -33,14 +32,22 @@ const SideNav = () => {
             </Link>
           </li>
         )}
-
-        {user ? (
+        {user == null ? (
           <li>
-            <button
-              onClick={() => {
-                void signOut();
-              }}
-            >
+            <button onClick={() => void signIn()}>
+              <IconHoverEffect>
+                <span className="flex items-center gap-4">
+                  <VscSignIn className="h-8 w-8 fill-green-700" />
+                  <span className="hidden text-lg text-green-700 md:inline">
+                    Log In
+                  </span>
+                </span>
+              </IconHoverEffect>
+            </button>
+          </li>
+        ) : (
+          <li>
+            <button onClick={() => void signOut()}>
               <IconHoverEffect>
                 <span className="flex items-center gap-4">
                   <VscSignOut className="h-8 w-8 fill-red-700" />
@@ -51,27 +58,8 @@ const SideNav = () => {
               </IconHoverEffect>
             </button>
           </li>
-        ) : (
-          <li>
-            <button
-              onClick={() => {
-                void signIn();
-              }}
-            >
-              <IconHoverEffect>
-                <span className="flex items-center gap-4">
-                  <VscSignIn className="fill-gren-700 h-8 w-8" />
-                  <span className="hidden text-lg text-green-700 md:inline">
-                    Log In
-                  </span>
-                </span>
-              </IconHoverEffect>
-            </button>
-          </li>
         )}
       </ul>
     </nav>
   );
-};
-
-export default SideNav;
+}
