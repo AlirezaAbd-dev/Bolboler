@@ -17,7 +17,7 @@ export const tweetRouter = createTRPCRouter({
       const currentUserId = ctx.session?.user.id;
       const data = await ctx.prisma.tweet.findMany({
         take: limit + 1,
-        cursor: cursor ? { id_createdAt: cursor } : undefined,
+        cursor: cursor && { id_createdAt: cursor },
         orderBy: [{ createdAt: "desc" }, { id: "desc" }],
         select: {
           id: true,
