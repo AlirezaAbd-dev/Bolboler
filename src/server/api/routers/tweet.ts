@@ -89,6 +89,24 @@ export const tweetRouter = createTRPCRouter({
         throw Error("There is no tweet with this tweetId!");
       }
     }),
+  edit: protectedProcedure
+    .input(z.object({ tweetId: z.string(), content: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const { tweetId, content } = input;
+
+      const existingTweet = await ctx.prisma.tweet.update({
+        where: {
+          id: tweetId,
+        },
+        data: {
+          content,
+        },
+      });
+
+      void ctx.revalidateSSG?.(`/profiles/${ctx.session.user.id}`);
+
+      return existingTweet;
+    }),
   toggleLike: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ input: { id }, ctx }) => {
