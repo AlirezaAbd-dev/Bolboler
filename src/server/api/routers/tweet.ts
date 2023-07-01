@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import { Prisma } from "@prisma/client";
 import { inferAsyncReturnType } from "@trpc/server";
 import { z } from "zod";
@@ -62,6 +63,31 @@ export const tweetRouter = createTRPCRouter({
       void ctx.revalidateSSG?.(`/profiles/${ctx.session.user.id}`);
 
       return tweet;
+    }),
+  delete: protectedProcedure
+    .input(z.object({ tweetId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const tweetId = input.tweetId;
+
+      const selectedTweet = await ctx.prisma.tweet.findFirst({
+        where: {
+          id: tweetId,
+        },
+      });
+
+      if (selectedTweet) {
+        const deletedTweet = await ctx.prisma.tweet.delete({
+          where: {
+            id: tweetId,
+          },
+        });
+
+        void ctx.revalidateSSG?.(`/profiles/${ctx.session.user.id}`);
+
+        return deletedTweet.id;
+      } else {
+        throw Error("There is no tweet with this tweetId!");
+      }
     }),
   toggleLike: protectedProcedure
     .input(z.object({ id: z.string() }))
