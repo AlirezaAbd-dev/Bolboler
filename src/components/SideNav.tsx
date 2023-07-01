@@ -34,7 +34,7 @@ export function SideNav() {
         )}
         {user == null ? (
           <li>
-            <button onClick={() => void signIn()}>
+            <button onClick={() => void signIn("discord")}>
               <IconHoverEffect>
                 <span className="flex items-center gap-4">
                   <VscSignIn className="h-8 w-8 fill-green-700" />

@@ -1,7 +1,8 @@
 {
-  "name": "twitter-clone",
+  "name": "bolboler",
   "version": "0.1.0",
   "private": true,
+  "author": "AlirezaAbd",
   "scripts": {
     "build": "next build",
     "dev": "next dev",
