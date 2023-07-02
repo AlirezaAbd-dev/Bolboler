@@ -5,6 +5,7 @@ import HeartButton from "./ui/HeartButton";
 import { useSession } from "next-auth/react";
 import { RiDeleteBin2Line } from "react-icons/ri";
 import { IconHoverEffect } from "./IconHoverEffect";
+import { VscEdit } from "react-icons/vsc";
 
 type Tweet = {
   id: string;
@@ -90,10 +91,14 @@ function TweetCard({
           </span>
           {session.data?.user.id === user.id && (
             <>
-              <span></span>
-              <span className="text-gray-500">
+              <span className="ml-6 cursor-pointer">
+                <IconHoverEffect>
+                  <VscEdit className="h-4 w-4 text-gray-500" />
+                </IconHoverEffect>
+              </span>
+              <span className="cursor-pointer">
                 <IconHoverEffect red>
-                  <RiDeleteBin2Line className="h-4 w-4 cursor-pointer text-red-500" />
+                  <RiDeleteBin2Line className="h-4 w-4 text-red-500" />
                 </IconHoverEffect>
               </span>
             </>
