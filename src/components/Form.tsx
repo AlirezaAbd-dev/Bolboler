@@ -4,6 +4,7 @@ import { api } from "~/utils/api";
 import { Button } from "./Button";
 import { ProfileImage } from "./ProfileImage";
 import type { FormEvent } from "react";
+import { PacmanLoader } from "react-spinners";
 
 function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
   if (textArea == null) return;
@@ -13,6 +14,7 @@ function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
 
 function Form() {
   const session = useSession();
+  const [isInputEmpty, setIsInputEmpty] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>();
   const inputRef = useCallback((textArea: HTMLTextAreaElement) => {
@@ -64,7 +66,12 @@ function Form() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    createTweet.mutate({ content: inputValue });
+    if (inputValue.trim().length < 3) {
+      setIsInputEmpty(true);
+    } else {
+      setIsInputEmpty(false);
+      createTweet.mutate({ content: inputValue });
+    }
   }
 
   return (
@@ -83,7 +90,21 @@ function Form() {
           placeholder="What's happening?"
         />
       </div>
-      <Button className="self-end">Tweet</Button>
+      {isInputEmpty && (
+        <p className="self-end text-red-500">
+          You have to enter at least 3 characters in your tweet!
+        </p>
+      )}
+      {createTweet.isLoading ? (
+        <PacmanLoader
+          size={13}
+          color="rgb(59 130 246)"
+          className="self-end"
+          cssOverride={{ marginRight: "40px" }}
+        />
+      ) : (
+        <Button className="items-center self-end">Tweet</Button>
+      )}
     </form>
   );
 }
