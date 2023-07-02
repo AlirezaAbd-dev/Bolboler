@@ -27,6 +27,7 @@ function TweetCard({
   likedByMe,
 }: Tweet) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedTweetForDelete, setSelectedTweetForDelete] = useState("");
 
   function closeModal() {
     setModalIsOpen(false);
@@ -90,14 +91,16 @@ function TweetCard({
         <ProfileImage src={user.image} />
       </Link>
       <div className="flex flex-grow flex-col">
-
         {/* //! Delete Modal */}
-        <DeleteModal
-          openModal={openModal}
-          closeModal={closeModal}
-          modalIsOpen={modalIsOpen}
-        />
-        
+        {session.data?.user.id === user.id && (
+          <DeleteModal
+            openModal={openModal}
+            closeModal={closeModal}
+            modalIsOpen={modalIsOpen}
+            selectedTweet={selectedTweetForDelete}
+          />
+        )}
+
         <div className="flex gap-1">
           <Link
             href={`/profiles/${user.id}`}
@@ -116,7 +119,13 @@ function TweetCard({
                   <VscEdit className="h-4 w-4 text-gray-500" />
                 </IconHoverEffect>
               </span>
-              <span className="cursor-pointer">
+              <span
+                className="cursor-pointer"
+                onClick={() => {
+                  openModal();
+                  setSelectedTweetForDelete(id);
+                }}
+              >
                 <IconHoverEffect red>
                   <RiDeleteBin2Line className="h-4 w-4 text-red-500" />
                 </IconHoverEffect>
