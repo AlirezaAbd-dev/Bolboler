@@ -89,11 +89,14 @@ function TweetCard({
             {dateTimeFormatter.format(createdAt)}
           </span>
           {session.data?.user.id === user.id && (
-            <span className="text-gray-500">
-              <IconHoverEffect red>
-                <RiDeleteBin2Line className="ml-4 h-4 w-4 cursor-pointer text-red-500" />
-              </IconHoverEffect>
-            </span>
+            <>
+              <span></span>
+              <span className="text-gray-500">
+                <IconHoverEffect red>
+                  <RiDeleteBin2Line className="h-4 w-4 cursor-pointer text-red-500" />
+                </IconHoverEffect>
+              </span>
+            </>
           )}
         </div>
         <p className="whitespace-pre-wrap">{content}</p>
