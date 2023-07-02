@@ -1,11 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import Link from "next/link";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { ProfileImage } from "./ProfileImage";
-import { api } from "~/utils/api";
 import { LoadingSpinner } from "./LoadingSpinner";
-import HeartButton from "./ui/HeartButton";
 import TweetCard from "./TweetCard";
 
 type Tweet = {

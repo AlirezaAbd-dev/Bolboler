@@ -2,8 +2,9 @@ import Link from "next/link";
 import { api } from "~/utils/api";
 import { ProfileImage } from "./ProfileImage";
 import HeartButton from "./ui/HeartButton";
-import { useEffect } from "react";
 import { useSession } from "next-auth/react";
+import { RiDeleteBin2Line } from "react-icons/ri";
+import { IconHoverEffect } from "./IconHoverEffect";
 
 type Tweet = {
   id: string;
@@ -87,7 +88,13 @@ function TweetCard({
           <span className="text-gray-500">
             {dateTimeFormatter.format(createdAt)}
           </span>
-          <span className="text-gray-500"></span>
+          {session.data?.user.id === user.id && (
+            <span className="text-gray-500">
+              <IconHoverEffect red>
+                <RiDeleteBin2Line className="ml-4 h-4 w-4 cursor-pointer text-red-500" />
+              </IconHoverEffect>
+            </span>
+          )}
         </div>
         <p className="whitespace-pre-wrap">{content}</p>
         <HeartButton
