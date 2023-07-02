@@ -6,6 +6,8 @@ import { useSession } from "next-auth/react";
 import { RiDeleteBin2Line } from "react-icons/ri";
 import { IconHoverEffect } from "./IconHoverEffect";
 import { VscEdit } from "react-icons/vsc";
+import DeleteModal from "./modals/DeleteModal";
+import { useState } from "react";
 
 type Tweet = {
   id: string;
@@ -24,6 +26,16 @@ function TweetCard({
   likeCount,
   likedByMe,
 }: Tweet) {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  function closeModal() {
+    setModalIsOpen(false);
+  }
+
+  function openModal() {
+    setModalIsOpen(true);
+  }
+
   const session = useSession();
   const trpcUtils = api.useContext();
   const toggleLike = api.tweet.toggleLike.useMutation({
@@ -78,6 +90,14 @@ function TweetCard({
         <ProfileImage src={user.image} />
       </Link>
       <div className="flex flex-grow flex-col">
+
+        {/* //! Delete Modal */}
+        <DeleteModal
+          openModal={openModal}
+          closeModal={closeModal}
+          modalIsOpen={modalIsOpen}
+        />
+        
         <div className="flex gap-1">
           <Link
             href={`/profiles/${user.id}`}
