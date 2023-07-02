@@ -17,7 +17,11 @@ function DeleteModal(props: DeleteModalProps) {
       await trpcUtils.tweet.invalidate();
       props.closeModal();
     },
+    trpc: {
+      abortOnUnmount: true,
+    },
   });
+
   return (
     <>
       <Transition appear show={props.modalIsOpen} as={Fragment}>
