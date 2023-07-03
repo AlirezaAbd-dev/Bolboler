@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import InfiniteScroll from "react-infinite-scroll-component";
 import { LoadingSpinner } from "./LoadingSpinner";
-import TweetCard from "./TweetCard";
+import TweetCard from "./card/TweetCard";
 
 type Tweet = {
   id: string;
@@ -52,4 +52,3 @@ export function InfiniteTweetList({
     </ul>
   );
 }
-

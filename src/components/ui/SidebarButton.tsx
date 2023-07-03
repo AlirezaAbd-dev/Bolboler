@@ -31,9 +31,13 @@ const SidebarButton = (props: SidebarButtonProps) => {
           }}
         >
           <IconHoverEffect>
-            <span className="flex items-center gap-4">
-              <props.Icon className="h-8 w-8 fill-green-700" />
-              <span className="hidden text-lg text-green-700 md:inline">
+            <span
+              className={`flex items-center gap-4 ${
+                props.mode === "logout" ? "text-red-700" : "text-green-700"
+              }`}
+            >
+              <props.Icon className={`h-8 w-8 `} />
+              <span className="hidden text-lg  md:inline">
                 {props.children}
               </span>
             </span>

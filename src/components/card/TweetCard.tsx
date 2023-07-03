@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { api } from "~/utils/api";
-import { ProfileImage } from "./ProfileImage";
-import HeartButton from "./ui/HeartButton";
+import { ProfileImage } from "../ProfileImage";
+import HeartButton from "../ui/HeartButton";
 import { useSession } from "next-auth/react";
 import { RiDeleteBin2Line } from "react-icons/ri";
-import { IconHoverEffect } from "./IconHoverEffect";
-import { VscEdit } from "react-icons/vsc";
-import DeleteModal from "./modals/DeleteModal";
+import { IconHoverEffect } from "../IconHoverEffect";
+import { VscClose, VscEdit } from "react-icons/vsc";
+import DeleteModal from "../modals/DeleteModal";
 import { useState } from "react";
+import EditTweetForm from "./EditTweetForm";
+import { Transition } from "@headlessui/react";
 
 type Tweet = {
   id: string;
@@ -26,8 +28,13 @@ function TweetCard({
   likeCount,
   likedByMe,
 }: Tweet) {
+  const [editMode, setEditMode] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedTweetForDelete, setSelectedTweetForDelete] = useState("");
+
+  function closeEditMode() {
+    setEditMode(false);
+  }
 
   function closeModal() {
     setModalIsOpen(false);
@@ -36,7 +43,6 @@ function TweetCard({
   function openModal() {
     setModalIsOpen(true);
   }
-
   const session = useSession();
   const trpcUtils = api.useContext();
   const toggleLike = api.tweet.toggleLike.useMutation({
@@ -115,9 +121,16 @@ function TweetCard({
           </span>
           {session.data?.user.id === user.id && (
             <>
-              <span className="ml-6 cursor-pointer">
+              <span
+                className="ml-6 cursor-pointer"
+                onClick={() => setEditMode((prev) => !prev)}
+              >
                 <IconHoverEffect>
-                  <VscEdit className="h-4 w-4 text-gray-500" />
+                  {!editMode ? (
+                    <VscEdit className="h-4 w-4 text-gray-500" />
+                  ) : (
+                    <VscClose className="h-4 w-4 text-red-500" />
+                  )}
                 </IconHoverEffect>
               </span>
               <span
@@ -141,13 +154,29 @@ function TweetCard({
           likedByMe={likedByMe}
           likeCount={likeCount}
         />
+        {/* //* Form for editing tweet */}
+        <Transition
+          show={editMode}
+          enter="transition ease-in-out duration-300 transform"
+          enterFrom="-translate-x-full opacity-0"
+          enterTo="translate-x-0 opacity-1"
+          leave="transition ease-in-out duration-300 transform"
+          leaveFrom="translate-x-0 opacity-1"
+          leaveTo="-translate-x-full opacity-0"
+        >
+          <EditTweetForm
+            tweetId={id}
+            tweetContent={content}
+            onClose={closeEditMode}
+          />
+        </Transition>
       </div>
     </li>
   );
 }
 
 const dateTimeFormatter = new Intl.DateTimeFormat(undefined, {
-  dateStyle: "short",
+  dateStyle: "medium",
 });
 
 export default TweetCard;
