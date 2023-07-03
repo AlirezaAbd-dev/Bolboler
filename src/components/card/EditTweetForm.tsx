@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { Button } from "../Button";
 import { updateTextAreaSize } from "../Form";
@@ -44,10 +44,6 @@ const EditTweetForm = (props: EditTweetFormProps) => {
     }
   }
 
-  useEffect(() => {
-    if (textAreaRef.current) textAreaRef.current.autofocus = true;
-  }, []);
-
   return (
     <form
       onSubmit={handleSubmit}
@@ -61,6 +57,7 @@ const EditTweetForm = (props: EditTweetFormProps) => {
           onChange={(e) => setInputValue(e.target.value)}
           className="flex-grow resize-none overflow-hidden p-4 text-lg outline-none"
           placeholder="Like to Edit Tweet?"
+          autoFocus
         />
       </div>
       {isInputEmpty && (
