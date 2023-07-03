@@ -78,7 +78,7 @@ const Content = (props: ContentProps) => {
           {dateTimeFormatter.format(props.createdAt)}
         </span>
         {session.data?.user.id === props.user.id && (
-          <div>
+          <>
             <span
               className="ml-6 cursor-pointer"
               onClick={() => props.toggleEditMode()}
@@ -102,7 +102,7 @@ const Content = (props: ContentProps) => {
                 <RiDeleteBin2Line className="h-4 w-4 text-red-500" />
               </IconHoverEffect>
             </span>
-          </div>
+          </>
         )}
       </div>
       <p className="whitespace-pre-wrap">{props.content}</p>
