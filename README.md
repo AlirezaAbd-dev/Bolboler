@@ -1,28 +1,68 @@
-# Create T3 App
+<h1 align='center' style="font-size:5rem"><b>Bolboler</b></h1>
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+</div>
+<br><br><br>
+<h2 align='center'>
+    It's just a twitter like web application.
+</h2>
 
-## What's next? How do I make an app with this?
+<br><br>
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+<div align="center">
+    <h3>You can see the deployed project just by <a href="https://Bolboler.vercel.app">clicking here</a></h3>
+</div>
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+<br><br><br>
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+<h1 align='center'><b>Language and technologies used in This Project</h1>
+<img src="https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white"></img>
+<img src="https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white"></img>
+<img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"></img>
+<img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"></img>
+<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"></img>
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"></img>
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"></img>
+<img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"></img>
+<img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white"></img>
+<img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"></img>
+<img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white"></img>
 
-## Learn More
+<br><br><br>
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+<!-- <div align='center'>
+    <h1><b>Images</b></h1>
+    <h2>SignIn</h2>
+    <img style='border-radius:5px' src="./images/login.png"></img>
+    <br>
+    <br><br><br>
+    <h2>Contacts</h2>
+    <img style='border-radius:5px' src="./images/contacts.png"></img>
+    <br>
+    <br><br><br>
+    <h2>contact</h2>
+    <img style='border-radius:5px' src="./images/contact.png"></img>
+    <br>
+    <br><br><br>
+    <h2>EditContact</h2>
+    <img style='border-radius:5px' src="./images/editContact.png"></img>
+    <br>
+    <br><br><br>
+    <h2>ResetPassword</h2>
+    <img style='border-radius:5px' src="./images/resetPassword.png"></img>
+</div> -->
+<hr>
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+<br><br><br><br>
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+<!-- <h1 align='center'><b>Abilities</b></h1> -->
 
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+<!-- <ul>
+    <li> Able To SignIn, Log and Logout</li>
+    <li> Able To add contact</li>
+    <li> Able To edit contact</li>
+    <li> Able To view contact's details</li>
+    <li> Able To delete contact</li>
+    <li> Able To paginate when contacts are more than 12</li>
+    <li> Able To upload image for contact's profile</li>
+    <li> Able To send email for reset password when user forgot the password</li>
+</ul> -->
