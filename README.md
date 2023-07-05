@@ -21,6 +21,9 @@
 <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"></img>
 <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"></img>
 <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"></img>
+<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white"/>
+<img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white"/>
+ <img src="https://img.shields.io/badge/tRPC-%23007ACC.svg?style=for-the-badge"/>
 <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"></img>
 <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"></img>
 <img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white"></img>
@@ -29,40 +32,22 @@
 
 <br><br><br>
 
-<!-- <div align='center'>
+<div align='center'>
     <h1><b>Images</b></h1>
     <h2>SignIn</h2>
-    <img style='border-radius:5px' src="./images/login.png"></img>
+    <img style='border-radius:5px' src="./images/Home-page.png"></img>
     <br>
-    <br><br><br>
-    <h2>Contacts</h2>
-    <img style='border-radius:5px' src="./images/contacts.png"></img>
-    <br>
-    <br><br><br>
-    <h2>contact</h2>
-    <img style='border-radius:5px' src="./images/contact.png"></img>
-    <br>
-    <br><br><br>
-    <h2>EditContact</h2>
-    <img style='border-radius:5px' src="./images/editContact.png"></img>
-    <br>
-    <br><br><br>
-    <h2>ResetPassword</h2>
-    <img style='border-radius:5px' src="./images/resetPassword.png"></img>
-</div> -->
+</div>
 <hr>
 
 <br><br><br><br>
 
-<!-- <h1 align='center'><b>Abilities</b></h1> -->
+<h1 align='center'><b>Abilities</b></h1>
 
-<!-- <ul>
-    <li> Able To SignIn, Log and Logout</li>
-    <li> Able To add contact</li>
-    <li> Able To edit contact</li>
-    <li> Able To view contact's details</li>
-    <li> Able To delete contact</li>
-    <li> Able To paginate when contacts are more than 12</li>
-    <li> Able To upload image for contact's profile</li>
-    <li> Able To send email for reset password when user forgot the password</li>
-</ul> -->
+<ul>
+    <li> Able To SignIn, Log and Logout with discord</li>
+    <li> Able To add Tweet</li>
+    <li> Able To edit Tweet</li>
+    <li> Able To delete Tweet</li>
+    <li> Able To Infinite Scroll</li>
+</ul>
