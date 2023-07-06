@@ -14,7 +14,7 @@ datasource db {
 model Tweet {
     id        String   @id @default(uuid())
     userId    String
-    content   String
+    content   String   @db.LongText
     createdAt DateTime @default(now())
 
     user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -28,7 +28,7 @@ model Tweet {
 model SubTweet {
     id          String   @id @default(uuid())
     userId      String
-    content     String
+    content     String   @db.LongText
     createdAt   DateTime @default(now())
     mainTweetid String
 
