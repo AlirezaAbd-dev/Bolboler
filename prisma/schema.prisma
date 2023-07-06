@@ -30,13 +30,13 @@ model SubTweet {
     userId      String
     content     String   @db.LongText
     createdAt   DateTime @default(now())
-    mainTweetid String
+    mainTweetId String
 
     user      User  @relation("sub-tweets", fields: [userId], references: [id])
-    mainTweet Tweet @relation(fields: [mainTweetid], references: [id], onDelete: Cascade)
+    mainTweet Tweet @relation(fields: [mainTweetId], references: [id], onDelete: Cascade)
 
     @@index([userId])
-    @@index([mainTweetid])
+    @@index([mainTweetId])
 }
 
 model Like {
