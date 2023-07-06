@@ -60,6 +60,29 @@ const subTweetRouter = createTRPCRouter({
 
       return subTweets;
     }),
+  delete: protectedProcedure
+    .input(
+      z.object({
+        subTweetId: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const { subTweetId } = input;
+
+      try {
+        const deletedSubTweet = await ctx.prisma.subTweet.delete({
+          where: {
+            id: subTweetId,
+          },
+        });
+        return deletedSubTweet;
+      } catch (err) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: (err as { message: string }).message,
+        });
+      }
+    }),
 });
 
 export default subTweetRouter;
