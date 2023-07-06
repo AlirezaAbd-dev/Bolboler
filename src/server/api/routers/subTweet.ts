@@ -27,15 +27,21 @@ const subTweetRouter = createTRPCRouter({
         });
       }
 
-      const newSubTweet = await ctx.prisma.subTweet.create({
-        data: {
-          content,
-          userId: userId,
-          mainTweetId,
-        },
-      });
-
-      return newSubTweet;
+      try {
+        const newSubTweet = await ctx.prisma.subTweet.create({
+          data: {
+            content,
+            userId: userId,
+            mainTweetId,
+          },
+        });
+        return newSubTweet;
+      } catch (err) {
+        throw new TRPCError({
+          message: (err as { message: string }).message,
+          code: "INTERNAL_SERVER_ERROR",
+        });
+      }
     }),
 });
 
