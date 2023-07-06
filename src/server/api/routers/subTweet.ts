@@ -43,6 +43,23 @@ const subTweetRouter = createTRPCRouter({
         });
       }
     }),
+  getSubTweetsByTweetId: protectedProcedure
+    .input(
+      z.object({
+        tweetId: z.string(),
+      })
+    )
+    .query(async ({ input, ctx }) => {
+      const { tweetId } = input;
+
+      const subTweets = await ctx.prisma.subTweet.findMany({
+        where: {
+          mainTweetId: tweetId,
+        },
+      });
+
+      return subTweets;
+    }),
 });
 
 export default subTweetRouter;
