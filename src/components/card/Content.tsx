@@ -6,6 +6,7 @@ import HeartButton from "../ui/HeartButton";
 import { api } from "~/utils/api";
 import { useSession } from "next-auth/react";
 import type { Tweet } from "./TweetCard";
+import Tooltip from "../ui/Tooltip";
 
 type ContentProps = {
   editMode: boolean;
@@ -67,12 +68,14 @@ const Content = (props: ContentProps) => {
   return (
     <>
       <div className="flex gap-1">
-        <Link
-          href={`/profiles/${props.user.id}`}
-          className="font-bold outline-none hover:underline focus-visible:underline"
-        >
-          {props.user.name}
-        </Link>
+        <Tooltip content="Profile" place="top" id="profile" delayShow={1000}>
+          <Link
+            href={`/profiles/${props.user.id}`}
+            className="font-bold outline-none hover:underline focus-visible:underline"
+          >
+            {props.user.name}
+          </Link>
+        </Tooltip>
         <span className="text-gray-500">-</span>
         <span className="text-gray-500">
           {dateTimeFormatter.format(props.createdAt)}
@@ -83,13 +86,15 @@ const Content = (props: ContentProps) => {
               className="ml-6 cursor-pointer"
               onClick={() => props.toggleEditMode()}
             >
-              <IconHoverEffect>
-                {!props.editMode ? (
-                  <VscEdit className="h-4 w-4 text-gray-500" />
-                ) : (
-                  <VscClose className="h-4 w-4 text-red-500" />
-                )}
-              </IconHoverEffect>
+              <Tooltip content="Edit" place="top" id="edit">
+                <IconHoverEffect>
+                  {!props.editMode ? (
+                    <VscEdit className="h-4 w-4 text-gray-500" />
+                  ) : (
+                    <VscClose className="h-4 w-4 text-red-500" />
+                  )}
+                </IconHoverEffect>
+              </Tooltip>
             </span>
             <span
               className="cursor-pointer"
@@ -98,9 +103,11 @@ const Content = (props: ContentProps) => {
                 props.selectTweetForDelete(props.id);
               }}
             >
-              <IconHoverEffect red>
-                <RiDeleteBin2Line className="h-4 w-4 text-red-500" />
-              </IconHoverEffect>
+              <Tooltip content="Delete" place="top" id="delete">
+                <IconHoverEffect red>
+                  <RiDeleteBin2Line className="h-4 w-4 text-red-500" />
+                </IconHoverEffect>
+              </Tooltip>
             </span>
           </>
         )}

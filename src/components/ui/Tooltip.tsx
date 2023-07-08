@@ -6,6 +6,8 @@ type TooltipProps = {
   id: string;
   place?: PlacesType;
   content: string;
+  delayShow?: number;
+  delayHide?: number;
 };
 
 const Tooltip = (props: TooltipProps) => {
@@ -18,7 +20,16 @@ const Tooltip = (props: TooltipProps) => {
       >
         {props.children}
       </span>
-      <ReactTooltip id={props.id} place={props.place} content={props.content} />
+      <ReactTooltip
+        variant="light"
+        style={{ borderRadius: "10px" }}
+        border="1px solid lightblue"
+        id={props.id}
+        place={props.place}
+        content={props.content}
+        delayShow={props.delayShow}
+        delayHide={props.delayHide}
+      />
     </>
   );
 };
