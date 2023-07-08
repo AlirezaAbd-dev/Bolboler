@@ -53,6 +53,23 @@ export const tweetRouter = createTRPCRouter({
         });
       }
     ),
+  getTweetById: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .query(async ({ input, ctx }) => {
+      const { id } = input;
+
+      const tweet = await ctx.prisma.tweet.findFirst({
+        where: {
+          id,
+        },
+      });
+
+      return tweet;
+    }),
   create: protectedProcedure
     .input(z.object({ content: z.string() }))
     .mutation(async ({ input: { content }, ctx }) => {
