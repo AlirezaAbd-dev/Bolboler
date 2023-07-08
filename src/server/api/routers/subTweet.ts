@@ -83,6 +83,34 @@ const subTweetRouter = createTRPCRouter({
         });
       }
     }),
+  edit: protectedProcedure
+    .input(
+      z.object({
+        subTweetId: z.string(),
+        content: z
+          .string()
+          .min(3, { message: "content must be more than 3 characters!" }),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const { content, subTweetId } = input;
+
+      try {
+        const updatedTweet = await ctx.prisma.subTweet.update({
+          where: { id: subTweetId },
+          data: {
+            content,
+          },
+        });
+
+        return updatedTweet;
+      } catch (err) {
+        throw new TRPCError({
+          message: (err as { message: string }).message,
+          code: "INTERNAL_SERVER_ERROR",
+        });
+      }
+    }),
 });
 
 export default subTweetRouter;
