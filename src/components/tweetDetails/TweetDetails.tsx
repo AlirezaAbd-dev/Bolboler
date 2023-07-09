@@ -1,9 +1,9 @@
-import React from 'react'
+import TweetCard from "../card/TweetCard"
 
 const TweetDetails = () => {
-  return (
-    <div>TweetDetails</div>
-  )
+  return (<></>
+    // <TweetCard  />
+    )
 }
 
 export default TweetDetails

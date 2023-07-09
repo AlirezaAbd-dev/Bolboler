@@ -21,15 +21,17 @@ const TweetPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     return <ErrorPage statusCode={404} />;
   }
 
-  return (
-    <>
-      <Head>
-        <title>{`Bolboler - Tweet Details`}</title>
-      </Head>
-      <TweetDetailsHeader />
-      <TweetDetails />
-    </>
-  );
+  if (tweet.isSuccess) {
+    return (
+      <>
+        <Head>
+          <title>{`Bolboler - Tweet Details`}</title>
+        </Head>
+        <TweetDetailsHeader />
+        <TweetDetails />
+      </>
+    );
+  }
 };
 
 export const getStaticPaths: GetStaticPaths = () => {

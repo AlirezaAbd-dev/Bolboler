@@ -61,14 +61,34 @@ export const tweetRouter = createTRPCRouter({
     )
     .query(async ({ input, ctx }) => {
       const { id } = input;
+      const currentUserId = ctx.session?.user.id;
 
       const tweet = await ctx.prisma.tweet.findFirst({
         where: {
           id,
         },
+        select: {
+          id: true,
+          content: true,
+          createdAt: true,
+          _count: { select: { likes: true } },
+          likes:
+            currentUserId == null
+              ? false
+              : { where: { userId: currentUserId } },
+          user: {
+            select: { name: true, id: true, image: true },
+          },
+        },
       });
 
-      return tweet;
+      if (!tweet) return null;
+      
+      return {
+        ...tweet,
+        likeCount: tweet._count.likes,
+        likedByMe: tweet.likes?.length > 0,
+      };
     }),
   create: protectedProcedure
     .input(z.object({ content: z.string() }))
@@ -188,8 +208,8 @@ async function getInfiniteTweets({
         id: tweet.id,
         content: tweet.content,
         createdAt: tweet.createdAt,
-        likeCount: tweet._count.likes,
         user: tweet.user,
+        likeCount: tweet._count.likes,
         likedByMe: tweet.likes?.length > 0,
       };
     }),
