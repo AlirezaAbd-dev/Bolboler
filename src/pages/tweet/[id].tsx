@@ -4,34 +4,13 @@ import type {
   InferGetStaticPropsType,
   NextPage,
 } from "next";
-import ErrorPage from "next/error";
-import Head from "next/head";
-import TweetDetailsMain from "~/components/tweetDetails/TweetDetailsMain";
-import TweetDetailsHeader from "~/components/tweetDetails/TweetDetailsHeader";
 import { ssgHelper } from "~/server/api/ssgHelper";
-import { api } from "~/utils/api";
+import TweetDetails from "~/context/tweetDetailsContext";
 
 const TweetPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   id,
 }) => {
-  const tweet = api.tweet.getTweetById.useQuery({ id });
-  console.log(tweet.data);
-
-  if (tweet.error) {
-    return <ErrorPage statusCode={404} />;
-  }
-
-  if (tweet.isSuccess) {
-    return (
-      <>
-        <Head>
-          <title>{`Bolboler - Tweet Details`}</title>
-        </Head>
-        <TweetDetailsHeader />
-        <TweetDetailsMain />
-      </>
-    );
-  }
+  return <TweetDetails id={id} />;
 };
 
 export const getStaticPaths: GetStaticPaths = () => {
