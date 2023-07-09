@@ -5,12 +5,12 @@ import type {
   NextPage,
 } from "next";
 import { ssgHelper } from "~/server/api/ssgHelper";
-import TweetDetails from "~/context/tweetDetailsContext";
+import TweetDetailsMain from "~/components/tweetDetails/tweetDetailsMain";
 
 const TweetPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   id,
 }) => {
-  return <TweetDetails id={id} />;
+  return <TweetDetailsMain id={id} />;
 };
 
 export const getStaticPaths: GetStaticPaths = () => {

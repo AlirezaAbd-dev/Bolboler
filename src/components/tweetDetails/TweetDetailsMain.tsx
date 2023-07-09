@@ -1,22 +1,37 @@
-import { useContext } from "react";
+import ErrorPage from "next/error";
+
+import { api } from "~/utils/api";
+import Head from "next/head";
+import TweetDetailsHeader from "~/components/tweetDetails/TweetDetailsHeader";
 import TweetCard from "../card/TweetCard";
-import { tweetDetailsContext } from "~/context/tweetDetailsContext";
 
-const TweetDetailsMain = () => {
-  const tweetDetails = useContext(tweetDetailsContext);
-
-  if (tweetDetails) {
-    return (
-      <TweetCard
-        content={tweetDetails.content}
-        createdAt={tweetDetails.createdAt}
-        id={tweetDetails.id}
-        likeCount={tweetDetails.likeCount}
-        likedByMe={tweetDetails.likedByMe}
-        user={tweetDetails.user}
-      />
-    );
-  }
+type TweetDetailsProps = {
+  id: string;
 };
 
-export default TweetDetailsMain;
+export default function TweetDetailsMain(props: TweetDetailsProps) {
+  const tweet = api.tweet.getTweetById.useQuery({ id: props.id });
+
+  if (tweet.error) {
+    return <ErrorPage statusCode={404} />;
+  }
+
+  if (tweet.isSuccess) {
+    return (
+      <>
+        <Head>
+          <title>{`Bolboler - Tweet Details`}</title>
+        </Head>
+        <TweetDetailsHeader />
+        <TweetCard
+          user={tweet.data.user}
+          content={tweet.data.content}
+          createdAt={tweet.data.createdAt}
+          id={tweet.data.id}
+          likeCount={tweet.data.likeCount}
+          likedByMe={tweet.data.likedByMe}
+        />
+      </>
+    );
+  }
+}

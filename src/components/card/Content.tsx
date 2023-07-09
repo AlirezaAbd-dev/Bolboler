@@ -7,6 +7,8 @@ import { api } from "~/utils/api";
 import { useSession } from "next-auth/react";
 import type { Tweet } from "./TweetCard";
 import Tooltip from "../ui/Tooltip";
+import { useRouter } from "next/router";
+import { revalidatePath } from "next/cache";
 
 type ContentProps = {
   editMode: boolean;
@@ -18,6 +20,7 @@ type ContentProps = {
 const Content = (props: ContentProps) => {
   const trpcUtils = api.useContext();
   const session = useSession();
+  const router = useRouter();
 
   const toggleLike = api.tweet.toggleLike.useMutation({
     onSuccess: ({ addedLike }) => {
@@ -58,6 +61,13 @@ const Content = (props: ContentProps) => {
         { userId: props.user.id },
         updateData
       );
+      trpcUtils.tweet.getTweetById.setData({ id: props.id }, (oldData) => {
+        revalidatePath(`/tweet/${props.id}`);
+        if (oldData) {
+          oldData.likedByMe = addedLike;
+        }
+        return oldData;
+      });
     },
   });
 
@@ -68,14 +78,20 @@ const Content = (props: ContentProps) => {
   return (
     <>
       <div className="flex gap-1">
-        <Tooltip content="Profile" place="top" id="profile" delayShow={1000}>
-          <Link
-            href={`/profiles/${props.user.id}`}
-            className="font-bold outline-none hover:underline focus-visible:underline"
-          >
+        {router.pathname.includes("/tweet/") ? (
+          <p className="font-bold outline-none hover:underline focus-visible:underline">
             {props.user.name}
-          </Link>
-        </Tooltip>
+          </p>
+        ) : (
+          <Tooltip content="Profile" place="top" id="profile" delayShow={1000}>
+            <Link
+              href={`/tweet/${props.id}`}
+              className="font-bold outline-none hover:underline focus-visible:underline"
+            >
+              {props.user.name}
+            </Link>
+          </Tooltip>
+        )}
         <span className="text-gray-500">-</span>
         <span className="text-gray-500">
           {dateTimeFormatter.format(props.createdAt)}
