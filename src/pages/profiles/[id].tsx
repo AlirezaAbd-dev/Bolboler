@@ -55,7 +55,7 @@ export async function getStaticProps(
 ) {
   const id = context.params?.id;
 
-  if (id == null) {
+  if (!id) {
     return {
       redirect: {
         destination: "/",
