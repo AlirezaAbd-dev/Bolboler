@@ -62,11 +62,14 @@ const Content = (props: ContentProps) => {
         updateData
       );
       trpcUtils.tweet.getTweetById.setData({ id: props.id }, (oldData) => {
-        revalidatePath(`/tweet/${props.id}`);
-        if (oldData) {
-          oldData.likedByMe = addedLike;
-        }
-        return oldData;
+        revalidatePath(`tweet/[id]`);
+
+        if (oldData)
+          return {
+            ...oldData,
+            likedByMe: addedLike,
+            likeCount: addedLike ? oldData.likeCount++ : oldData.likeCount--,
+          };
       });
     },
   });
