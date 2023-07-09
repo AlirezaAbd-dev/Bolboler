@@ -6,7 +6,7 @@ import type {
 } from "next";
 import ErrorPage from "next/error";
 import Head from "next/head";
-import TweetDetails from "~/components/tweetDetails/TweetDetails";
+import TweetDetailsMain from "~/components/tweetDetails/TweetDetailsMain";
 import TweetDetailsHeader from "~/components/tweetDetails/TweetDetailsHeader";
 import { ssgHelper } from "~/server/api/ssgHelper";
 import { api } from "~/utils/api";
@@ -28,7 +28,7 @@ const TweetPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           <title>{`Bolboler - Tweet Details`}</title>
         </Head>
         <TweetDetailsHeader />
-        <TweetDetails />
+        <TweetDetailsMain />
       </>
     );
   }
