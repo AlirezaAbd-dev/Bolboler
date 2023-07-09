@@ -4,8 +4,9 @@ import type {
   InferGetStaticPropsType,
   NextPage,
 } from "next";
+
+import TweetDetailsMain from "~/components/tweetDetails/TweetDetailsMain";
 import { ssgHelper } from "~/server/api/ssgHelper";
-import TweetDetailsMain from "~/components/tweetDetails/tweetDetailsMain";
 
 const TweetPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   id,
