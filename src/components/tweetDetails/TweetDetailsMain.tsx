@@ -9,7 +9,7 @@ type TweetDetailsProps = {
   id: string;
 };
 
-export default function TweetDetailsMain(props: TweetDetailsProps) {
+const TweetDetailsMain = (props: TweetDetailsProps) => {
   const tweet = api.tweet.getTweetById.useQuery({ id: props.id });
 
   if (tweet.error) {
@@ -34,4 +34,6 @@ export default function TweetDetailsMain(props: TweetDetailsProps) {
       </>
     );
   }
-}
+};
+
+export default TweetDetailsMain;
