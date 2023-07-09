@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 import { Prisma } from "@prisma/client";
-import { inferAsyncReturnType } from "@trpc/server";
+import { TRPCError, inferAsyncReturnType } from "@trpc/server";
 import { z } from "zod";
 
 import {
@@ -82,8 +82,12 @@ export const tweetRouter = createTRPCRouter({
         },
       });
 
-      if (!tweet) return null;
-      
+      if (!tweet)
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Chosen tweet doesn't exist!",
+        });
+
       return {
         ...tweet,
         likeCount: tweet._count.likes,
