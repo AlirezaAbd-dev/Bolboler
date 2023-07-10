@@ -7,12 +7,14 @@ import type {
 import TweetDetailsMain from "~/components/tweetDetails/TweetDetailsMain";
 import { ssgHelper } from "~/server/api/ssgHelper";
 
+//? COMPONENT
 const TweetPage: NextPage<
   InferGetStaticPropsType<typeof getServerSideProps>
 > = ({ id }) => {
   return <TweetDetailsMain id={id} />;
 };
 
+//! SSR
 export const getServerSideProps = async (
   context: GetServerSidePropsContext<{ id: string }>
 ) => {

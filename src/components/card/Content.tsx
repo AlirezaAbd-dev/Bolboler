@@ -137,7 +137,7 @@ const Content = (props: ContentProps) => {
   );
 };
 
-const dateTimeFormatter = new Intl.DateTimeFormat(undefined, {
+export const dateTimeFormatter = new Intl.DateTimeFormat(undefined, {
   minute: "2-digit",
   hour: "2-digit",
   second: "2-digit",

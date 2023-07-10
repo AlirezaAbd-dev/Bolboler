@@ -4,6 +4,7 @@ import { api } from "~/utils/api";
 import Head from "next/head";
 import TweetDetailsHeader from "~/components/tweetDetails/TweetDetailsHeader";
 import TweetCard from "../card/TweetCard";
+import SubTweets from "./SubTweets";
 
 type TweetDetailsProps = {
   id: string;
@@ -31,6 +32,12 @@ const TweetDetailsMain = (props: TweetDetailsProps) => {
           likeCount={tweet.data.likeCount}
           likedByMe={tweet.data.likedByMe}
         />
+
+        <div className="border-b border-b-gray-200 py-4 text-center text-lg font-bold text-gray-600">
+          Sub Tweets
+        </div>
+      
+        <SubTweets user={tweet.data.user} subTweets={tweet.data.subTweets} />
       </>
     );
   }
