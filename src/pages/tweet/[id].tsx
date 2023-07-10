@@ -1,6 +1,5 @@
 import type {
-  GetStaticPaths,
-  GetStaticPropsContext,
+  GetServerSidePropsContext,
   InferGetStaticPropsType,
   NextPage,
 } from "next";
@@ -8,28 +7,26 @@ import type {
 import TweetDetailsMain from "~/components/tweetDetails/TweetDetailsMain";
 import { ssgHelper } from "~/server/api/ssgHelper";
 
-const TweetPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  id,
-}) => {
+const TweetPage: NextPage<
+  InferGetStaticPropsType<typeof getServerSideProps>
+> = ({ id }) => {
   return <TweetDetailsMain id={id} />;
 };
 
-export const getStaticPaths: GetStaticPaths = () => {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-};
-
-export async function getStaticProps(
-  context: GetStaticPropsContext<{ id: string }>
-) {
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext<{ id: string }>
+) => {
   const id = context.params?.id;
+  context.res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
+  );
 
   if (id == null) {
     return {
       redirect: {
         destination: "/",
+        permanent: false,
       },
     };
   }
@@ -43,6 +40,6 @@ export async function getStaticProps(
       id,
     },
   };
-}
+};
 
 export default TweetPage;

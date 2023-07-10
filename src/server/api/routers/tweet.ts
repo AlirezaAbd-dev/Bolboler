@@ -164,6 +164,7 @@ export const tweetRouter = createTRPCRouter({
 
       if (existingLike == null) {
         await ctx.prisma.like.create({ data });
+        // await ctx.revalidateSSG?.("/tweet/[id]");
         return { addedLike: true };
       } else {
         await ctx.prisma.like.delete({ where: { userId_tweetId: data } });

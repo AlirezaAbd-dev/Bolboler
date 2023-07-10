@@ -8,7 +8,6 @@ import { useSession } from "next-auth/react";
 import type { Tweet } from "./TweetCard";
 import Tooltip from "../ui/Tooltip";
 import { useRouter } from "next/router";
-import { revalidatePath } from "next/cache";
 
 type ContentProps = {
   editMode: boolean;
@@ -23,7 +22,7 @@ const Content = (props: ContentProps) => {
   const router = useRouter();
 
   const toggleLike = api.tweet.toggleLike.useMutation({
-    onSuccess: ({ addedLike }) => {
+    onSuccess: async ({ addedLike }) => {
       const updateData: Parameters<
         typeof trpcUtils.tweet.infiniteFeed.setInfiniteData
       >[1] = (oldData) => {
@@ -61,16 +60,7 @@ const Content = (props: ContentProps) => {
         { userId: props.user.id },
         updateData
       );
-      trpcUtils.tweet.getTweetById.setData({ id: props.id }, (oldData) => {
-        revalidatePath(`tweet/[id]`);
-
-        if (oldData)
-          return {
-            ...oldData,
-            likedByMe: addedLike,
-            likeCount: addedLike ? oldData.likeCount++ : oldData.likeCount--,
-          };
-      });
+      await trpcUtils.tweet.getTweetById.refetch({ id: props.id });
     },
   });
 
@@ -86,7 +76,12 @@ const Content = (props: ContentProps) => {
             {props.user.name}
           </p>
         ) : (
-          <Tooltip content="Profile" place="top" id="profile" delayShow={1000}>
+          <Tooltip
+            content="View Tweet"
+            place="bottom"
+            id="view tweet"
+            delayShow={1000}
+          >
             <Link
               href={`/tweet/${props.id}`}
               className="font-bold outline-none hover:underline focus-visible:underline"
@@ -105,7 +100,7 @@ const Content = (props: ContentProps) => {
               className="ml-6 cursor-pointer"
               onClick={() => props.toggleEditMode()}
             >
-              <Tooltip content="Edit" place="top" id="edit">
+              <Tooltip content="Edit" place="bottom" id="edit">
                 <IconHoverEffect>
                   {!props.editMode ? (
                     <VscEdit className="h-4 w-4 text-gray-500" />
@@ -122,7 +117,7 @@ const Content = (props: ContentProps) => {
                 props.selectTweetForDelete(props.id);
               }}
             >
-              <Tooltip content="Delete" place="top" id="delete">
+              <Tooltip content="Delete" place="bottom" id="delete">
                 <IconHoverEffect red>
                   <RiDeleteBin2Line className="h-4 w-4 text-red-500" />
                 </IconHoverEffect>
