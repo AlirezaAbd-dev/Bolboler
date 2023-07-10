@@ -79,11 +79,6 @@ export const tweetRouter = createTRPCRouter({
           user: {
             select: { name: true, id: true, image: true },
           },
-          subTweets: {
-            orderBy: {
-              createdAt: "desc",
-            },
-          },
         },
       });
 

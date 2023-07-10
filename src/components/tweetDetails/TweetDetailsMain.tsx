@@ -36,8 +36,8 @@ const TweetDetailsMain = (props: TweetDetailsProps) => {
         <div className="border-b border-b-gray-200 py-4 text-center text-lg font-bold text-gray-600">
           Sub Tweets
         </div>
-      
-        <SubTweets user={tweet.data.user} subTweets={tweet.data.subTweets} />
+
+        <SubTweets user={tweet.data.user} tweetId={tweet.data.id} />
       </>
     );
   }

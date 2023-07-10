@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import { IconHoverEffect } from "../IconHoverEffect";
 import { VscClose, VscEdit } from "react-icons/vsc";
 import { RiDeleteBin2Line } from "react-icons/ri";
-import HeartButton from "../ui/HeartButton";
+import type { SubTweetType } from "../tweetDetails/SubTweets";
 
 type SubTweetCardProps = {
   user: {
@@ -14,13 +14,7 @@ type SubTweetCardProps = {
     name: string | null;
     image: string | null;
   };
-  subTweet: {
-    id: string;
-    userId: string;
-    content: string;
-    createdAt: Date;
-    mainTweetId: string;
-  };
+  subTweet: SubTweetType;
 };
 
 const SubTweetCard = (props: SubTweetCardProps) => {
@@ -83,12 +77,6 @@ const SubTweetCard = (props: SubTweetCardProps) => {
           )}
         </div>
         <p className="whitespace-pre-wrap">{props.subTweet.content}</p>
-        {/* <HeartButton
-        onClick={handleToggleLike}
-        isLoading={toggleLike.isLoading}
-        likedByMe={props.likedByMe}
-        likeCount={props.likeCount}
-      /> */}
       </div>
     </li>
   );

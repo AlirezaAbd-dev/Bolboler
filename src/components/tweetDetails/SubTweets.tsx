@@ -1,12 +1,4 @@
-import Tooltip from "../ui/Tooltip";
-import Link from "next/link";
-import { ProfileImage } from "../ProfileImage";
-import { dateTimeFormatter } from "../card/Content";
-import { useSession } from "next-auth/react";
-import { IconHoverEffect } from "../IconHoverEffect";
-import { VscClose, VscEdit } from "react-icons/vsc";
-import { RiDeleteBin2Line } from "react-icons/ri";
-import HeartButton from "../ui/HeartButton";
+import { api } from "~/utils/api";
 import SubTweetCard from "../card/SubTweetCard";
 
 type SubTweetsProps = {
@@ -15,18 +7,21 @@ type SubTweetsProps = {
     name: string | null;
     image: string | null;
   };
-  subTweets: {
-    id: string;
-    userId: string;
-    content: string;
-    createdAt: Date;
-    mainTweetId: string;
-  }[];
+  tweetId: string;
+};
+
+export type SubTweetType = {
+  id: string;
+  userId: string;
+  content: string;
+  createdAt: Date;
+  mainTweetId: string;
 };
 
 const SubTweets = (props: SubTweetsProps) => {
-    console.log(props.subTweets)
-  if (props.subTweets.length === 0 || !props.subTweets) {
+  const { tweetId } = props;
+  const subTweets = api.subTweet.getSubTweetsByTweetId.useQuery({ tweetId });
+  if (subTweets.data?.length === 0 || !subTweets.data) {
     return (
       <p className="mt-4 text-center text-xl text-gray-500">
         There is no subtweets for this tweet
@@ -34,7 +29,7 @@ const SubTweets = (props: SubTweetsProps) => {
     );
   }
 
-  return props.subTweets.map((subTweet) => (
+  return subTweets.data.map((subTweet: SubTweetType) => (
     <SubTweetCard subTweet={subTweet} user={props.user} key={subTweet.id} />
   ));
 };
