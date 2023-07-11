@@ -38,7 +38,7 @@ const TweetDetailsMain = (props: TweetDetailsProps) => {
           Sub Tweets
         </div>
 
-        <SubTweetForm />
+        <SubTweetForm tweetId={tweet.data.id}  />
 
         <SubTweets user={tweet.data.user} tweetId={tweet.data.id} />
       </>

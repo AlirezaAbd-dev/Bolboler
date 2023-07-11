@@ -5,14 +5,13 @@ import { api } from "~/utils/api";
 import { Button } from "../Button";
 import { ProfileImage } from "../ProfileImage";
 import { PacmanLoader } from "react-spinners";
+import { updateTextAreaSize } from "../Form";
 
-export function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
-  if (textArea == null) return;
-  textArea.style.height = "0";
-  textArea.style.height = `${textArea.scrollHeight}px`;
-}
+type SubTweetFormProps = {
+  tweetId: string;
+};
 
-function SubTweetForm() {
+function SubTweetForm(props: SubTweetFormProps) {
   const session = useSession();
   const [isInputEmpty, setIsInputEmpty] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -27,9 +26,27 @@ function SubTweetForm() {
     updateTextAreaSize(textAreaRef.current);
   }, [inputValue]);
 
-//   const createTweet = api.tweet.create.useMutation({
-    
-//   });
+  const createSubTweet = api.subTweet.create.useMutation({
+    onSuccess: (newSubTweet) => {
+      setInputValue("");
+      trpcUtils.subTweet.getSubTweetsByTweetId.setData(
+        { tweetId: props.tweetId },
+        (oldData) => {
+          if (oldData && oldData.length > 0) {
+            const newData = [...oldData];
+            newData.push(newSubTweet);
+
+            return newData;
+          } else {
+            const dataArray = [];
+
+            dataArray.push(newSubTweet);
+            return dataArray;
+          }
+        }
+      );
+    },
+  });
 
   if (session.status !== "authenticated") return null;
 
@@ -40,7 +57,10 @@ function SubTweetForm() {
       setIsInputEmpty(true);
     } else {
       setIsInputEmpty(false);
-    //   createTweet.mutate({ content: inputValue });
+      createSubTweet.mutate({
+        mainTweetId: props.tweetId,
+        content: inputValue,
+      });
     }
   }
 
@@ -65,16 +85,16 @@ function SubTweetForm() {
           You have to enter at least 3 characters in your tweet!
         </p>
       )}
-      {/* {createTweet.isLoading ? (
+      {createSubTweet.isLoading ? (
         <PacmanLoader
           size={13}
           color="rgb(59 130 246)"
           className="self-end"
           cssOverride={{ marginRight: "40px" }}
         />
-      ) : ( */}
-        <Button className="items-center self-end">Tweet</Button>
-      {/* )} */}
+      ) : (
+        <Button className="items-center self-end">Sub Tweet</Button>
+      )}
     </form>
   );
 }

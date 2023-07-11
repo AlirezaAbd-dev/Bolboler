@@ -1,5 +1,6 @@
 import { api } from "~/utils/api";
 import SubTweetCard from "../card/SubTweetCard";
+import { useState } from "react";
 
 type SubTweetsProps = {
   user: {
@@ -19,6 +20,13 @@ export type SubTweetType = {
 };
 
 const SubTweets = (props: SubTweetsProps) => {
+  const [selectedSubTweetForDelete, setSelectedSubTweetForDelete] =
+    useState("");
+
+  const handleSelectedSubTweet = (selectTweet: string) => {
+    setSelectedSubTweetForDelete(selectTweet);
+  };
+
   const { tweetId } = props;
   const subTweets = api.subTweet.getSubTweetsByTweetId.useQuery({ tweetId });
   if (subTweets.data?.length === 0 || !subTweets.data) {
@@ -30,7 +38,13 @@ const SubTweets = (props: SubTweetsProps) => {
   }
 
   return subTweets.data.map((subTweet: SubTweetType) => (
-    <SubTweetCard subTweet={subTweet} user={props.user} key={subTweet.id} />
+    <SubTweetCard
+      subTweet={subTweet}
+      user={props.user}
+      selectedSubTweetForDelete={selectedSubTweetForDelete}
+      setSelectedSubTweetForDelete={handleSelectedSubTweet}
+      key={subTweet.id}
+    />
   ));
 };
 
