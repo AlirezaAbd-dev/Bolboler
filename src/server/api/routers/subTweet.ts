@@ -34,6 +34,15 @@ const subTweetRouter = createTRPCRouter({
             userId: userId,
             mainTweetId,
           },
+          include: {
+            user: {
+              select: {
+                id: true,
+                name: true,
+                image: true,
+              },
+            },
+          },
         });
         return newSubTweet;
       } catch (err) {
@@ -55,6 +64,15 @@ const subTweetRouter = createTRPCRouter({
       const subTweets = await ctx.prisma.subTweet.findMany({
         where: {
           mainTweetId: tweetId,
+        },
+        include: {
+          user: {
+            select: {
+              name: true,
+              id: true,
+              image: true,
+            },
+          },
         },
       });
 

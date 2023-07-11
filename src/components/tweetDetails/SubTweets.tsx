@@ -17,6 +17,11 @@ export type SubTweetType = {
   content: string;
   createdAt: Date;
   mainTweetId: string;
+  user: {
+    id: string;
+    name: string | null;
+    image: string | null;
+  };
 };
 
 const SubTweets = (props: SubTweetsProps) => {
@@ -40,7 +45,7 @@ const SubTweets = (props: SubTweetsProps) => {
   return subTweets.data.map((subTweet: SubTweetType) => (
     <SubTweetCard
       subTweet={subTweet}
-      user={props.user}
+      user={subTweet.user}
       selectedSubTweetForDelete={selectedSubTweetForDelete}
       setSelectedSubTweetForDelete={handleSelectedSubTweet}
       key={subTweet.id}

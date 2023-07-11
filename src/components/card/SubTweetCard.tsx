@@ -37,8 +37,8 @@ const SubTweetCard = (props: SubTweetCardProps) => {
   return (
     <>
       <li className="mx-10 flex gap-4 border-b px-4 py-4">
-        <Link href={`/profiles/${props.user.id}`}>
-          <ProfileImage src={props.user.image} />
+        <Link href={`/profiles/${props.subTweet.id}`}>
+          <ProfileImage src={props.subTweet.userId} />
         </Link>
         <div className="flex flex-grow flex-col">
           <div className="flex gap-1">
