@@ -49,7 +49,7 @@ const SubTweetCard = (props: SubTweetCardProps) => {
               delayShow={1000}
             >
               <Link
-                href={`/profile/${props.user.id}`}
+                href={`/profiles/${props.user.id}`}
                 className="font-bold outline-none hover:underline focus-visible:underline"
               >
                 {props.user.name}
