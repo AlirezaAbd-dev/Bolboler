@@ -5,7 +5,7 @@
   "author": "AlirezaAbd",
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "next dev -p 8081",
     "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start"
