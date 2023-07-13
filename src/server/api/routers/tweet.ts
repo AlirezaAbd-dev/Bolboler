@@ -71,7 +71,7 @@ export const tweetRouter = createTRPCRouter({
           id: true,
           content: true,
           createdAt: true,
-          _count: { select: { likes: true } },
+          _count: { select: { likes: true, subTweets: true } },
           likes:
             currentUserId == null
               ? false
