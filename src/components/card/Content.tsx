@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import type { Tweet } from "./TweetCard";
 import Tooltip from "../ui/Tooltip";
 import { useRouter } from "next/router";
+import ReplyButton from "../ui/ReplyButton";
 
 type ContentProps = {
   editMode: boolean;
@@ -127,12 +128,15 @@ const Content = (props: ContentProps) => {
         )}
       </div>
       <p className="whitespace-pre-wrap">{props.content}</p>
-      <HeartButton
-        onClick={handleToggleLike}
-        isLoading={toggleLike.isLoading}
-        likedByMe={props.likedByMe}
-        likeCount={props.likeCount}
-      />
+      <div className="flex items-center gap-3">
+        <HeartButton
+          onClick={handleToggleLike}
+          isLoading={toggleLike.isLoading}
+          likedByMe={props.likedByMe}
+          likeCount={props.likeCount}
+        />
+        <ReplyButton subTweetCount={props.subTweetCount} id={props.id} />
+      </div>
     </>
   );
 };

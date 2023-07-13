@@ -14,6 +14,7 @@ export type Tweet = {
   likeCount: number;
   likedByMe: boolean;
   user: { id: string; image: string | null; name: string | null };
+  subTweetCount: number;
 };
 
 function TweetCard({
@@ -22,6 +23,7 @@ function TweetCard({
   content,
   createdAt,
   likeCount,
+  subTweetCount,
   likedByMe,
 }: Tweet) {
   const [editMode, setEditMode] = useState(false);
@@ -78,6 +80,7 @@ function TweetCard({
           selectTweetForDelete={selectTweetForDelete}
           toggleEditMode={toggleEditMode}
           user={user}
+          subTweetCount={subTweetCount}
         />
 
         {/* //* Form for editing tweet */}

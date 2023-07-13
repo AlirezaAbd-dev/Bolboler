@@ -189,7 +189,7 @@ async function getInfiniteTweets({
       id: true,
       content: true,
       createdAt: true,
-      _count: { select: { likes: true } },
+      _count: { select: { likes: true, subTweets: true } },
       likes:
         currentUserId == null ? false : { where: { userId: currentUserId } },
       user: {
@@ -214,6 +214,7 @@ async function getInfiniteTweets({
         createdAt: tweet.createdAt,
         user: tweet.user,
         likeCount: tweet._count.likes,
+        subTweetCount: tweet._count.subTweets,
         likedByMe: tweet.likes?.length > 0,
       };
     }),

@@ -10,6 +10,7 @@ type Tweet = {
   createdAt: Date;
   likeCount: number;
   likedByMe: boolean;
+  subTweetCount: number;
   user: { id: string; image: string | null; name: string | null };
 };
 
