@@ -32,13 +32,14 @@ const TweetDetailsMain = (props: TweetDetailsProps) => {
           id={tweet.data.id}
           likeCount={tweet.data.likeCount}
           likedByMe={tweet.data.likedByMe}
+          subTweetCount={tweet.data._count.subTweets}
         />
 
         <div className="border-b border-b-gray-200 py-4 text-center text-lg font-bold text-gray-600">
           Sub Tweets
         </div>
 
-        <SubTweetForm tweetId={tweet.data.id}  />
+        <SubTweetForm tweetId={tweet.data.id} />
 
         <SubTweets user={tweet.data.user} tweetId={tweet.data.id} />
       </>
