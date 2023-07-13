@@ -40,6 +40,7 @@ function Form() {
           ...newTweet,
           likeCount: 0,
           likedByMe: false,
+          subTweetCount: 0,
           user: {
             id: session.data.user.id,
             name: session.data.user.name || null,
