@@ -1,6 +1,7 @@
 import { api } from "~/utils/api";
 import SubTweetCard from "../card/SubTweetCard";
 import { useState } from "react";
+import { LoadingSpinner } from "../LoadingSpinner";
 
 type SubTweetsProps = {
   user: {
@@ -34,7 +35,10 @@ const SubTweets = (props: SubTweetsProps) => {
 
   const { tweetId } = props;
   const subTweets = api.subTweet.getSubTweetsByTweetId.useQuery({ tweetId });
-  if (subTweets.data?.length === 0 || !subTweets.data) {
+  if (
+    !subTweets.isLoading &&
+    (subTweets.data?.length === 0 || !subTweets.data)
+  ) {
     return (
       <p className="mt-4 text-center text-xl text-gray-500">
         There is no subtweets for this tweet
@@ -42,15 +46,21 @@ const SubTweets = (props: SubTweetsProps) => {
     );
   }
 
-  return subTweets.data.map((subTweet: SubTweetType) => (
-    <SubTweetCard
-      subTweet={subTweet}
-      user={subTweet.user}
-      selectedSubTweetForDelete={selectedSubTweetForDelete}
-      setSelectedSubTweetForDelete={handleSelectedSubTweet}
-      key={subTweet.id}
-    />
-  ));
+  if (subTweets.isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (subTweets.data) {
+    return subTweets.data.map((subTweet: SubTweetType) => (
+      <SubTweetCard
+        subTweet={subTweet}
+        user={subTweet.user}
+        selectedSubTweetForDelete={selectedSubTweetForDelete}
+        setSelectedSubTweetForDelete={handleSelectedSubTweet}
+        key={subTweet.id}
+      />
+    ));
+  }
 };
 
 export default SubTweets;

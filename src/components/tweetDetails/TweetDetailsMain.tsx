@@ -37,6 +37,9 @@ const TweetDetailsMain = (props: TweetDetailsProps) => {
 
         <div className="border-b border-b-gray-200 py-4 text-center text-lg font-bold text-gray-600">
           Sub Tweets
+          <p className="text-md text-gray-500">
+            Replies: {tweet.data._count.subTweets}
+          </p>
         </div>
 
         <SubTweetForm tweetId={tweet.data.id} />
