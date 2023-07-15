@@ -168,6 +168,36 @@ export const tweetRouter = createTRPCRouter({
         return { addedLike: false };
       }
     }),
+  likesList: publicProcedure
+    .input(
+      z.object({
+        tweetId: z.string(),
+      })
+    )
+    .query(async ({ input, ctx }) => {
+      const { tweetId } = input;
+
+      try {
+        const likeList = await ctx.prisma.like.findMany({
+          where: {
+            tweetId,
+          },
+          include: {
+            user: {
+              select: {
+                id: true,
+                image: true,
+                name: true,
+              },
+            },
+          },
+        });
+
+        return likeList;
+      } catch (err) {
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR" });
+      }
+    }),
 });
 
 async function getInfiniteTweets({
