@@ -127,7 +127,10 @@ export const tweetRouter = createTRPCRouter({
 
         return deletedTweet.id;
       } else {
-        throw Error("There is no tweet with this tweetId!");
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "There is no tweet with this tweetId!",
+        });
       }
     }),
   edit: protectedProcedure
