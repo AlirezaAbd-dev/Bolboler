@@ -24,8 +24,6 @@ const EditSubTweetForm = (props: EditSubTweetFormProps) => {
       trpcUtils.subTweet.getSubTweetsByTweetId.setData(
         { tweetId: props.tweetId },
         (oldData) => {
-          console.log(changedData);
-          console.log("OldData: ", oldData);
           if (oldData) {
             const changedItemIndex = oldData.findIndex(
               (d) => d.id === changedData.id
@@ -34,8 +32,6 @@ const EditSubTweetForm = (props: EditSubTweetFormProps) => {
             if (oldData[changedItemIndex]) {
               (oldData[changedItemIndex] as { content: string }).content =
                 changedData.content;
-
-              console.log("NewDataSet", oldData);
 
               return oldData;
             }
