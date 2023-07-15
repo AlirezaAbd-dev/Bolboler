@@ -84,21 +84,23 @@ function TweetCard({
         />
 
         {/* //* Form for editing tweet */}
-        <Transition
-          show={editMode}
-          enter="transition ease-in-out duration-300 transform"
-          enterFrom="-translate-x-full opacity-0"
-          enterTo="translate-x-0 opacity-1"
-          leave="transition ease-in-out duration-300 transform"
-          leaveFrom="translate-x-0 opacity-1"
-          leaveTo="-translate-x-full opacity-0"
-        >
-          <EditTweetForm
-            tweetId={id}
-            tweetContent={content}
-            onClose={closeEditMode}
-          />
-        </Transition>
+        {session.status === "authenticated" && (
+          <Transition
+            show={editMode}
+            enter="transition ease-in-out duration-300 transform"
+            enterFrom="-translate-x-full opacity-0"
+            enterTo="translate-x-0 opacity-1"
+            leave="transition ease-in-out duration-300 transform"
+            leaveFrom="translate-x-0 opacity-1"
+            leaveTo="-translate-x-full opacity-0"
+          >
+            <EditTweetForm
+              tweetId={id}
+              tweetContent={content}
+              onClose={closeEditMode}
+            />
+          </Transition>
+        )}
       </div>
     </li>
   );
