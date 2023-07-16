@@ -1,10 +1,5 @@
-/* eslint-disable @typescript-eslint/restrict-plus-operands */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useInView } from "react-intersection-observer";
 import { LoadingSpinner } from "./LoadingSpinner";
 import TweetCard from "./card/TweetCard";
-import { useEffect, useState } from "react";
 import useInfiniteScroll from "~/hooks/useInfiniteScroll";
 
 type Tweet = {
@@ -56,7 +51,7 @@ export function InfiniteTweetList({
           <>
             <TweetCard key={tweet.id} {...tweet} />
             {index === tweets.length - 1 ? (
-              <div className="py-2" ref={ref}></div>
+              <div className="w-full bg-black py-5" ref={ref}></div>
             ) : null}
           </>
         );

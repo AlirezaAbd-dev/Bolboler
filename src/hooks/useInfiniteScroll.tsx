@@ -11,12 +11,13 @@ const useInfiniteScroll = (props: UseInfiniteScrollProps) => {
   const [loadMore, setLoadMore] = useState(false);
   const { ref, inView, entry } = useInView({
     threshold: props.threshold,
+    delay: 1000,
   });
 
   useEffect(() => {
     if (ref.length === 1) {
       async function fetchNewTweetsStart() {
-        if (entry && !loadMore) {
+        if (inView && !loadMore) {
           if (props.hasMore) {
             setLoadMore(true);
             await props.fetchNewTweets();
@@ -29,7 +30,7 @@ const useInfiniteScroll = (props: UseInfiniteScrollProps) => {
 
       void fetchNewTweetsStart();
     }
-  }, [inView, entry, props, loadMore, ref.length]);
+  }, [inView, props, loadMore, ref.length]);
 
   return { loadMore, ref, inView, entry };
 };
