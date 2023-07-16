@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { LoadingSpinner } from "./LoadingSpinner";
 import TweetCard from "./card/TweetCard";
 import { useEffect, useState } from "react";
+import useInfiniteScroll from "~/hooks/useInfiniteScroll";
 
 type Tweet = {
   id: string;
@@ -31,29 +32,13 @@ export function InfiniteTweetList({
   fetchNewTweets,
   hasMore = false,
 }: InfiniteTweetListProps) {
-  const [loadMore, setLoadMore] = useState(false);
-  const { ref, inView, entry } = useInView({
+  const { loadMore, ref, inView } = useInfiniteScroll({
+    fetchNewTweets,
+    hasMore,
     threshold: 1,
   });
 
-  useEffect(() => {
-    async function fetchNewTweetsStart() {
-      if (entry && !loadMore) {
-        if (hasMore) {
-          setLoadMore(true);
-          await fetchNewTweets();
-          setLoadMore(false);
-        }
-      }
-    }
-
-    void fetchNewTweetsStart();
-  });
-
-  if (inView) {
-    console.log("in view");
-    console.log(entry);
-  }
+  console.log(inView);
 
   if (isLoading) return <LoadingSpinner />;
   if (isError) return <h1>Error...</h1>;
