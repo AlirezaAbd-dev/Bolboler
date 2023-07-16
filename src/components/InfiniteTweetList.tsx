@@ -53,11 +53,12 @@ export function InfiniteTweetList({
     <ul>
       {tweets.map((tweet, index) => {
         return (
-          <TweetCard
-            key={tweet.id}
-            {...tweet}
-            ref={index === tweets.length - 1 ? ref : null}
-          />
+          <>
+            <TweetCard key={tweet.id} {...tweet} />
+            {index === tweets.length - 1 ? (
+              <div className="py-2" ref={ref}></div>
+            ) : null}
+          </>
         );
       })}
       {loadMore && <LoadingSpinner />}

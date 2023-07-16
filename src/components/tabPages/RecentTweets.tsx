@@ -4,9 +4,8 @@ import { InfiniteTweetList } from "../InfiniteTweetList";
 function RecentTweets() {
   const tweets = api.tweet.infiniteFeed.useInfiniteQuery(
     {},
-    {getNextPageParam: (lastPage) => lastPage.nextCursor }
+    { getNextPageParam: (lastPage) => lastPage.nextCursor }
   );
-
   return (
     <InfiniteTweetList
       tweets={tweets.data?.pages.flatMap((page) => page.tweets)}
