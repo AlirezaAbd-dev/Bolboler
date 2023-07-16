@@ -51,7 +51,7 @@ export function InfiniteTweetList({
           <>
             <TweetCard key={tweet.id} {...tweet} />
             {index === tweets.length - 1 ? (
-              <div className="w-full py-5" ref={ref}></div>
+              <div className="w-full py-2" ref={ref}></div>
             ) : null}
           </>
         );
