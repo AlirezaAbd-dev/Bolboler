@@ -2,7 +2,8 @@ import Link from "next/link";
 import { ProfileImage } from "../ProfileImage";
 import { useSession } from "next-auth/react";
 import DeleteModal from "../modals/DeleteModal";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
+import type { LegacyRef } from "react";
 import EditTweetForm from "./EditTweetForm";
 import { Transition } from "@headlessui/react";
 import Content from "./Content";
@@ -17,15 +18,10 @@ export type Tweet = {
   subTweetCount: number;
 };
 
-function TweetCard({
-  id,
-  user,
-  content,
-  createdAt,
-  likeCount,
-  subTweetCount,
-  likedByMe,
-}: Tweet) {
+const TweetCard = forwardRef(function TweetCard(
+  { id, user, content, createdAt, likeCount, subTweetCount, likedByMe }: Tweet,
+  ref: LegacyRef<HTMLLIElement>
+) {
   const [editMode, setEditMode] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedTweetForDelete, setSelectedTweetForDelete] = useState("");
@@ -52,7 +48,7 @@ function TweetCard({
   const session = useSession();
 
   return (
-    <li className="flex gap-4 border-b px-4 py-4">
+    <li ref={ref} className="flex gap-4 border-b px-4 py-4">
       <Link href={`/profiles/${user.id}`}>
         <ProfileImage src={user.image} />
       </Link>
@@ -104,6 +100,6 @@ function TweetCard({
       </div>
     </li>
   );
-}
+});
 
 export default TweetCard;

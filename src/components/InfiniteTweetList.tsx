@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useInView } from "react-intersection-observer";
 import { LoadingSpinner } from "./LoadingSpinner";
 import TweetCard from "./card/TweetCard";
+import { useEffect, useState } from "react";
 
 type Tweet = {
   id: string;
@@ -29,6 +31,30 @@ export function InfiniteTweetList({
   fetchNewTweets,
   hasMore = false,
 }: InfiniteTweetListProps) {
+  const [loadMore, setLoadMore] = useState(false);
+  const { ref, inView, entry } = useInView({
+    threshold: 1,
+  });
+
+  useEffect(() => {
+    async function fetchNewTweetsStart() {
+      if (entry && !loadMore) {
+        if (hasMore) {
+          setLoadMore(true);
+          await fetchNewTweets();
+          setLoadMore(false);
+        }
+      }
+    }
+
+    void fetchNewTweetsStart();
+  });
+
+  if (inView) {
+    console.log("in view");
+    console.log(entry);
+  }
+
   if (isLoading) return <LoadingSpinner />;
   if (isError) return <h1>Error...</h1>;
 
@@ -40,16 +66,16 @@ export function InfiniteTweetList({
 
   return (
     <ul>
-      <InfiniteScroll
-        dataLength={tweets.length}
-        next={fetchNewTweets}
-        hasMore={hasMore}
-        loader={<LoadingSpinner />}
-      >
-        {tweets.map((tweet) => {
-          return <TweetCard key={tweet.id} {...tweet} />;
-        })}
-      </InfiniteScroll>
+      {tweets.map((tweet, index) => {
+        return (
+          <TweetCard
+            key={tweet.id}
+            {...tweet}
+            ref={index === tweets.length - 1 ? ref : null}
+          />
+        );
+      })}
+      {loadMore && <LoadingSpinner />}
     </ul>
   );
 }
