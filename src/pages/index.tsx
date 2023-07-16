@@ -5,6 +5,7 @@ import { NewTweetForm } from "~/components/NewTweetForm";
 import Tab from "~/components/Tab";
 import FollowingTweets from "~/components/tabPages/FollowingTweets";
 import RecentTweets from "~/components/tabPages/RecentTweets";
+import { api } from "~/utils/api";
 
 const TABS = ["Recent", "Following"] as const;
 
@@ -12,6 +13,7 @@ const Home: NextPage = () => {
   const [selectedTab, setSelectedTab] =
     useState<(typeof TABS)[number]>("Recent");
   const session = useSession();
+  api.tweet.deleteEmptyContents.useQuery();
 
   return (
     <>

@@ -198,6 +198,13 @@ export const tweetRouter = createTRPCRouter({
         throw new TRPCError({ code: "INTERNAL_SERVER_ERROR" });
       }
     }),
+  deleteEmptyContents: publicProcedure.query(async ({ ctx }) => {
+    await ctx.prisma.tweet.deleteMany({
+      where: {
+        content: undefined,
+      },
+    });
+  }),
 });
 
 async function getInfiniteTweets({
