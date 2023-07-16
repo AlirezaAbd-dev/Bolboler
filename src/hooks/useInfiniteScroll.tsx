@@ -15,22 +15,20 @@ const useInfiniteScroll = (props: UseInfiniteScrollProps) => {
   });
 
   useEffect(() => {
-    if (ref.length === 1) {
-      async function fetchNewTweetsStart() {
-        if (inView && !loadMore) {
-          if (props.hasMore) {
-            setLoadMore(true);
-            await props.fetchNewTweets();
-            setTimeout(() => {
-              setLoadMore(false);
-            }, 2000);
-          }
+    async function fetchNewTweetsStart() {
+      if (inView && !loadMore) {
+        if (props.hasMore) {
+          setLoadMore(true);
+          await props.fetchNewTweets();
+          setTimeout(() => {
+            setLoadMore(false);
+          }, 2000);
         }
       }
-
-      void fetchNewTweetsStart();
     }
-  }, [inView, props, loadMore, ref.length]);
+
+    void fetchNewTweetsStart();
+  }, [inView, props, loadMore]);
 
   return { loadMore, ref, inView, entry };
 };

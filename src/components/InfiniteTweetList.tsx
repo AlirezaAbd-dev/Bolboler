@@ -27,13 +27,11 @@ export function InfiniteTweetList({
   fetchNewTweets,
   hasMore = false,
 }: InfiniteTweetListProps) {
-  const { loadMore, ref, inView } = useInfiniteScroll({
+  const { loadMore, ref } = useInfiniteScroll({
     fetchNewTweets,
     hasMore,
     threshold: 1,
   });
-
-  console.log(inView);
 
   if (isLoading) return <LoadingSpinner />;
   if (isError) return <h1>Error...</h1>;
