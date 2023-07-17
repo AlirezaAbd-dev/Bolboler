@@ -21,16 +21,14 @@ type InfiniteTweetListProps = {
 };
 
 export function InfiniteTweetList({
-  tweets,
-  isError,
-  isLoading,
-  fetchNewTweets,
   hasMore = false,
+  ...props
 }: InfiniteTweetListProps) {
-  if (isLoading) return <LoadingSpinner />;
-  if (isError) return <h1>Error...</h1>;
+  
+  if (props.isLoading) return <LoadingSpinner />;
+  if (props.isError) return <h1>Error...</h1>;
 
-  if (tweets == null || tweets.length === 0) {
+  if (props.tweets == null || props.tweets.length === 0) {
     return (
       <h2 className="my-4 text-center text-2xl text-gray-500">No Tweets</h2>
     );
@@ -39,17 +37,13 @@ export function InfiniteTweetList({
   return (
     <ul>
       <InfiniteScroll
-        fetchNewTweets={fetchNewTweets}
+        fetchNewTweets={props.fetchNewTweets}
         hasMore={hasMore}
         loader={<LoadingSpinner />}
         threshold={1}
       >
-        {tweets.map((tweet) => {
-          return (
-            <>
-              <TweetCard key={tweet.id} {...tweet} />
-            </>
-          );
+        {props.tweets.map((tweet) => {
+          return <TweetCard key={tweet.id} {...tweet} />;
         })}
       </InfiniteScroll>
     </ul>
