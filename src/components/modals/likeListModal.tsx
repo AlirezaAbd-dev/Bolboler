@@ -1,6 +1,12 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { api } from "~/utils/api";
+import { ProfileImage } from "../ProfileImage";
+import Link from "next/link";
+import { VscClose } from "react-icons/vsc";
+import { IconHoverEffect } from "../IconHoverEffect";
+import { LoadingSpinner } from "../LoadingSpinner";
+import InfiniteScroll from "../ui/InfiniteScroll";
 
 type LikeListModalProps = {
   openModal: () => void;
@@ -10,6 +16,11 @@ type LikeListModalProps = {
 };
 
 function LikeListModal(props: LikeListModalProps) {
+  const likeList = api.tweet.likesList.useInfiniteQuery(
+    { limit: 20, tweetId: props.tweetId },
+    { getNextPageParam: (lastPage) => lastPage.nextCursor }
+  );
+
   return (
     <>
       <Transition appear show={props.modalIsOpen} as={Fragment}>
@@ -46,10 +57,56 @@ function LikeListModal(props: LikeListModalProps) {
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-red-500"
+                    className="flex items-center justify-between text-lg font-medium leading-6 text-blue-500"
                   >
-                    Tweet Like List
+                    <p>Tweet Like List</p>
+                    <span className="cursor-pointer hover:text-red-500">
+                      <IconHoverEffect>
+                        <VscClose
+                          onClick={props.closeModal}
+                          className="h-6 w-6"
+                        />
+                      </IconHoverEffect>
+                    </span>
                   </Dialog.Title>
+
+                  {/* Loading spinner */}
+                  {likeList.isLoading && <LoadingSpinner />}
+
+                  {likeList.data?.pages.flatMap((data) => data.likeList)
+                    .length === 0 && (
+                    <p className="my-5 text-center text-lg text-gray-400">
+                      Nobody likes your tweet!
+                    </p>
+                  )}
+
+                  {/* List goes here */}
+                  {likeList.isSuccess && (
+                    <ul className="container mt-4 flex max-h-[70vh] flex-col overflow-y-auto">
+                      <InfiniteScroll
+                        fetchNewTweets={likeList.fetchNextPage}
+                        hasMore={likeList.hasNextPage}
+                        loader={<LoadingSpinner />}
+                        threshold={1}
+                      >
+                        {likeList.data?.pages
+                          .flatMap((data) => data.likeList)
+                          .map((like) => (
+                            <>
+                              <Link
+                                href={`/profiles/${like.userId}`}
+                                key={like.tweetId + like.userId}
+                              >
+                                <li className="flex items-center gap-2 rounded-lg p-3 font-bold transition-colors delay-100 hover:bg-gray-200">
+                                  <ProfileImage src={like.user.image} />
+                                  <span>{like.user.name}</span>
+                                </li>
+                              </Link>
+                            </>
+                          ))}
+                      </InfiniteScroll>
+                    </ul>
+                  )}
                 </Dialog.Panel>
               </Transition.Child>
             </div>

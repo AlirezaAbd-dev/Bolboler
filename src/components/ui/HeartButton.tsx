@@ -13,6 +13,28 @@ type HeartButtonProps = {
   tweetId: string;
 };
 
+type LikeNumberProps = {
+  openModal: () => void;
+  likeCount: number;
+};
+
+function LikeNumber(props: LikeNumberProps) {
+  return (
+    <span onClick={props.openModal}>
+      <Tooltip
+        content="Likes"
+        id="likes"
+        place="top"
+        classNames="cursor-pointer hover:text-red-500"
+      >
+        <span className="text-md cursor-pointer rounded-full px-1 hover:text-red-500">
+          {props.likeCount}
+        </span>
+      </Tooltip>
+    </span>
+  );
+}
+
 function HeartButton({
   isLoading,
   onClick,
@@ -37,7 +59,7 @@ function HeartButton({
     return (
       <div className="mb-1 mt-1 flex items-center gap-3 self-start text-gray-500">
         <HeartIcon />
-        <span>{likeCount}</span>
+        <LikeNumber likeCount={likeCount} openModal={openModal} />
       </div>
     );
   }
@@ -65,18 +87,7 @@ function HeartButton({
           </IconHoverEffect>
         </Tooltip>
       </button>
-      <span onClick={openModal}>
-        <Tooltip
-          content="Likes"
-          id="likes"
-          place="top"
-          classNames="cursor-pointer hover:text-red-500"
-        >
-          <span className="text-md cursor-pointer rounded-full px-1 hover:text-red-500">
-            {likeCount}
-          </span>
-        </Tooltip>
-      </span>
+      <LikeNumber likeCount={likeCount} openModal={openModal} />
       <LikeListModal
         closeModal={closeModal}
         openModal={openModal}
