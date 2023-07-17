@@ -1,3 +1,4 @@
+import { HTMLAttributes } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import type { PlacesType } from "react-tooltip";
 
@@ -8,6 +9,7 @@ type TooltipProps = {
   content: string;
   delayShow?: number;
   delayHide?: number;
+  classNames?: string;
 };
 
 const Tooltip = (props: TooltipProps) => {
@@ -17,6 +19,7 @@ const Tooltip = (props: TooltipProps) => {
         data-tooltip-id={props.id}
         data-tooltip-content={props.content}
         data-tooltip-place={props.place}
+        className={props.classNames}
       >
         {props.children}
       </span>
