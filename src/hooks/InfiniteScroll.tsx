@@ -24,9 +24,7 @@ const InfiniteScroll = ({ reverse = false, ...props }: InfiniteScrollProps) => {
         if (props.hasMore) {
           setLoadMore(true);
           await props.fetchNewTweets();
-          setTimeout(() => {
-            setLoadMore(false);
-          }, 2000);
+          setLoadMore(false);
         }
       }
     }
