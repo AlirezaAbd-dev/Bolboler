@@ -172,16 +172,20 @@ export const tweetRouter = createTRPCRouter({
     .input(
       z.object({
         tweetId: z.string(),
+        cursor: z.object({ userId: z.string(), tweetId: z.string() }).nullish(),
+        limit: z.number().min(1).max(100),
       })
     )
-    .query(async ({ input, ctx }) => {
-      const { tweetId } = input;
+    .query(async ({ input: { limit = 10, ...input }, ctx }) => {
+      const { tweetId, cursor } = input;
 
       try {
         const likeList = await ctx.prisma.like.findMany({
           where: {
             tweetId,
           },
+          take: limit + 1,
+          cursor: cursor ? { userId_tweetId: cursor } : undefined,
           include: {
             user: {
               select: {
@@ -193,7 +197,19 @@ export const tweetRouter = createTRPCRouter({
           },
         });
 
-        return likeList;
+        let nextCursor: typeof cursor | undefined = undefined;
+        if (likeList.length > limit) {
+          const nextItem = likeList.pop();
+          nextCursor = {
+            tweetId: (nextItem as { tweetId: string }).tweetId,
+            userId: (nextItem as { userId: string }).userId,
+          };
+        }
+
+        return {
+          likeList,
+          nextCursor,
+        };
       } catch (err) {
         throw new TRPCError({ code: "INTERNAL_SERVER_ERROR" });
       }
