@@ -1,4 +1,3 @@
-import { HTMLAttributes } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import type { PlacesType } from "react-tooltip";
 

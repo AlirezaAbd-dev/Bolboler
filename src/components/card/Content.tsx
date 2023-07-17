@@ -134,6 +134,7 @@ const Content = (props: ContentProps) => {
           isLoading={toggleLike.isLoading}
           likedByMe={props.likedByMe}
           likeCount={props.likeCount}
+          tweetId={props.id}
         />
         <ReplyButton subTweetCount={props.subTweetCount} id={props.id} />
       </div>

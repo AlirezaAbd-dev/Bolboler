@@ -3,12 +3,14 @@ import { VscHeart, VscHeartFilled } from "react-icons/vsc";
 import { IconHoverEffect } from "../IconHoverEffect";
 import Tooltip from "./Tooltip";
 import { useState } from "react";
+import LikeListModal from "../modals/LikeListModal";
 
 type HeartButtonProps = {
   onClick: () => void;
   isLoading: boolean;
   likedByMe: boolean;
   likeCount: number;
+  tweetId: string;
 };
 
 function HeartButton({
@@ -16,11 +18,20 @@ function HeartButton({
   onClick,
   likedByMe,
   likeCount,
+  tweetId,
 }: HeartButtonProps) {
   const session = useSession();
   const [likeListModalOpen, setLikeListModalOpen] = useState(false);
 
   const HeartIcon = likedByMe ? VscHeartFilled : VscHeart;
+
+  const closeModal = () => {
+    setLikeListModalOpen(false);
+  };
+
+  const openModal = () => {
+    setLikeListModalOpen(true);
+  };
 
   if (session.status !== "authenticated") {
     return (
@@ -54,16 +65,24 @@ function HeartButton({
           </IconHoverEffect>
         </Tooltip>
       </button>
-      <Tooltip
-        content="Likes"
-        id="likes"
-        place="top"
-        classNames="cursor-pointer hover:text-red-500"
-      >
-        <span className="text-md cursor-pointer rounded-full px-1 hover:text-red-500">
-          {likeCount}
-        </span>
-      </Tooltip>
+      <span onClick={openModal}>
+        <Tooltip
+          content="Likes"
+          id="likes"
+          place="top"
+          classNames="cursor-pointer hover:text-red-500"
+        >
+          <span className="text-md cursor-pointer rounded-full px-1 hover:text-red-500">
+            {likeCount}
+          </span>
+        </Tooltip>
+      </span>
+      <LikeListModal
+        closeModal={closeModal}
+        openModal={openModal}
+        modalIsOpen={likeListModalOpen}
+        tweetId={tweetId}
+      />
     </div>
   );
 }
