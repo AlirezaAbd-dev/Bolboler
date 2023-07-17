@@ -14,7 +14,6 @@ const InfiniteScroll = ({ reverse = false, ...props }: InfiniteScrollProps) => {
   const [loadMore, setLoadMore] = useState(false);
   const { ref, inView } = useInView({
     threshold: props.threshold,
-    delay: 1000,
   });
 
   useEffect(() => {
