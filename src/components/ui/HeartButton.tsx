@@ -3,7 +3,7 @@ import { VscHeart, VscHeartFilled } from "react-icons/vsc";
 import { IconHoverEffect } from "../IconHoverEffect";
 import Tooltip from "./Tooltip";
 import { useState } from "react";
-import LikeListModal from "../modals/LikeListModal";
+import LikeListModal from "../modals/likeList/LikeListModal";
 
 type HeartButtonProps = {
   onClick: () => void;

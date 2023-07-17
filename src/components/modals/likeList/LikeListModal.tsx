@@ -1,12 +1,13 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { api } from "~/utils/api";
-import { ProfileImage } from "../ProfileImage";
+import { ProfileImage } from "../../ProfileImage";
 import Link from "next/link";
 import { VscClose } from "react-icons/vsc";
-import { IconHoverEffect } from "../IconHoverEffect";
-import { LoadingSpinner } from "../LoadingSpinner";
-import InfiniteScroll from "../ui/InfiniteScroll";
+import { IconHoverEffect } from "../../IconHoverEffect";
+import { LoadingSpinner } from "../../LoadingSpinner";
+import InfiniteScroll from "../../ui/InfiniteScroll";
+import LikeList from "./LikeList";
 
 type LikeListModalProps = {
   openModal: () => void;
@@ -92,17 +93,12 @@ function LikeListModal(props: LikeListModalProps) {
                         {likeList.data?.pages
                           .flatMap((data) => data.likeList)
                           .map((like) => (
-                            <>
-                              <Link
-                                href={`/profiles/${like.userId}`}
-                                key={like.tweetId + like.userId}
-                              >
-                                <li className="flex items-center gap-2 rounded-lg p-3 font-bold transition-colors delay-100 hover:bg-gray-200">
-                                  <ProfileImage src={like.user.image} />
-                                  <span>{like.user.name}</span>
-                                </li>
-                              </Link>
-                            </>
+                            <LikeList
+                              key={like.userId + like.tweetId}
+                              userId={like.userId}
+                              userImage={like.user.image}
+                              userName={like.user.name}
+                            />
                           ))}
                       </InfiniteScroll>
                     </ul>
