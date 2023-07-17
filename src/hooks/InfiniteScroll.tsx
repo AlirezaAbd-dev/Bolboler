@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-type UseInfiniteScrollProps = {
+type InfiniteScrollProps = {
+  children: React.ReactNode;
   threshold: number | number[] | undefined;
   hasMore: boolean;
+  loader: React.ReactNode;
+  reverse?: boolean;
   fetchNewTweets: () => Promise<unknown>;
 };
 
-const useInfiniteScroll = (props: UseInfiniteScrollProps) => {
+const InfiniteScroll = ({ reverse = false, ...props }: InfiniteScrollProps) => {
   const [loadMore, setLoadMore] = useState(false);
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     threshold: props.threshold,
     delay: 1000,
   });
@@ -30,7 +33,23 @@ const useInfiniteScroll = (props: UseInfiniteScrollProps) => {
     void fetchNewTweetsStart();
   }, [inView, props, loadMore]);
 
-  return { loadMore, ref, inView, entry };
+  return (
+    <>
+      {reverse && (
+        <>
+          {loadMore && props.loader}
+          <div className="w-full py-2" ref={ref}></div>
+        </>
+      )}
+      {props.children}
+      {!reverse && (
+        <>
+          <div className="w-full pt-1" ref={ref}></div>
+          {loadMore && props.loader}
+        </>
+      )}
+    </>
+  );
 };
 
-export default useInfiniteScroll;
+export default InfiniteScroll;

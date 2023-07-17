@@ -1,6 +1,6 @@
 import { LoadingSpinner } from "./LoadingSpinner";
 import TweetCard from "./card/TweetCard";
-import useInfiniteScroll from "~/hooks/useInfiniteScroll";
+import InfiniteScroll from "~/hooks/InfiniteScroll";
 
 type Tweet = {
   id: string;
@@ -27,12 +27,6 @@ export function InfiniteTweetList({
   fetchNewTweets,
   hasMore = false,
 }: InfiniteTweetListProps) {
-  const { loadMore, ref } = useInfiniteScroll({
-    fetchNewTweets,
-    hasMore,
-    threshold: 1,
-  });
-
   if (isLoading) return <LoadingSpinner />;
   if (isError) return <h1>Error...</h1>;
 
@@ -44,17 +38,20 @@ export function InfiniteTweetList({
 
   return (
     <ul>
-      {tweets.map((tweet, index) => {
-        return (
-          <>
-            <TweetCard key={tweet.id} {...tweet} />
-            {index === tweets.length - 1 ? (
-              <div className="w-full py-2" ref={ref}></div>
-            ) : null}
-          </>
-        );
-      })}
-      {loadMore && <LoadingSpinner />}
+      <InfiniteScroll
+        fetchNewTweets={fetchNewTweets}
+        hasMore={hasMore}
+        loader={<LoadingSpinner />}
+        threshold={1}
+      >
+        {tweets.map((tweet) => {
+          return (
+            <>
+              <TweetCard key={tweet.id} {...tweet} />
+            </>
+          );
+        })}
+      </InfiniteScroll>
     </ul>
   );
 }
