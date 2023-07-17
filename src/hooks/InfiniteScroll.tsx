@@ -7,6 +7,7 @@ type InfiniteScrollProps = {
   hasMore: boolean;
   loader: React.ReactNode;
   reverse?: boolean;
+  delay?: number;
   fetchNewTweets: () => Promise<unknown>;
 };
 
@@ -14,6 +15,7 @@ const InfiniteScroll = ({ reverse = false, ...props }: InfiniteScrollProps) => {
   const [loadMore, setLoadMore] = useState(false);
   const { ref, inView } = useInView({
     threshold: props.threshold,
+    delay: props.delay,
   });
 
   useEffect(() => {
