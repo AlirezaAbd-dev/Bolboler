@@ -1,6 +1,6 @@
 import { LoadingSpinner } from "./LoadingSpinner";
 import TweetCard from "./card/TweetCard";
-import InfiniteScroll from "~/hooks/InfiniteScroll";
+import InfiniteScroll from "~/components/ui/InfiniteScroll";
 
 type Tweet = {
   id: string;
@@ -24,7 +24,6 @@ export function InfiniteTweetList({
   hasMore = false,
   ...props
 }: InfiniteTweetListProps) {
-  
   if (props.isLoading) return <LoadingSpinner />;
   if (props.isError) return <h1>Error...</h1>;
 
