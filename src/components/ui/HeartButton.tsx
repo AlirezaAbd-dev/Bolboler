@@ -60,6 +60,12 @@ function HeartButton({
       <div className="mb-1 mt-1 flex items-center gap-3 self-start text-gray-500">
         <HeartIcon />
         <LikeNumber likeCount={likeCount} openModal={openModal} />
+        <LikeListModal
+          closeModal={closeModal}
+          openModal={openModal}
+          modalIsOpen={likeListModalOpen}
+          tweetId={tweetId}
+        />
       </div>
     );
   }
