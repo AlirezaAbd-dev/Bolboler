@@ -36,18 +36,20 @@ const InfiniteScroll = ({
     void fetchNewTweetsStart();
   }, [inView, props, loadMore, hasMore]);
 
+  const triggerDiv = <div className="w-full bg-transparent" ref={ref}></div>;
+
   return (
     <>
       {reverse && (
         <>
           {loadMore && props.loader}
-          <div className="w-full" ref={ref}></div>
+          {triggerDiv}
         </>
       )}
       {props.children}
       {!reverse && (
         <>
-          <div className="w-full" ref={ref}></div>
+          {triggerDiv}
           {loadMore && props.loader}
         </>
       )}
