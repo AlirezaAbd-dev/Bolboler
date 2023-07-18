@@ -18,7 +18,7 @@ export const profileRouter = createTRPCRouter({
           image: true,
           _count: { select: { followers: true, follows: true, tweets: true } },
           followers:
-            currentUserId === undefined
+            currentUserId == null
               ? undefined
               : { where: { id: currentUserId } },
         },
@@ -32,7 +32,7 @@ export const profileRouter = createTRPCRouter({
         followersCount: profile._count.followers,
         followsCount: profile._count.follows,
         tweetsCount: profile._count.tweets,
-        isFollowing: profile.followers.length > 0,
+        isFollowing: profile.followers ? profile.followers.length > 0 : false,
       };
     }),
   toggleFollow: protectedProcedure
