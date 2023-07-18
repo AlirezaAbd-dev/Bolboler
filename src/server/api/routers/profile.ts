@@ -18,13 +18,13 @@ export const profileRouter = createTRPCRouter({
           image: true,
           _count: { select: { followers: true, follows: true, tweets: true } },
           followers:
-            currentUserId == null
+            currentUserId === undefined
               ? undefined
               : { where: { id: currentUserId } },
         },
       });
 
-      if (profile == null) return;
+      if (profile === null) return;
 
       return {
         name: profile.name,
