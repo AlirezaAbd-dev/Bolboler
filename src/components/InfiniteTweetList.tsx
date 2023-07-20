@@ -1,6 +1,8 @@
+import { useEffect, useRef } from "react";
 import { LoadingSpinner } from "./LoadingSpinner";
 import TweetCard from "./card/TweetCard";
 import InfiniteScroll from "~/components/ui/InfiniteScroll";
+import gsap from "gsap";
 
 type Tweet = {
   id: string;
@@ -24,6 +26,30 @@ export function InfiniteTweetList({
   hasMore = false,
   ...props
 }: InfiniteTweetListProps) {
+  const tweetsRef = useRef(null);
+
+  useEffect(() => {
+    if (props.tweets && props.tweets?.length > 0) {
+      gsap.context(() => {
+        gsap.fromTo(
+          ".tweet",
+          { opacity: 0, x: -100 },
+          {
+            duration: 1,
+            x: 0,
+            opacity: 1,
+            stagger: 0.2,
+            scrollTrigger: {
+              trigger: ".tweet",
+              start: "top bottom",
+              toggleActions: "start none none none",
+            },
+          }
+        );
+      }, tweetsRef);
+    }
+  }, [props.tweets]);
+
   if (props.isLoading) return <LoadingSpinner />;
   if (props.isError) return <h1>Error...</h1>;
 
@@ -34,7 +60,7 @@ export function InfiniteTweetList({
   }
 
   return (
-    <ul>
+    <ul ref={tweetsRef}>
       <InfiniteScroll
         fetchNewTweets={props.fetchNewTweets}
         hasMore={hasMore}

@@ -7,6 +7,10 @@ import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import Head from "next/head";
 import { SideNav } from "~/components/SideNav";
+import gsap from "gsap/dist/gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,

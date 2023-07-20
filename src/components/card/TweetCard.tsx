@@ -52,7 +52,7 @@ const TweetCard = ({
   const session = useSession();
 
   return (
-    <li className="flex gap-4 border-b px-4 py-4">
+    <li className="tweet flex gap-4 border-b px-4 py-4">
       <Link href={`/profiles/${user.id}`}>
         <ProfileImage src={user.image} />
       </Link>
