@@ -5,6 +5,7 @@ import { NewTweetForm } from "~/components/NewTweetForm";
 import Tab from "~/components/Tab";
 import FollowingTweets from "~/components/tabPages/FollowingTweets";
 import RecentTweets from "~/components/tabPages/RecentTweets";
+import Logo from "~/components/ui/Logo";
 import useLogoAnimation from "~/hooks/useLogoAnimation";
 
 const TABS = ["Recent", "Following"] as const;
@@ -22,16 +23,10 @@ const Home: NextPage = () => {
         className="header sticky top-0 z-10 border-b bg-white pt-2 text-center"
         ref={headerRef}
       >
-        <h1 className="mb-2 px-4 text-lg font-bold">
-          <p className="logo inline-block opacity-0">B</p>
-          <p className="logo inline-block opacity-0">O</p>
-          <p className="logo inline-block opacity-0">L</p>
-          <p className="logo inline-block opacity-0">B</p>
-          <p className="logo inline-block opacity-0">O</p>
-          <p className="logo inline-block opacity-0">L</p>
-          <p className="logo inline-block opacity-0">E</p>
-          <p className="logo inline-block opacity-0">R</p>
-        </h1>
+        {/* BOLBOLER logo */}
+        <Logo />
+
+        {/* Tabs */}
         {session.status === "authenticated" && (
           <div className="flex">
             {TABS.map((tab) => (
