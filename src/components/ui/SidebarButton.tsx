@@ -12,7 +12,7 @@ type SidebarButtonProps = {
 
 const SidebarButton = (props: SidebarButtonProps) => {
   return (
-    <li>
+    <li className="nav-button">
       {props.href && !props.mode && (
         <Link href={props.href}>
           <IconHoverEffect>
