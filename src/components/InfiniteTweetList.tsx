@@ -5,6 +5,7 @@ import { LoadingSpinner } from "./LoadingSpinner";
 import TweetCard from "./card/TweetCard";
 import InfiniteScroll from "~/components/ui/InfiniteScroll";
 import gsap from "gsap";
+import useTimeline from "~/hooks/useTimeline";
 
 type Tweet = {
   id: string;
@@ -29,12 +30,11 @@ export function InfiniteTweetList({
   ...props
 }: InfiniteTweetListProps) {
   const tweetsRef = useRef(null);
-  const [tl] = useState(() => {
-    return gsap.timeline({
-      defaults: {
-        duration: 0.2,
-      },
-    });
+
+  const { tl } = useTimeline({
+    defaults: {
+      duration: 0.2,
+    },
   });
 
   if (props.isLoading) return <LoadingSpinner />;
