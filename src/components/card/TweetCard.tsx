@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ProfileImage } from "../ProfileImage";
 import { useSession } from "next-auth/react";
 import DeleteModal from "../modals/DeleteModal";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import EditTweetForm from "./EditTweetForm";
 import { Transition } from "@headlessui/react";
 import Content from "./Content";
