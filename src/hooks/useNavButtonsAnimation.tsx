@@ -1,7 +1,9 @@
 import gsap from "gsap";
+import { useSession } from "next-auth/react";
 import { useLayoutEffect, useRef } from "react";
 
 const useNavButtonsAnimation = () => {
+  const session = useSession();
   const navButtonsRef = useRef(null);
 
   useLayoutEffect(() => {
@@ -12,7 +14,7 @@ const useNavButtonsAnimation = () => {
         { x: 0, opacity: 1, duration: 1, stagger: 0.4, delay: 0.5 }
       );
     }, navButtonsRef);
-  }, []);
+  }, [session.status]);
 
   return navButtonsRef;
 };
