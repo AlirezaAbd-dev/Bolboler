@@ -1,4 +1,6 @@
-import { useEffect, useRef } from "react";
+"use client";
+
+import { useRef, useState } from "react";
 import { LoadingSpinner } from "./LoadingSpinner";
 import TweetCard from "./card/TweetCard";
 import InfiniteScroll from "~/components/ui/InfiniteScroll";
@@ -26,29 +28,39 @@ export function InfiniteTweetList({
   hasMore = false,
   ...props
 }: InfiniteTweetListProps) {
+  const [animatedOnce, setAnimatedOnce] = useState(false);
   const tweetsRef = useRef(null);
+  const [tl] = useState(() => {
+    return gsap.timeline({
+      defaults: {
+        duration: 0.2,
+      },
+    });
+  });
 
-  useEffect(() => {
-    if (props.tweets && props.tweets?.length > 0) {
-      gsap.context(() => {
-        gsap.fromTo(
-          ".tweet",
-          { opacity: 0, x: -100 },
-          {
-            duration: 1,
-            x: 0,
-            opacity: 1,
-            stagger: 0.2,
-            scrollTrigger: {
-              trigger: ".tweet",
-              start: "top bottom",
-              toggleActions: "start none none none",
-            },
-          }
-        );
-      }, tweetsRef);
-    }
-  }, [props.tweets]);
+  // useEffect(() => {
+  //   if (props.tweets && props.tweets?.length > 0 && !animatedOnce) {
+  //     gsap.context(() => {
+  //       gsap.fromTo(
+  //         ".tweet",
+  //         { x: "100%" },
+  //         {
+  //           duration: 0.5,
+  //           x: 0,
+  //           opacity: 1,
+  //           stagger: 0.2,
+  //           scrollTrigger: {
+  //             trigger: ".tweet",
+  //             start: "top bottom",
+  //             scrub: true,
+  //           },
+  //         }
+  //       );
+  //     }, tweetsRef);
+
+  //     setAnimatedOnce(true);
+  //   }
+  // }, [props.tweets, animatedOnce]);
 
   if (props.isLoading) return <LoadingSpinner />;
   if (props.isError) return <h1>Error...</h1>;
@@ -68,7 +80,7 @@ export function InfiniteTweetList({
         threshold={1}
       >
         {props.tweets.map((tweet) => {
-          return <TweetCard key={tweet.id} {...tweet} />;
+          return <TweetCard key={tweet.id} timeline={tl} {...tweet} />;
         })}
       </InfiniteScroll>
     </ul>

@@ -1,8 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { ProfileImage } from "../ProfileImage";
 import { useSession } from "next-auth/react";
 import DeleteModal from "../modals/DeleteModal";
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import EditTweetForm from "./EditTweetForm";
 import { Transition } from "@headlessui/react";
 import Content from "./Content";
@@ -17,6 +19,10 @@ export type Tweet = {
   subTweetCount: number;
 };
 
+type TweetCardProps = Tweet & {
+  timeline?: gsap.core.Timeline;
+};
+
 const TweetCard = ({
   id,
   user,
@@ -25,10 +31,16 @@ const TweetCard = ({
   likeCount,
   subTweetCount,
   likedByMe,
-}: Tweet) => {
+  timeline,
+}: TweetCardProps) => {
+  const session = useSession();
+
   const [editMode, setEditMode] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedTweetForDelete, setSelectedTweetForDelete] = useState("");
+  const [animatedOnce, setAnimatedOnce] = useState(false);
+
+  const liRef = useRef(null);
 
   function selectTweetForDelete(tweetId: string) {
     setSelectedTweetForDelete(tweetId);
@@ -49,10 +61,16 @@ const TweetCard = ({
   function openModal() {
     setModalIsOpen(true);
   }
-  const session = useSession();
+
+  useEffect(() => {
+    if (timeline && !animatedOnce) {
+      timeline.fromTo(liRef.current, { x: "100%" }, { x: 0 });
+      setAnimatedOnce(true);
+    }
+  }, [animatedOnce, timeline]);
 
   return (
-    <li className="tweet flex gap-4 border-b px-4 py-4">
+    <li ref={liRef} className="tweet flex gap-4 border-b px-4 py-4">
       <Link href={`/profiles/${user.id}`}>
         <ProfileImage src={user.image} />
       </Link>
