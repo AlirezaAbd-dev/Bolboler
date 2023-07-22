@@ -1,10 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { LoadingSpinner } from "./LoadingSpinner";
 import TweetCard from "./card/TweetCard";
 import InfiniteScroll from "~/components/ui/InfiniteScroll";
-import gsap from "gsap";
 import useTimeline from "~/hooks/useTimeline";
 
 type Tweet = {

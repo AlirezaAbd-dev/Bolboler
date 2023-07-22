@@ -35,6 +35,7 @@ const SubTweets = (props: SubTweetsProps) => {
 
   const { tweetId } = props;
   const subTweets = api.subTweet.getSubTweetsByTweetId.useQuery({ tweetId });
+
   if (
     !subTweets.isLoading &&
     (subTweets.data?.length === 0 || !subTweets.data)
