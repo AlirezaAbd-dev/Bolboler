@@ -9,7 +9,7 @@ type UseToggleLikeProps = {
     };
 };
 
-const useToggleLike = (props: UseToggleLikeProps) => {
+const useToggleLikeMutation = (props: UseToggleLikeProps) => {
     const trpcUtils = api.useContext();
 
     const toggleLike = api.tweet.toggleLike.useMutation({
@@ -59,4 +59,4 @@ const useToggleLike = (props: UseToggleLikeProps) => {
     return toggleLike;
 };
 
-export default useToggleLike;
+export default useToggleLikeMutation;

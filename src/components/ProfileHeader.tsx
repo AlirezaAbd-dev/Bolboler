@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { VscArrowLeft } from 'react-icons/vsc';
 import { api } from '~/utils/api';
+import getPlural from '~/utils/getPlural';
 
 import { IconHoverEffect } from './IconHoverEffect';
 import { ProfileImage } from './ProfileImage';
@@ -55,9 +56,5 @@ const ProfileHeader = ({ id }: { id: string }) => {
         </header>
     );
 };
-const pluralRules = new Intl.PluralRules();
-function getPlural(number: number, singular: string, plural: string) {
-    return pluralRules.select(number) === 'one' ? singular : plural;
-}
 
 export default ProfileHeader;

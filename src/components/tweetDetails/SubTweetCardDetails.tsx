@@ -3,10 +3,10 @@ import Link from 'next/link';
 import type { Dispatch, SetStateAction } from 'react';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { VscClose, VscEdit } from 'react-icons/vsc';
+import dateTimeFormatter from '~/utils/dateTimeFormatter';
 
 import { IconHoverEffect } from '../IconHoverEffect';
 import { ProfileImage } from '../ProfileImage';
-import { dateTimeFormatter } from '../card/Content';
 import Tooltip from '../ui/Tooltip';
 import type { SubTweetType } from './SubTweets';
 

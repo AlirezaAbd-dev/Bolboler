@@ -1,6 +1,6 @@
 import { Transition } from '@headlessui/react';
 import { useSession } from 'next-auth/react';
-import {  useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 import DeleteSubTweetModal from '../modals/DeleteSubTweetModal';
 import EditSubTweetForm from '../tweetDetails/EditSubTweetForm';

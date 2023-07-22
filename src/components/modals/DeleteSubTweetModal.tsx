@@ -1,122 +1,132 @@
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import { PacmanLoader } from "react-spinners";
-import { api } from "~/utils/api";
+import { Dialog, Transition } from '@headlessui/react';
+import { Fragment } from 'react';
+import { PacmanLoader } from 'react-spinners';
+import { api } from '~/utils/api';
 
 type DeleteSubTweetModalProps = {
-  openModal: () => void;
-  closeModal: () => void;
-  modalIsOpen: boolean;
-  selectedTweet: string;
-  tweetId: string;
+    openModal: () => void;
+    closeModal: () => void;
+    modalIsOpen: boolean;
+    selectedTweet: string;
+    tweetId: string;
 };
 
 function DeleteSubTweetModal(props: DeleteSubTweetModalProps) {
-  const trpcUtils = api.useContext();
-  const deleteSubTweetMutation = api.subTweet.delete.useMutation({
-    onSuccess: (deletedSubTweet) => {
-      trpcUtils.subTweet.getSubTweetsByTweetId.setData(
-        { tweetId: props.tweetId },
-        (oldData) => {
-          if (oldData && oldData.length > 0) {
-            const newData = oldData.filter((subTweet) => {
-              subTweet.id !== deletedSubTweet.id;
-            });
-            return newData;
-          }
-        }
-      );
-      props.closeModal();
-    },
-  });
-
-  return (
-    <>
-      <Transition appear show={props.modalIsOpen} as={Fragment}>
-        <Dialog
-          as="div"
-          className="relative z-10"
-          onClose={() => {
-            if (deleteSubTweetMutation.isLoading) return;
-            props.closeModal();
-          }}
-        >
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
-
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-red-500"
-                  >
-                    Delete Sub Tweet
-                  </Dialog.Title>
-                  <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Are you sure that you want to delete this subTweet?
-                    </p>
-                  </div>
-
-                  <div className="mt-4">
-                    <button
-                      type="button"
-                      disabled={deleteSubTweetMutation.isLoading}
-                      className={`${
-                        deleteSubTweetMutation.isLoading
-                          ? "cursor-not-allowed"
-                          : ""
-                      } h-25 mr-2 inline-flex w-40 justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2`}
-                      onClick={() => {
-                        if (deleteSubTweetMutation.isLoading) return;
-                        deleteSubTweetMutation.mutate({
-                          subTweetId: props.selectedTweet,
+    const trpcUtils = api.useContext();
+    const deleteSubTweetMutation = api.subTweet.delete.useMutation({
+        onSuccess: (deletedSubTweet) => {
+            trpcUtils.subTweet.getSubTweetsByTweetId.setData(
+                { tweetId: props.tweetId },
+                (oldData) => {
+                    if (oldData && oldData.length > 0) {
+                        const newData = oldData.filter((subTweet) => {
+                            subTweet.id !== deletedSubTweet.id;
                         });
-                      }}
-                    >
-                      {deleteSubTweetMutation.isLoading ? (
-                        <PacmanLoader size={9} color="#fff" />
-                      ) : (
-                        "Yeah, i'm sure"
-                      )}
-                    </button>
-                    <button
-                      type="button"
-                      className="h-25 inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={() => {
+                        return newData;
+                    }
+                },
+            );
+            props.closeModal();
+        },
+    });
+
+    return (
+        <>
+            <Transition appear show={props.modalIsOpen} as={Fragment}>
+                <Dialog
+                    as="div"
+                    className="relative z-10"
+                    onClose={() => {
+                        if (deleteSubTweetMutation.isLoading) return;
                         props.closeModal();
-                      }}
+                    }}
+                >
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
                     >
-                      Cancel
-                    </button>
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
-          </div>
-        </Dialog>
-      </Transition>
-    </>
-  );
+                        <div className="fixed inset-0 bg-black bg-opacity-25" />
+                    </Transition.Child>
+
+                    <div className="fixed inset-0 overflow-y-auto">
+                        <div className="flex min-h-full items-center justify-center p-4 text-center">
+                            <Transition.Child
+                                as={Fragment}
+                                enter="ease-out duration-300"
+                                enterFrom="opacity-0 scale-95"
+                                enterTo="opacity-100 scale-100"
+                                leave="ease-in duration-200"
+                                leaveFrom="opacity-100 scale-100"
+                                leaveTo="opacity-0 scale-95"
+                            >
+                                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                    <Dialog.Title
+                                        as="h3"
+                                        className="text-lg font-medium leading-6 text-red-500"
+                                    >
+                                        Delete Sub Tweet
+                                    </Dialog.Title>
+                                    <div className="mt-2">
+                                        <p className="text-sm text-gray-500">
+                                            Are you sure that you want to delete
+                                            this subTweet?
+                                        </p>
+                                    </div>
+
+                                    <div className="mt-4">
+                                        <button
+                                            type="button"
+                                            disabled={
+                                                deleteSubTweetMutation.isLoading
+                                            }
+                                            className={`${
+                                                deleteSubTweetMutation.isLoading
+                                                    ? 'cursor-not-allowed'
+                                                    : ''
+                                            } h-25 mr-2 inline-flex w-40 justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2`}
+                                            onClick={() => {
+                                                if (
+                                                    deleteSubTweetMutation.isLoading
+                                                )
+                                                    return;
+                                                deleteSubTweetMutation.mutate({
+                                                    subTweetId:
+                                                        props.selectedTweet,
+                                                });
+                                            }}
+                                        >
+                                            {deleteSubTweetMutation.isLoading ? (
+                                                <PacmanLoader
+                                                    size={9}
+                                                    color="#fff"
+                                                />
+                                            ) : (
+                                                "Yeah, i'm sure"
+                                            )}
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className="h-25 inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                            onClick={() => {
+                                                props.closeModal();
+                                            }}
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </Dialog.Panel>
+                            </Transition.Child>
+                        </div>
+                    </div>
+                </Dialog>
+            </Transition>
+        </>
+    );
 }
 
 export default DeleteSubTweetModal;

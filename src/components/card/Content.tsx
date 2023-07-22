@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { VscClose, VscEdit } from 'react-icons/vsc';
-import useToggleLike from '~/hooks/useToggleLike';
+import useToggleLikeMutation from '~/hooks/useToggleLikeMutation';
+import dateTimeFormatter from '~/utils/dateTimeFormatter';
 
 import { IconHoverEffect } from '../IconHoverEffect';
 import HeartButton from '../ui/HeartButton';
@@ -22,7 +23,7 @@ const Content = (props: ContentProps) => {
     const session = useSession();
     const router = useRouter();
 
-    const toggleLike = useToggleLike({
+    const toggleLike = useToggleLikeMutation({
         id: props.id,
         user: { id: props.user.id },
     });
@@ -110,14 +111,5 @@ const Content = (props: ContentProps) => {
         </>
     );
 };
-
-export const dateTimeFormatter = new Intl.DateTimeFormat(undefined, {
-    minute: '2-digit',
-    hour: '2-digit',
-    second: '2-digit',
-    year: 'numeric',
-    month: 'short',
-    day: '2-digit',
-});
 
 export default Content;
