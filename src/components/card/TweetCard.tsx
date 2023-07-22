@@ -43,6 +43,21 @@ const TweetCard = ({
 
     const liRef = useRef(null);
 
+    useEffect(() => {
+        if (timeline && !animatedOnce) {
+            timeline.fromTo(
+                liRef.current,
+                {
+                    x: '100%',
+                },
+                {
+                    x: 0,
+                },
+            );
+            setAnimatedOnce(true);
+        }
+    }, [animatedOnce, timeline]);
+
     function selectTweetForDelete(tweetId: string) {
         setSelectedTweetForDelete(tweetId);
     }
@@ -62,13 +77,6 @@ const TweetCard = ({
     function openModal() {
         setModalIsOpen(true);
     }
-
-    useEffect(() => {
-        if (timeline && !animatedOnce) {
-            timeline.fromTo(liRef.current, { x: '100%' }, { x: 0 });
-            setAnimatedOnce(true);
-        }
-    }, [animatedOnce, timeline]);
 
     return (
         <li ref={liRef} className="tweet flex gap-4 border-b px-4 py-4">
