@@ -1,15 +1,11 @@
 import { useState } from 'react';
+import useTimeline from '~/hooks/useTimeline';
 import { api } from '~/utils/api';
 
 import { LoadingSpinner } from '../LoadingSpinner';
 import SubTweetCard from '../card/SubTweetCard';
 
 type SubTweetsProps = {
-    user: {
-        id: string;
-        name: string | null;
-        image: string | null;
-    };
     tweetId: string;
 };
 
@@ -29,6 +25,12 @@ export type SubTweetType = {
 const SubTweets = (props: SubTweetsProps) => {
     const [selectedSubTweetForDelete, setSelectedSubTweetForDelete] =
         useState('');
+
+    const { tl } = useTimeline({
+        defaults: {
+            duration: 0.1,
+        },
+    });
 
     const handleSelectedSubTweet = (selectTweet: string) => {
         setSelectedSubTweetForDelete(selectTweet);
@@ -55,6 +57,7 @@ const SubTweets = (props: SubTweetsProps) => {
     if (subTweets.data) {
         return subTweets.data.map((subTweet: SubTweetType) => (
             <SubTweetCard
+                timeline={tl}
                 subTweet={subTweet}
                 user={subTweet.user}
                 selectedSubTweetForDelete={selectedSubTweetForDelete}
