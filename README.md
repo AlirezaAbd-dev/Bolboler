@@ -4,8 +4,9 @@
 
 ### You can see the deployed project just by [clicking here](https://Bolboler.vercel.app)
 
-
-
+<br/>
+<br/>
+<br/>
 
 # Language and technologies used in This Project
 
@@ -24,9 +25,10 @@
 ![](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white")
 ![](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white")
 
-
-
-
+<br/>
+<br/>
+<br/>
+<br/>
 
 # **Images**
 
@@ -42,9 +44,10 @@
 
 ![tweet](./images/tweet.png)
 
-
-
-
+<br/>
+<br/>
+<br/>
+<br/>
 
 # **Abilities**
 
