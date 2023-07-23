@@ -3,14 +3,14 @@ import { Fragment } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import { IconHoverEffect } from '~/components/IconHoverEffect';
 
-type LikeListLayoutProps = {
+type ModalLayoutProps = {
     modalIsOpen: boolean;
     closeModal: () => void;
     title: string;
     children: React.ReactNode;
 };
 
-const LikeListLayout = (props: LikeListLayoutProps) => {
+const ModalLayout = (props: ModalLayoutProps) => {
     return (
         <Transition appear show={props.modalIsOpen} as={Fragment}>
             <Dialog
@@ -68,4 +68,4 @@ const LikeListLayout = (props: LikeListLayoutProps) => {
     );
 };
 
-export default LikeListLayout;
+export default ModalLayout;

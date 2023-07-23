@@ -3,7 +3,7 @@ import { api } from '~/utils/api';
 import { LoadingSpinner } from '../../LoadingSpinner';
 import InfiniteScroll from '../../ui/InfiniteScroll';
 import LikeList from './LikeList';
-import LikeListLayout from './LikeListLayout';
+import ModalLayout from '../ModalLayout';
 
 type LikeListModalProps = {
     openModal: () => void;
@@ -19,7 +19,7 @@ function LikeListModal(props: LikeListModalProps) {
     );
 
     return (
-        <LikeListLayout
+        <ModalLayout
             closeModal={props.closeModal}
             modalIsOpen={props.modalIsOpen}
             title="Tweet Like List"
@@ -56,7 +56,7 @@ function LikeListModal(props: LikeListModalProps) {
                     </InfiniteScroll>
                 </ul>
             )}
-        </LikeListLayout>
+        </ModalLayout>
     );
 }
 
