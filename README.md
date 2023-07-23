@@ -47,8 +47,6 @@
 </div>
 
 <br/>
-<br/>
-<br/>
 
 # **Abilities**
 
