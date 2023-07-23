@@ -106,4 +106,36 @@ export const profileRouter = createTRPCRouter({
                 });
             }
         }),
+    getFollowingById: publicProcedure
+        .input(
+            z.object({
+                userId: z.string(),
+            }),
+        )
+        .query(async ({ input, ctx }) => {
+            const { userId } = input;
+            try {
+                const follows = await ctx.prisma.user.findFirst({
+                    where: {
+                        id: userId,
+                    },
+                    select: {
+                        follows: {
+                            select: {
+                                id: true,
+                                name: true,
+                                image: true,
+                            },
+                        },
+                    },
+                });
+
+                return follows;
+            } catch (err) {
+                throw new TRPCError({
+                    code: 'INTERNAL_SERVER_ERROR',
+                    message: (err as { message: string }).message,
+                });
+            }
+        }),
 });

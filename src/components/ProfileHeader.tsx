@@ -6,7 +6,7 @@ import getPlural from '~/utils/getPlural';
 
 import { IconHoverEffect } from './IconHoverEffect';
 import { ProfileImage } from './ProfileImage';
-import FollowerListModal from './modals/followerList/FollowerListModal';
+import FollowListModal from './modals/followList/FollowListModal';
 import FollowButton from './ui/FollowButton';
 
 const ProfileHeader = ({ id }: { id: string }) => {
@@ -30,12 +30,20 @@ const ProfileHeader = ({ id }: { id: string }) => {
         },
     });
 
-    function openModal() {
+    function openFollowersModal() {
         setIsFollowersModalOpen(true);
     }
 
-    function closeModal() {
+    function closeFollowersModal() {
         setIsFollowersModalOpen(false);
+    }
+
+    function openFollowingModal() {
+        setIsFollowingModalOpen(true);
+    }
+
+    function closeFollowingModal() {
+        setIsFollowingModalOpen(false);
     }
 
     if (profile == null || profile.name == null) {
@@ -58,7 +66,7 @@ const ProfileHeader = ({ id }: { id: string }) => {
                     {getPlural(profile.tweetsCount, 'Tweet', 'Tweets')} -{' '}
                     <span
                         className="inline-block cursor-pointer"
-                        onClick={openModal}
+                        onClick={openFollowersModal}
                     >
                         {/* Followers */}
                         {profile.followersCount}{' '}
@@ -68,7 +76,10 @@ const ProfileHeader = ({ id }: { id: string }) => {
                             'Followers',
                         )}{' '}
                     </span>
-                    <span>
+                    <span
+                        className="inline-block cursor-pointer"
+                        onClick={openFollowingModal}
+                    >
                         {/* Followings */}- {profile.followsCount} Following
                     </span>
                 </div>
@@ -79,9 +90,16 @@ const ProfileHeader = ({ id }: { id: string }) => {
                 userId={id}
                 onClick={() => toggleFollow.mutate({ userId: id })}
             />
-            <FollowerListModal
-                closeModal={closeModal}
+            <FollowListModal
+                mode="Followers"
+                closeModal={closeFollowersModal}
                 isModalOpen={isFollowersModalOpen}
+                userId={id}
+            />
+            <FollowListModal
+                mode="Following"
+                closeModal={closeFollowingModal}
+                isModalOpen={isFollowingModalOpen}
                 userId={id}
             />
         </header>
