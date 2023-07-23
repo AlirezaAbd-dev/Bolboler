@@ -1,3 +1,5 @@
+<div align="center">
+
 # Bolboler
 
 ## It's just a twitter like web application.
@@ -41,6 +43,8 @@
 ## Tweet
 
 ![tweet](./images/tweet.png)
+
+</div>
 
 <br/>
 <br/>
