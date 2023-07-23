@@ -30,8 +30,6 @@ const ProfileHeader = ({ id }: { id: string }) => {
         },
     });
 
-    api.profile.getFollowersById.useQuery({ userId: id });
-
     function openModal() {
         setIsFollowersModalOpen(true);
     }
@@ -81,10 +79,11 @@ const ProfileHeader = ({ id }: { id: string }) => {
                 userId={id}
                 onClick={() => toggleFollow.mutate({ userId: id })}
             />
-            {/* <FollowerListModal
+            <FollowerListModal
                 closeModal={closeModal}
                 isModalOpen={isFollowersModalOpen}
-            /> */}
+                userId={id}
+            />
         </header>
     );
 };

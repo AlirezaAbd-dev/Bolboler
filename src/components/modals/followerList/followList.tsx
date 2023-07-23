@@ -7,7 +7,7 @@ type FolloweLsitProps = {
     userName: string | null;
 };
 
-const followList = (props: FolloweLsitProps) => {
+const FollowList = (props: FolloweLsitProps) => {
     return (
         <Link href={`/profiles/${props.userId}`}>
             <li className="flex items-center gap-2 rounded-lg p-3 font-bold transition-colors delay-100 hover:bg-gray-200">
@@ -18,4 +18,4 @@ const followList = (props: FolloweLsitProps) => {
     );
 };
 
-export default followList;
+export default FollowList;
