@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { VscArrowLeft } from 'react-icons/vsc';
+import useToggleFollowMutation from '~/hooks/useToggleFollowMutation';
 import { api } from '~/utils/api';
 import getPlural from '~/utils/getPlural';
 
@@ -14,21 +15,8 @@ const ProfileHeader = ({ id }: { id: string }) => {
     const [isFollowingModalOpen, setIsFollowingModalOpen] = useState(false);
 
     const { data: profile } = api.profile.getById.useQuery({ id });
-    const trpcUtils = api.useContext();
-    const toggleFollow = api.profile.toggleFollow.useMutation({
-        onSuccess: ({ addedFollow }) => {
-            trpcUtils.profile.getById.setData({ id }, (oldData) => {
-                if (oldData == null) return;
 
-                const countModifier = addedFollow ? 1 : -1;
-                return {
-                    ...oldData,
-                    isFollowing: addedFollow,
-                    followersCount: oldData.followersCount + countModifier,
-                };
-            });
-        },
-    });
+    const toggleFollow = useToggleFollowMutation({ id });
 
     function openFollowersModal() {
         setIsFollowersModalOpen(true);
