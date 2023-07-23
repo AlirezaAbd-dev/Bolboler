@@ -23,6 +23,8 @@ export type SubTweetType = {
 };
 
 const SubTweets = (props: SubTweetsProps) => {
+    const { tweetId } = props;
+
     const [selectedSubTweetForDelete, setSelectedSubTweetForDelete] =
         useState('');
 
@@ -32,12 +34,11 @@ const SubTweets = (props: SubTweetsProps) => {
         },
     });
 
+    const subTweets = api.subTweet.getSubTweetsByTweetId.useQuery({ tweetId });
+
     const handleSelectedSubTweet = (selectTweet: string) => {
         setSelectedSubTweetForDelete(selectTweet);
     };
-
-    const { tweetId } = props;
-    const subTweets = api.subTweet.getSubTweetsByTweetId.useQuery({ tweetId });
 
     if (
         !subTweets.isLoading &&

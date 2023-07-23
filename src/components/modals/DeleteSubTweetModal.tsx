@@ -14,18 +14,10 @@ type DeleteSubTweetModalProps = {
 function DeleteSubTweetModal(props: DeleteSubTweetModalProps) {
     const trpcUtils = api.useContext();
     const deleteSubTweetMutation = api.subTweet.delete.useMutation({
-        onSuccess: (deletedSubTweet) => {
-            trpcUtils.subTweet.getSubTweetsByTweetId.setData(
-                { tweetId: props.tweetId },
-                (oldData) => {
-                    if (oldData && oldData.length > 0) {
-                        const newData = oldData.filter((subTweet) => {
-                            subTweet.id !== deletedSubTweet.id;
-                        });
-                        return newData;
-                    }
-                },
-            );
+        onSuccess: async () => {
+            await trpcUtils.subTweet.getSubTweetsByTweetId.refetch({
+                tweetId: props.tweetId,
+            });
             props.closeModal();
         },
     });
