@@ -24,7 +24,7 @@
 ![css](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white")
 ![github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white")
 ![jwt](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white")
-![trpc](https://img.shields.io/badge/tRPC-%23007ACC.svg?style=for-the-badge")
+![trpc](https://img.shields.io/badge/tRPC-%23007ACC.svg?style=for-the-badge)
 
 <br/>
 <br/>
