@@ -30,6 +30,8 @@ const ProfileHeader = ({ id }: { id: string }) => {
         },
     });
 
+    api.profile.getFollowersById.useQuery({ userId: id });
+
     function openModal() {
         setIsFollowersModalOpen(true);
     }
