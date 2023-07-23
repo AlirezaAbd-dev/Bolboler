@@ -22,6 +22,7 @@ function LikeListModal(props: LikeListModalProps) {
         <LikeListLayout
             closeModal={props.closeModal}
             modalIsOpen={props.modalIsOpen}
+            title="Tweet Like List"
         >
             {/* Loading spinner */}
             {likeList.isLoading && <LoadingSpinner />}

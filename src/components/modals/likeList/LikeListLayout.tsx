@@ -6,6 +6,7 @@ import { IconHoverEffect } from '~/components/IconHoverEffect';
 type LikeListLayoutProps = {
     modalIsOpen: boolean;
     closeModal: () => void;
+    title: string;
     children: React.ReactNode;
 };
 
@@ -47,7 +48,7 @@ const LikeListLayout = (props: LikeListLayoutProps) => {
                                     as="h3"
                                     className="flex items-center justify-between text-lg font-medium leading-6 text-blue-500"
                                 >
-                                    <p>Tweet Like List</p>
+                                    <p>{props.title}</p>
                                     <span className="cursor-pointer hover:text-red-500">
                                         <IconHoverEffect>
                                             <VscClose
