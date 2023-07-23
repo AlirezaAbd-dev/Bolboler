@@ -96,6 +96,9 @@ export const profileRouter = createTRPCRouter({
                             },
                         },
                     },
+                    orderBy: {
+                        name: 'asc',
+                    },
                 });
 
                 return followers;
@@ -127,6 +130,9 @@ export const profileRouter = createTRPCRouter({
                                 image: true,
                             },
                         },
+                    },
+                    orderBy: {
+                        name: 'asc',
                     },
                 });
 
