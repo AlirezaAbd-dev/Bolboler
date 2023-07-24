@@ -1,8 +1,9 @@
 import { useSession } from 'next-auth/react';
 import { VscAccount, VscHome, VscSignIn, VscSignOut } from 'react-icons/vsc';
-import useNavButtonsAnimation from '~/hooks/useNavButtonsAnimation';
 
 import SidebarButton from './ui/SidebarButton';
+
+import useNavButtonsAnimation from '~/hooks/useNavButtonsAnimation';
 
 export function SideNav() {
     const session = useSession();
@@ -16,11 +17,12 @@ export function SideNav() {
                 ref={navButtonsRef}
                 className="flex flex-col items-start gap-2 whitespace-nowrap"
             >
-                <SidebarButton href="/" Icon={VscHome}>
+                <SidebarButton role="link" href="/" Icon={VscHome}>
                     Home
                 </SidebarButton>
                 {user != null && (
                     <SidebarButton
+                        role="link"
                         href={`/profiles/${user.id}`}
                         Icon={VscAccount}
                     >
@@ -28,11 +30,19 @@ export function SideNav() {
                     </SidebarButton>
                 )}
                 {user == null ? (
-                    <SidebarButton mode="login" Icon={VscSignIn}>
+                    <SidebarButton
+                        role="registery"
+                        mode="login"
+                        Icon={VscSignIn}
+                    >
                         Log In
                     </SidebarButton>
                 ) : (
-                    <SidebarButton mode="logout" Icon={VscSignOut}>
+                    <SidebarButton
+                        role="registery"
+                        mode="logout"
+                        Icon={VscSignOut}
+                    >
                         Log Out
                     </SidebarButton>
                 )}

@@ -1,11 +1,12 @@
 'use client';
 
 import { useRef } from 'react';
-import InfiniteScroll from '~/components/ui/InfiniteScroll';
-import useTimeline from '~/hooks/useTimeline';
 
 import { LoadingSpinner } from './LoadingSpinner';
 import TweetCard from './card/TweetCard';
+
+import InfiniteScroll from '~/components/ui/InfiniteScroll';
+import useTimeline from '~/hooks/useTimeline';
 
 type Tweet = {
     id: string;
@@ -42,7 +43,7 @@ export function InfiniteTweetList({
 
     if (props.tweets == null || props.tweets.length === 0) {
         return (
-            <h2 className="my-4 text-center text-2xl text-gray-500">
+            <h2 className="my-4 text-center text-2xl text-gray-500 dark:text-gray-300">
                 No Tweets
             </h2>
         );
