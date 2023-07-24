@@ -62,7 +62,7 @@ const Content = (props: ContentProps) => {
                 {session.data?.user.id === props.user.id && (
                     <>
                         <span
-                            className="ml-6 cursor-pointer"
+                            className="ml-3 md:ml-6 cursor-pointer"
                             onClick={() => props.toggleEditMode()}
                         >
                             <Tooltip content="Edit" place="bottom" id="edit">

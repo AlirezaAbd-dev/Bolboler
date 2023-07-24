@@ -81,7 +81,7 @@ const TweetCard = ({
     return (
         <li
             ref={liRef}
-            className="tweet flex gap-4 border-b dark:border-gray-800 px-4 py-4"
+            className="tweet flex gap-4 border-b dark:border-gray-800 p-2 md:px-4 md:py-4"
         >
             <Link href={`/profiles/${user.id}`}>
                 <ProfileImage src={user.image} />
