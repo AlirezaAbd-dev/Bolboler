@@ -24,11 +24,11 @@ const ReplyButton = (props: ReplyButtonProps) => {
                 >
                     <Link href={`/tweet/${props.id}`}>
                         <IconHoverEffect>
-                            <VscReply className="fill-gray-500 dark:fill-gray-300" />
+                            <VscReply className="h-3 w-3 md:h-4 md:w-4 fill-gray-500 dark:fill-gray-300" />
                         </IconHoverEffect>
                     </Link>
                 </Tooltip>
-                <span className="ml-1 text-gray-500 dark:text-gray-300">
+                <span className="text-xs md:text-base ml-1 text-gray-500 dark:text-gray-300">
                     {props.subTweetCount}
                 </span>
             </div>

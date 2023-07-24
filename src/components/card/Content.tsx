@@ -68,9 +68,9 @@ const Content = (props: ContentProps) => {
                             <Tooltip content="Edit" place="bottom" id="edit">
                                 <IconHoverEffect>
                                     {!props.editMode ? (
-                                        <VscEdit className="h-2 w-2 md:h-4 md:w-4 text-gray-500 dark:text-gray-300" />
+                                        <VscEdit className="h-3 w-3 md:h-4 md:w-4 text-gray-500 dark:text-gray-300" />
                                     ) : (
-                                        <VscClose className="h-2 w-2 md:h-4 md:w-4 text-red-500" />
+                                        <VscClose className="h-3 w-3 md:h-4 md:w-4 text-red-500" />
                                     )}
                                 </IconHoverEffect>
                             </Tooltip>
@@ -88,7 +88,7 @@ const Content = (props: ContentProps) => {
                                 id="delete"
                             >
                                 <IconHoverEffect>
-                                    <RiDeleteBin2Line className="h-2 w-2 md:h-4 md:w-4 text-red-500" />
+                                    <RiDeleteBin2Line className="h-3 w-3 md:h-4 md:w-4 text-red-500" />
                                 </IconHoverEffect>
                             </Tooltip>
                         </span>
