@@ -21,7 +21,7 @@ const Home: NextPage = () => {
     return (
         <>
             <header
-                className="header sticky top-0 z-10 border-b dark:border-gray-800 bg-gray-100 dark:bg-gray-900 pt-2 text-center"
+                className="header sticky top-0 z-10 border-b dark:border-gray-800 bg-white dark:bg-gray-900 pt-2 text-center"
                 ref={headerRef}
             >
                 {/* BOLBOLER logo */}
