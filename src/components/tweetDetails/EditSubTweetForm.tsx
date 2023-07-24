@@ -2,10 +2,11 @@ import { useSession } from 'next-auth/react';
 import React, { useCallback, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { PacmanLoader } from 'react-spinners';
-import useEditSubTweetMutation from '~/hooks/useEditSubTweetMutation';
 
 import { Button } from '../Button';
 import { updateTextAreaSize } from '../Form';
+
+import useEditSubTweetMutation from '~/hooks/useEditSubTweetMutation';
 
 type EditSubTweetFormProps = {
     subTweetId: string;
@@ -48,7 +49,7 @@ const EditSubTweetForm = (props: EditSubTweetFormProps) => {
     return (
         <form
             onSubmit={handleSubmit}
-            className="mx-10 flex flex-col gap-2 border-b px-4 py-2"
+            className="mx-10 flex flex-col gap-2 border-b dark:border-gray-800 px-4 py-2"
         >
             <div className="flex gap-4">
                 <textarea
@@ -56,7 +57,7 @@ const EditSubTweetForm = (props: EditSubTweetFormProps) => {
                     style={{ height: 0 }}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    className="flex-grow resize-none overflow-hidden p-4 text-lg outline-none"
+                    className="flex-grow resize-none overflow-hidden p-4 text-lg outline-none dark:bg-gray-900 dark:text-white"
                     placeholder="Like to Edit Tweet?"
                     autoFocus
                 />

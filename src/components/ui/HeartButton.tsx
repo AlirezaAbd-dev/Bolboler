@@ -26,7 +26,7 @@ function LikeNumber(props: LikeNumberProps) {
                 content="Likes"
                 id="likes"
                 place="top"
-                classNames="cursor-pointer hover:text-red-500"
+                classNames="cursor-pointer hover:text-red-500 dark:text-gray-300"
             >
                 <span className="text-md cursor-pointer rounded-full px-1 hover:text-red-500">
                     {props.likeCount}
@@ -83,12 +83,12 @@ function HeartButton({
                 }`}
             >
                 <Tooltip content="Like" id="like" place="top" delayShow={1000}>
-                    <IconHoverEffect red>
+                    <IconHoverEffect>
                         <HeartIcon
                             className={`transition-colors duration-200 ${
                                 likedByMe
                                     ? 'fill-red-500'
-                                    : 'fill-gray-500 group-hover:fill-red-500 group-focus-visible:fill-red-500'
+                                    : 'fill-gray-500 dark:fill-gray-300 group-hover:fill-red-500 group-focus-visible:fill-red-500'
                             } ${isLoading ? 'animate-ping' : ''}`}
                         />
                     </IconHoverEffect>

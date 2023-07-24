@@ -32,7 +32,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
                 <ChangeThemeButton />
                 <AppLayout>
                     <SideNav />
-                    <div className="min-h-screen flex-grow overflow-x-hidden border-x">
+                    <div className="min-h-screen flex-grow overflow-x-hidden border-x dark:border-gray-800">
                         <Component {...pageProps} />
                     </div>
                 </AppLayout>

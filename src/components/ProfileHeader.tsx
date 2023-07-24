@@ -1,14 +1,15 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { VscArrowLeft } from 'react-icons/vsc';
-import useToggleFollowMutation from '~/hooks/useToggleFollowMutation';
-import { api } from '~/utils/api';
-import getPlural from '~/utils/getPlural';
 
 import { IconHoverEffect } from './IconHoverEffect';
 import { ProfileImage } from './ProfileImage';
 import FollowListModal from './modals/followList/FollowListModal';
 import FollowButton from './ui/FollowButton';
+
+import useToggleFollowMutation from '~/hooks/useToggleFollowMutation';
+import { api } from '~/utils/api';
+import getPlural from '~/utils/getPlural';
 
 const ProfileHeader = ({ id }: { id: string }) => {
     const [isFollowersModalOpen, setIsFollowersModalOpen] = useState(false);
@@ -39,16 +40,18 @@ const ProfileHeader = ({ id }: { id: string }) => {
     }
 
     return (
-        <header className="sticky top-0 z-10 flex items-center border-b bg-white px-4 py-2">
+        <header className="sticky top-0 z-10 flex items-center border-b bg-white dark:bg-gray-900 dark:border-gray-800 px-4 py-2">
             <Link href=".." className="mr-2">
                 <IconHoverEffect>
-                    <VscArrowLeft className="h-6 w-6" />
+                    <VscArrowLeft className="h-6 w-6 dark:fill-white" />
                 </IconHoverEffect>
             </Link>
             <ProfileImage src={profile.image} className="flex-shrink-0" />
             <div className="ml-2 flex-grow">
-                <h1 className="text-lg font-bold">{profile.name}</h1>
-                <div className="text-gray-500">
+                <h1 className="text-lg font-bold dark:text-white">
+                    {profile.name}
+                </h1>
+                <div className="text-gray-500 dark:text-gray-300">
                     {/* Tweets count */}
                     {profile.tweetsCount}{' '}
                     {getPlural(profile.tweetsCount, 'Tweet', 'Tweets')} -{' '}

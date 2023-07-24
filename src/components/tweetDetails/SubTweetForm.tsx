@@ -2,11 +2,12 @@ import { useSession } from 'next-auth/react';
 import type { FormEvent } from 'react';
 import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { PacmanLoader } from 'react-spinners';
-import useCreateSubTweetMutation from '~/hooks/useCreateSubTweetMutation';
 
 import { Button } from '../Button';
 import { updateTextAreaSize } from '../Form';
 import { ProfileImage } from '../ProfileImage';
+
+import useCreateSubTweetMutation from '~/hooks/useCreateSubTweetMutation';
 
 type SubTweetFormProps = {
     tweetId: string;
@@ -53,7 +54,7 @@ function SubTweetForm(props: SubTweetFormProps) {
     return (
         <form
             onSubmit={handleSubmit}
-            className="flex flex-col gap-2 border-b px-4 py-2"
+            className="flex flex-col gap-2 border-b dark:border-gray-800 px-4 py-2"
         >
             <div className="flex gap-4">
                 <ProfileImage src={session.data.user.image} />
@@ -62,12 +63,12 @@ function SubTweetForm(props: SubTweetFormProps) {
                     style={{ height: 0 }}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    className="flex-grow resize-none overflow-hidden p-4 text-lg outline-none"
+                    className="flex-grow resize-none overflow-hidden p-4 text-lg outline-none dark:bg-gray-900 dark:text-white"
                     placeholder="Wanna say something?"
                 />
             </div>
             {isInputEmpty && (
-                <p className="self-end text-red-500">
+                <p className="self-end text-red-500 dark:text-gray-300">
                     You have to enter at least 3 characters in your tweet!
                 </p>
             )}

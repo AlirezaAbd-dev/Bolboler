@@ -11,7 +11,7 @@ type TabProps = {
 const Tab = (props: TabProps) => {
     return (
         <button
-            className={`flex-grow p-2 hover:bg-gray-200 focus-visible:bg-gray-200 ${
+            className={`flex-grow dark:text-white p-2 hover:bg-gray-200 focus-visible:bg-gray-200 dark:hover:bg-gray-800 dark:focus-visible:bg-gray-800 ${
                 props.tab === props.selectedTab
                     ? 'border-b-4 border-b-blue-500 font-bold'
                     : ''

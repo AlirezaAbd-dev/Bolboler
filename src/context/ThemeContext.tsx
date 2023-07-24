@@ -7,7 +7,7 @@ export type ThemeContextType = { theme: ThemeType; setTheme: SetThemeType };
 export const ThemeContext = createContext<ThemeContextType | null>(null);
 
 const ThemeContextProvider = (props: { children: React.ReactNode }) => {
-    const [theme, setTheme] = useState<ThemeType>('light');
+    const [theme, setTheme] = useState<ThemeType>('dark');
 
     function changeTheme(theme: ThemeType) {
         setTheme(theme);
@@ -15,7 +15,7 @@ const ThemeContextProvider = (props: { children: React.ReactNode }) => {
 
     return (
         <ThemeContext.Provider value={{ theme, setTheme: changeTheme }}>
-            {props.children};
+            {props.children}
         </ThemeContext.Provider>
     );
 };
