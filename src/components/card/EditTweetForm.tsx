@@ -57,7 +57,7 @@ const EditTweetForm = (props: EditTweetFormProps) => {
                     style={{ height: 0 }}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    className="flex-grow resize-none overflow-hidden p-4 text-lg outline-none dark:bg-gray-900 dark:text-white dark:placeholder:text-gray-400"
+                    className="flex-grow resize-none overflow-hidden p-2 md:p-4 text-xs md:text-lg outline-none dark:bg-gray-900 dark:text-white dark:placeholder:text-gray-400"
                     placeholder="Like to Edit Tweet?"
                     autoFocus
                 />
