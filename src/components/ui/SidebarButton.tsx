@@ -19,7 +19,7 @@ const SidebarButton = (props: SidebarButtonProps) => {
                 <Link href={props.href}>
                     <IconHoverEffect>
                         <span className="flex items-center gap-4">
-                            <props.Icon className="h-8 w-8 dark:text-white" />
+                            <props.Icon className="w-4 h-4  md:h-8 md:w-8 dark:text-white" />
                             <span className="hidden text-lg dark:text-white md:inline">
                                 {props.children}
                             </span>
@@ -42,7 +42,7 @@ const SidebarButton = (props: SidebarButtonProps) => {
                                     : 'text-green-700 dark:text-green-500'
                             }`}
                         >
-                            <props.Icon className={`h-8 w-8 `} />
+                            <props.Icon className={`w-4 h-4  md:h-8 md:w-8`} />
                             <span className="hidden text-lg  md:inline">
                                 {props.children}
                             </span>
