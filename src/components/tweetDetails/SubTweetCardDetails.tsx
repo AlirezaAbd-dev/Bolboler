@@ -32,7 +32,7 @@ const SubTweetCardDetails = (props: SubTweetCardDetailsProps) => {
                 <ProfileImage src={props.subTweet.user.image} />
             </Link>
             <div className="flex flex-grow flex-col">
-                <div className="flex gap-1">
+                <div className="flex gap-[2px] ">
                     <Tooltip
                         content="View Profile"
                         place="bottom"
@@ -41,13 +41,13 @@ const SubTweetCardDetails = (props: SubTweetCardDetailsProps) => {
                     >
                         <Link
                             href={`/profiles/${props.user.id}`}
-                            className="font-bold outline-none hover:underline focus-visible:underline dark:text-white"
+                            className="text-sm md:text-base font-bold outline-none hover:underline focus-visible:underline dark:text-white"
                         >
                             {props.user.name}
                         </Link>
                     </Tooltip>
                     <span className="text-gray-500 dark:text-gray-300">-</span>
-                    <span className="text-gray-500 dark:text-gray-300">
+                    <span className="text-gray-500 dark:text-gray-300 text-xs md:text-base">
                         {dateTimeFormatter.format(props.subTweet.createdAt)}
                     </span>
                     {session.data?.user.id === props.user.id && (
@@ -65,9 +65,9 @@ const SubTweetCardDetails = (props: SubTweetCardDetailsProps) => {
                                 >
                                     <IconHoverEffect>
                                         {!props.editMode ? (
-                                            <VscEdit className="h-4 w-4 text-gray-500 dark:text-gray-300" />
+                                            <VscEdit className="h-3 w-3 md:h-4 md:w-4 text-gray-500 dark:text-gray-300" />
                                         ) : (
-                                            <VscClose className="h-4 w-4 text-red-500" />
+                                            <VscClose className="h-3 w-3 md:h-4 md:w-4 text-red-500" />
                                         )}
                                     </IconHoverEffect>
                                 </Tooltip>
@@ -87,14 +87,14 @@ const SubTweetCardDetails = (props: SubTweetCardDetailsProps) => {
                                     id="delete"
                                 >
                                     <IconHoverEffect>
-                                        <RiDeleteBin2Line className="h-4 w-4 text-red-500" />
+                                        <RiDeleteBin2Line className="h-3 w-3 md:h-4 md:w-4 text-red-500" />
                                     </IconHoverEffect>
                                 </Tooltip>
                             </span>
                         </>
                     )}
                 </div>
-                <p className="whitespace-pre-wrap dark:text-white">
+                <p className="whitespace-pre-wrap dark:text-white text-xs md:text-base">
                     {props.subTweet.content}
                 </p>
             </div>

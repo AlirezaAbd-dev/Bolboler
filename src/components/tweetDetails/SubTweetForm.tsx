@@ -63,12 +63,12 @@ function SubTweetForm(props: SubTweetFormProps) {
                     style={{ height: 0 }}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    className="flex-grow resize-none overflow-hidden p-4 text-lg outline-none dark:bg-gray-900 dark:text-white"
+                    className="flex-grow resize-none overflow-hidden p-2 md:p-4 text-xs md:text-lg outline-none dark:bg-gray-900 dark:text-white"
                     placeholder="Wanna say something?"
                 />
             </div>
             {isInputEmpty && (
-                <p className="self-end text-red-500 dark:text-gray-300">
+                <p className="self-end text-red-500 dark:text-gray-300 text-xs md:text-base">
                     You have to enter at least 3 characters in your tweet!
                 </p>
             )}

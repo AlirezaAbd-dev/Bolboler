@@ -36,9 +36,9 @@ const TweetDetailsMain = (props: TweetDetailsProps) => {
                     subTweetCount={tweet.data._count.subTweets}
                 />
 
-                <div className="border-b dark:border-gray-800 border-b-gray-200 py-4 text-center text-lg font-bold text-gray-600 dark:text-gray-400">
+                <div className="border-b dark:border-gray-800 border-b-gray-200 py-4 text-center text-base md:text-lg font-bold text-gray-600 dark:text-gray-400">
                     Sub Tweets
-                    <p className="text-md text-gray-500">
+                    <p className="text-sm md:text-base text-gray-500">
                         Replies: {tweet.data._count.subTweets}
                     </p>
                 </div>

@@ -43,7 +43,7 @@ const SubTweetCard = (props: SubTweetCardProps) => {
     return (
         <>
             {/* Content of sub data will go here for showing */}
-            <li className="sub-tweet mx-10 flex gap-4 border-b dark:border-gray-800 px-4 py-4">
+            <li className="sub-tweet mx-5 md:mx-10 flex gap-2 md:gap-4 border-b dark:border-gray-800 p-2 md:px-4 md:py-4">
                 <SubTweetCardDetails
                     setEditMode={setEditMode}
                     user={props.user}
