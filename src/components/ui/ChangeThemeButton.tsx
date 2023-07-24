@@ -13,7 +13,7 @@ const ChangeThemeButton = () => {
                 if (theme === 'dark') setTheme('light');
                 else setTheme('dark');
             }}
-            className={`fixed cursor-pointer bottom-4 left-4 p-2 md:p-3 rounded-full ${
+            className={`fixed cursor-pointer bottom-2 left-2 md:bottom-4 md:left-4 p-2 md:p-3 rounded-full ${
                 theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-200'
             }`}
         >
