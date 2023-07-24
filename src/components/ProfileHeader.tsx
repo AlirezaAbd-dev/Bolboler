@@ -43,15 +43,15 @@ const ProfileHeader = ({ id }: { id: string }) => {
         <header className="sticky top-0 z-10 flex items-center border-b bg-white dark:bg-gray-900 dark:border-gray-800 px-4 py-2">
             <Link href=".." className="mr-2">
                 <IconHoverEffect>
-                    <VscArrowLeft className="h-6 w-6 dark:fill-white" />
+                    <VscArrowLeft className="h-4 w-4 md:h-6 md:w-6 dark:fill-white" />
                 </IconHoverEffect>
             </Link>
             <ProfileImage src={profile.image} className="flex-shrink-0" />
             <div className="ml-2 flex-grow">
-                <h1 className="text-lg font-bold dark:text-white">
+                <h1 className="text-base md:text-lg font-bold dark:text-white">
                     {profile.name}
                 </h1>
-                <div className="text-gray-500 dark:text-gray-300">
+                <div className="text-xs md:text-base text-gray-500 dark:text-gray-300">
                     {/* Tweets count */}
                     {profile.tweetsCount}{' '}
                     {getPlural(profile.tweetsCount, 'Tweet', 'Tweets')} -{' '}
