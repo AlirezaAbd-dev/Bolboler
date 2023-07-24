@@ -49,9 +49,9 @@ const EditTweetForm = (props: EditTweetFormProps) => {
     return (
         <form
             onSubmit={handleSubmit}
-            className="flex flex-col gap-2 border-b dark:border-gray-800 px-4 py-2"
+            className="flex flex-col gap-2 border-b dark:border-gray-800 px-2 md:px-4 py-2"
         >
-            <div className="flex gap-4">
+            <div className="flex gap-2 md:gap-4">
                 <textarea
                     ref={inputRef}
                     style={{ height: 0 }}
