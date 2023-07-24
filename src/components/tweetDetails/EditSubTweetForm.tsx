@@ -49,21 +49,21 @@ const EditSubTweetForm = (props: EditSubTweetFormProps) => {
     return (
         <form
             onSubmit={handleSubmit}
-            className="mx-10 flex flex-col gap-2 border-b dark:border-gray-800 px-4 py-2"
+            className="mx-5 md:mx-10 flex flex-col gap-2 border-b dark:border-gray-800 p-2 md:px-4 md:py-2"
         >
-            <div className="flex gap-4">
+            <div className="flex gap-2 md:gap-4">
                 <textarea
                     ref={inputRef}
                     style={{ height: 0 }}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    className="flex-grow resize-none overflow-hidden p-4 text-lg outline-none dark:bg-gray-900 dark:text-white"
+                    className="flex-grow resize-none overflow-hidden p-2 md:p-4 text-xs md:text-lg outline-none dark:bg-gray-900 dark:text-white"
                     placeholder="Like to Edit Tweet?"
                     autoFocus
                 />
             </div>
             {isInputEmpty && (
-                <p className="self-end text-red-500">
+                <p className="self-end text-red-500 text-xs md:text-base">
                     You have to enter at least 3 characters in your tweet!
                 </p>
             )}
