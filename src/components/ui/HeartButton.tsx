@@ -28,7 +28,7 @@ function LikeNumber(props: LikeNumberProps) {
                 place="top"
                 classNames="cursor-pointer hover:text-red-500 dark:text-gray-300"
             >
-                <span className="text-md cursor-pointer rounded-full px-1 hover:text-red-500">
+                <span className="text-xs md:text-md cursor-pointer rounded-full px-1 hover:text-red-500">
                     {props.likeCount}
                 </span>
             </Tooltip>
@@ -59,7 +59,7 @@ function HeartButton({
     if (session.status !== 'authenticated') {
         return (
             <div className="mb-1 mt-1 flex items-center gap-3 self-start text-gray-500">
-                <HeartIcon />
+                <HeartIcon className="h-2 w-2 md:h-4 md:w-4 transition-colors duration-200" />
                 <LikeNumber likeCount={likeCount} openModal={openModal} />
                 <LikeListModal
                     closeModal={closeModal}
@@ -85,7 +85,7 @@ function HeartButton({
                 <Tooltip content="Like" id="like" place="top" delayShow={1000}>
                     <IconHoverEffect>
                         <HeartIcon
-                            className={`transition-colors duration-200 ${
+                            className={` h-2 w-2 md:h-4 md:w-4 transition-colors duration-200 ${
                                 likedByMe
                                     ? 'fill-red-500'
                                     : 'fill-gray-500 dark:fill-gray-300 group-hover:fill-red-500 group-focus-visible:fill-red-500'
