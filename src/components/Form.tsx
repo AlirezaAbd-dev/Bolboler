@@ -78,7 +78,7 @@ function Form() {
                     cssOverride={{ marginRight: '40px' }}
                 />
             ) : (
-                <Button className="items-center self-end text-sm md:text-base">
+                <Button className="items-center self-end">
                     Tweet
                 </Button>
             )}

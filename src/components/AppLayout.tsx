@@ -8,7 +8,7 @@ const AppLayout = (props: { children: React.ReactNode }) => {
 
     return (
         <main className={`${theme} w-full h-full`}>
-            <div className="bg-gray-100 dark:bg-gray-900  w-full h-full">
+            <div className="bg-white dark:bg-gray-900  w-full h-full">
                 <div className="container mx-auto flex items-start sm:pr-4">
                     {props.children}
                 </div>
