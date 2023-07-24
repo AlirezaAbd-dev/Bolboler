@@ -37,7 +37,7 @@ const Content = (props: ContentProps) => {
         <>
             <div className="flex gap-1">
                 {router.pathname.includes('/tweet/') ? (
-                    <p className="font-bold dark:text-white outline-none hover:underline focus-visible:underline">
+                    <p className="text-sm md:text-base font-bold dark:text-white outline-none hover:underline focus-visible:underline">
                         {props.user.name}
                     </p>
                 ) : (
@@ -49,14 +49,14 @@ const Content = (props: ContentProps) => {
                     >
                         <Link
                             href={`/tweet/${props.id}`}
-                            className="font-bold dark:text-white outline-none hover:underline focus-visible:underline"
+                            className="text-sm md:text-base font-bold dark:text-white outline-none hover:underline focus-visible:underline"
                         >
                             {props.user.name}
                         </Link>
                     </Tooltip>
                 )}
                 <span className="text-gray-500 dark:text-gray-300">-</span>
-                <span className="text-gray-500 dark:text-gray-300">
+                <span className="text-gray-500 dark:text-gray-300 text-xs md:text-base">
                     {dateTimeFormatter.format(props.createdAt)}
                 </span>
                 {session.data?.user.id === props.user.id && (
@@ -95,7 +95,7 @@ const Content = (props: ContentProps) => {
                     </>
                 )}
             </div>
-            <p className="whitespace-pre-wrap dark:text-white">
+            <p className="text-xs md:text-base font-normal whitespace-pre-wrap dark:text-white">
                 {props.content}
             </p>
             <div className="flex items-center gap-3">
