@@ -19,7 +19,7 @@ const ChangeThemeButton = () => {
             {theme === 'dark' ? (
                 <BsFillMoonStarsFill className="w-3 h-3 md:w-6 md:h-6 fill-white" />
             ) : (
-                <BiSolidSun className="w-3 h-3 md:w-6 md:h-6 fill-gray-90" />
+                <BiSolidSun className="w-3 h-3 md:w-6 md:h-6 fill-blue-800" />
             )}
         </span>
     );
