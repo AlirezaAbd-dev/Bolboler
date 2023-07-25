@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 export type ThemeType = 'dark' | 'light';
 export type SetThemeType = (theme: ThemeType) => void;
@@ -8,6 +8,14 @@ export const ThemeContext = createContext<ThemeContextType | null>(null);
 
 const ThemeContextProvider = (props: { children: React.ReactNode }) => {
     const [theme, setTheme] = useState<ThemeType>('dark');
+
+    useEffect(() => {
+        setTheme(
+            window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light',
+        );
+    }, []);
 
     function changeTheme(theme: ThemeType) {
         setTheme(theme);
