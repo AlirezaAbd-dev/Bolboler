@@ -80,3 +80,6 @@
         -   Able To Be Followed By Other Users
         -   Able To See Followers
         -   Able To See Followings
+    - Theme:
+      - Able To Understand System Theme And Set It On Website
+      - Able To Change Theme Between Dark & Light 
