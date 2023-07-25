@@ -30,17 +30,31 @@
 <br/>
 <br/>
 
-# **Images**
+# Dark Mode
 
-## Home
+### Home
+
+![home](./images/dark-home.png)
+
+### Profile
+
+![profile](./images/dark-profile.png)
+
+### Tweet
+
+![tweet](./images/dark-tweet.png)
+
+# Light Mode
+
+### Home
 
 ![home](./images/home.png)
 
-## Profile
+### Profile
 
 ![profile](./images/profile.png)
 
-## Tweet
+### Tweet
 
 ![tweet](./images/tweet.png)
 
@@ -50,12 +64,17 @@
 
 # **Abilities**
 
--   Able To SignIn, Log and Logout with discord
--   Able To add Tweet
--   Able To edit Tweet
--   Able To delete Tweet
--   Able To Infinite Scroll
--   Able To Follow other users
--   Able To Be Followed By Other Users
--   Able To See Followers
--   Able To See Followings
+-   Fully Responsive
+-   Able To:
+    -   Authentication & Authorization:
+        -   Able To SignIn, Log and Logout with discord
+    -   Tweets:
+        -   Able To add Tweet
+        -   Able To edit Tweet
+        -   Able To delete Tweet
+        -   Able To Infinite Scroll On Tweets
+    -   Follow:
+        -   Able To Follow other users
+        -   Able To Be Followed By Other Users
+        -   Able To See Followers
+        -   Able To See Followings
