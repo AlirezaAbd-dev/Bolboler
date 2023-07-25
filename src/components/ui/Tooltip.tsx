@@ -26,7 +26,7 @@ const Tooltip = (props: TooltipProps) => {
                 className="dark:bg-gray-800 dark:text-white"
                 variant="light"
                 style={{ borderRadius: '10px' }}
-                border="1px solid lightblue"
+                border="1px solid rgba(00,80,200,0.6)"
                 id={props.id}
                 place={props.place}
                 content={props.content}
