@@ -1,13 +1,13 @@
-import { type ReactNode, useContext } from 'react';
+import { type ReactNode } from 'react';
 
-import { ThemeContext, type ThemeContextType } from '~/context/ThemeContext';
+import useTheme from '~/hooks/theme/useTheme';
 
 type IconHoverEffectProps = {
     children: ReactNode;
 };
 
 export function IconHoverEffect({ children }: IconHoverEffectProps) {
-    const { theme } = useContext(ThemeContext) as ThemeContextType;
+    const { theme } = useTheme();
     const colorClasses =
         theme === 'light'
             ? 'outline-gray-400 hover:bg-gray-200 group-hover-bg-gray-200 group-focus-visible:bg-gray-200 focus-visible:bg-gray-200'

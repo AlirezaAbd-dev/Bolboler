@@ -1,9 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useContext } from 'react';
+import { Fragment } from 'react';
 import { VscClose } from 'react-icons/vsc';
 
 import { IconHoverEffect } from '~/components/IconHoverEffect';
-import { ThemeContext, type ThemeContextType } from '~/context/ThemeContext';
+import useTheme from '~/hooks/theme/useTheme';
 
 type ModalLayoutProps = {
     modalIsOpen: boolean;
@@ -13,7 +13,7 @@ type ModalLayoutProps = {
 };
 
 const ModalLayout = (props: ModalLayoutProps) => {
-    const { theme } = useContext(ThemeContext) as ThemeContextType;
+    const { theme } = useTheme();
 
     return (
         <Transition appear show={props.modalIsOpen} as={Fragment}>

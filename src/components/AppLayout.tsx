@@ -1,10 +1,7 @@
-import { useContext } from 'react';
-
-import { ThemeContext } from '~/context/ThemeContext';
-import type { ThemeContextType } from '~/context/ThemeContext';
+import useTheme from '~/hooks/theme/useTheme';
 
 const AppLayout = (props: { children: React.ReactNode }) => {
-    const { theme } = useContext(ThemeContext) as ThemeContextType;
+    const { theme } = useTheme();
 
     return (
         <main className={`${theme} w-full h-full`}>

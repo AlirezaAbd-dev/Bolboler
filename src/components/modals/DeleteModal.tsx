@@ -1,8 +1,8 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useContext } from 'react';
+import { Fragment } from 'react';
 import { PacmanLoader } from 'react-spinners';
 
-import { ThemeContext, type ThemeContextType } from '~/context/ThemeContext';
+import useTheme from '~/hooks/theme/useTheme';
 import { api } from '~/utils/api';
 
 type DeleteModalProps = {
@@ -13,7 +13,7 @@ type DeleteModalProps = {
 };
 
 function DeleteModal(props: DeleteModalProps) {
-    const { theme } = useContext(ThemeContext) as ThemeContextType;
+    const { theme } = useTheme();
 
     const trpcUtils = api.useContext();
     const deleteTweetMutation = api.tweet.delete.useMutation({

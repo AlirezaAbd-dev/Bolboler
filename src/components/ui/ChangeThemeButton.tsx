@@ -1,11 +1,10 @@
-import { useContext } from 'react';
 import { BiSolidSun } from 'react-icons/bi';
 import { BsFillMoonStarsFill } from 'react-icons/bs';
 
-import { ThemeContext, type ThemeContextType } from '~/context/ThemeContext';
+import useTheme from '~/hooks/theme/useTheme';
 
 const ChangeThemeButton = () => {
-    const { theme, setTheme } = useContext(ThemeContext) as ThemeContextType;
+    const { theme, setTheme } = useTheme();
 
     return (
         <span

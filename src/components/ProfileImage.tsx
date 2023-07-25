@@ -1,8 +1,7 @@
 import Image from 'next/image';
-import { useContext } from 'react';
 import { VscAccount } from 'react-icons/vsc';
 
-import { ThemeContext, type ThemeContextType } from '~/context/ThemeContext';
+import useTheme from '~/hooks/theme/useTheme';
 
 type ProfileImageProps = {
     src?: string | null;
@@ -10,7 +9,7 @@ type ProfileImageProps = {
 };
 
 export function ProfileImage({ src, className = '' }: ProfileImageProps) {
-    const { theme } = useContext(ThemeContext) as ThemeContextType;
+    const { theme } = useTheme();
 
     return (
         <div

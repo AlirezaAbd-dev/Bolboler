@@ -1,8 +1,7 @@
 import Link from 'next/link';
-import { useContext } from 'react';
 
 import { ProfileImage } from '~/components/ProfileImage';
-import { ThemeContext, type ThemeContextType } from '~/context/ThemeContext';
+import useTheme from '~/hooks/theme/useTheme';
 
 type FolloweLsitProps = {
     userId: string;
@@ -11,7 +10,7 @@ type FolloweLsitProps = {
 };
 
 const FollowList = (props: FolloweLsitProps) => {
-    const { theme } = useContext(ThemeContext) as ThemeContextType;
+    const { theme } = useTheme();
 
     return (
         <Link href={`/profiles/${props.userId}`}>
