@@ -1,7 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
 import { VscClose } from 'react-icons/vsc';
+
 import { IconHoverEffect } from '~/components/IconHoverEffect';
+import { ThemeContext, type ThemeContextType } from '~/context/ThemeContext';
 
 type ModalLayoutProps = {
     modalIsOpen: boolean;
@@ -11,6 +13,8 @@ type ModalLayoutProps = {
 };
 
 const ModalLayout = (props: ModalLayoutProps) => {
+    const { theme } = useContext(ThemeContext) as ThemeContextType;
+
     return (
         <Transition appear show={props.modalIsOpen} as={Fragment}>
             <Dialog
@@ -43,7 +47,13 @@ const ModalLayout = (props: ModalLayoutProps) => {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                            <Dialog.Panel
+                                className={`w-full max-w-md transform overflow-hidden rounded-2xl ${
+                                    theme === 'light'
+                                        ? 'bg-white'
+                                        : 'bg-gray-900 text-white'
+                                } p-6 text-left align-middle shadow-xl transition-all`}
+                            >
                                 <Dialog.Title
                                     as="h3"
                                     className="flex items-center justify-between text-lg font-medium leading-6 text-blue-500"

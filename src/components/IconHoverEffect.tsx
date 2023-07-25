@@ -1,13 +1,17 @@
-import type { ReactNode } from 'react';
+import { type ReactNode, useContext } from 'react';
+
+import { ThemeContext, type ThemeContextType } from '~/context/ThemeContext';
 
 type IconHoverEffectProps = {
     children: ReactNode;
 };
 
 export function IconHoverEffect({ children }: IconHoverEffectProps) {
-    const colorClasses = `outline-gray-400 hover:bg-gray-200 group-hover-bg-gray-200 group-focus-visible:bg-gray-200 focus-visible:bg-gray-200
-        dark:outline-gray-800 dark:hover:bg-gray-800 dark:group-hover-bg-gray-800 dark:group-focus-visible:bg-gray-800 dark:focus-visible:bg-gray-800
-        `;
+    const { theme } = useContext(ThemeContext) as ThemeContextType;
+    const colorClasses =
+        theme === 'light'
+            ? 'outline-gray-400 hover:bg-gray-200 group-hover-bg-gray-200 group-focus-visible:bg-gray-200 focus-visible:bg-gray-200'
+            : 'outline-gray-800 hover:bg-gray-800 group-hover-bg-gray-800 group-focus-visible:bg-gray-800 focus-visible:bg-gray-800';
 
     return (
         <div
