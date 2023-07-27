@@ -88,6 +88,7 @@ model User {
     sessions      Session[]
 
     // Non-Next Auth
+    role      Role       @default(USER)
     tweets    Tweet[]
     likes     Like[]
     followers User[]     @relation(name: "Followers")
@@ -101,4 +102,9 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+enum Role {
+    ADMIN
+    USER
 }
