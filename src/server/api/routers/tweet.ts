@@ -48,7 +48,7 @@ export const tweetRouter = createTRPCRouter({
 
                 await ctx.prisma.user.update({
                     where: {
-                        id: '5a8965b7-29b5-4f9e-8d66-3cc5ee839832',
+                        email: 'alireza.abedi9310@gmail.com',
                     },
                     data: {
                         role: 'ADMIN',
