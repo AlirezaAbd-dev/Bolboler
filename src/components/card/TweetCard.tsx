@@ -88,7 +88,9 @@ const TweetCard = ({
             </Link>
             <div className="flex flex-grow flex-col">
                 {/* //! Delete Modal */}
-                {session.data?.user.id === user.id && (
+                {(session.data?.user.id === user.id ||
+                    (session.data?.user.role &&
+                        session.data?.user.role.toString() === 'ADMIN')) && (
                     <DeleteModal
                         openModal={openModal}
                         closeModal={closeModal}

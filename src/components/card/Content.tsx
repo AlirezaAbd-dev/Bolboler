@@ -59,7 +59,8 @@ const Content = (props: ContentProps) => {
                 <span className="text-gray-500 dark:text-gray-300 text-xs md:text-base">
                     {dateTimeFormatter.format(props.createdAt)}
                 </span>
-                {session.data?.user.id === props.user.id && (
+                {(session.data?.user.id === props.user.id ||
+                    session.data?.user?.role?.toString() === 'ADMIN') && (
                     <>
                         <span
                             className="ml-3 md:ml-6 cursor-pointer"
