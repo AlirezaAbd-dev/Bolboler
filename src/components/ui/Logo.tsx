@@ -2,9 +2,9 @@ import { memo, useState } from 'react';
 
 import getLogoNameArray from '~/utils/getLogoNameArray';
 
-const logoName = 'BOLBOLER';
 const Logo = () => {
     const [LOGO] = useState(() => {
+        const logoName = 'BOLBOLER';
         return getLogoNameArray(logoName);
     });
     return (
