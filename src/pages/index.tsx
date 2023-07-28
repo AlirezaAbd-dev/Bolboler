@@ -7,7 +7,7 @@ import Tab from '~/components/mainPage/Tab';
 import { NewTweetForm } from '~/components/mainPage/mainPageForm/NewTweetForm';
 import FollowingTweets from '~/components/mainPage/tabPages/FollowingTweets';
 import RecentTweets from '~/components/mainPage/tabPages/RecentTweets';
-import useLogoAnimation from '~/hooks/useLogoAnimation';
+import useLogoAnimation from '~/hooks/animations/useLogoAnimation';
 
 const TABS = ['Recent', 'Following'] as const;
 
