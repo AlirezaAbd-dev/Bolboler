@@ -8,6 +8,7 @@ import HeartButton from '../../ui/HeartButton';
 import { IconHoverEffect } from '../../ui/IconHoverEffect';
 import ReplyButton from '../../ui/ReplyButton';
 import Tooltip from '../../ui/Tooltip';
+import DeleteButton from './DeleteButton';
 import EditButton from './EditButton';
 import InteractionButtons from './InteractionButtons';
 import type { Tweet } from './TweetCard';
@@ -59,23 +60,11 @@ const Content = (props: ContentProps) => {
                             editMode={props.editMode}
                             toggleEditMode={props.toggleEditMode}
                         />
-                        <span
-                            className="cursor-pointer"
-                            onClick={() => {
-                                props.openModal();
-                                props.selectTweetForDelete(props.id);
-                            }}
-                        >
-                            <Tooltip
-                                content="Delete"
-                                place="bottom"
-                                id="delete"
-                            >
-                                <IconHoverEffect>
-                                    <RiDeleteBin2Line className="h-3 w-3 md:h-4 md:w-4 text-red-500" />
-                                </IconHoverEffect>
-                            </Tooltip>
-                        </span>
+                        <DeleteButton
+                            id={props.id}
+                            openModal={props.openModal}
+                            selectTweetForDelete={props.selectTweetForDelete}
+                        />
                     </>
                 )}
             </div>
