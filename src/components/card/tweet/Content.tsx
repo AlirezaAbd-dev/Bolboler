@@ -8,6 +8,7 @@ import HeartButton from '../../ui/HeartButton';
 import { IconHoverEffect } from '../../ui/IconHoverEffect';
 import ReplyButton from '../../ui/ReplyButton';
 import Tooltip from '../../ui/Tooltip';
+import EditButton from './EditButton';
 import InteractionButtons from './InteractionButtons';
 import type { Tweet } from './TweetCard';
 
@@ -54,20 +55,10 @@ const Content = (props: ContentProps) => {
                 {(session.data?.user.id === props.user.id ||
                     session.data?.user?.role?.toString() === 'ADMIN') && (
                     <>
-                        <span
-                            className="ml-3 md:ml-6 cursor-pointer"
-                            onClick={() => props.toggleEditMode()}
-                        >
-                            <Tooltip content="Edit" place="bottom" id="edit">
-                                <IconHoverEffect>
-                                    {!props.editMode ? (
-                                        <VscEdit className="h-3 w-3 md:h-4 md:w-4 text-gray-500 dark:text-gray-300" />
-                                    ) : (
-                                        <VscClose className="h-3 w-3 md:h-4 md:w-4 text-red-500" />
-                                    )}
-                                </IconHoverEffect>
-                            </Tooltip>
-                        </span>
+                        <EditButton
+                            editMode={props.editMode}
+                            toggleEditMode={props.toggleEditMode}
+                        />
                         <span
                             className="cursor-pointer"
                             onClick={() => {
