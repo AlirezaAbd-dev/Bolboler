@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { VscArrowLeft } from 'react-icons/vsc';
 
-import FollowListModal from './modals/followList/FollowListModal';
-import FollowButton from './ui/FollowButton';
-import { IconHoverEffect } from './ui/IconHoverEffect';
-import { ProfileImage } from './ui/ProfileImage';
+import FollowListModal from '../modals/followList/FollowListModal';
+import FollowButton from '../ui/FollowButton';
+import { IconHoverEffect } from '../ui/IconHoverEffect';
+import { ProfileImage } from '../ui/ProfileImage';
 
 import useToggleFollowMutation from '~/hooks/useToggleFollowMutation';
 import { api } from '~/utils/api';

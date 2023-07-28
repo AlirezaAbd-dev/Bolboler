@@ -6,7 +6,7 @@ import { type AppType } from 'next/app';
 import Head from 'next/head';
 
 import AppLayout from '~/components/layouts/AppLayout';
-import { SideNav } from '~/components/SideNav';
+import { SideNav } from '~/components/sidebar/SideNav';
 import ChangeThemeButton from '~/components/ui/ChangeThemeButton';
 import ThemeContextProvider from '~/context/ThemeContext';
 import '~/styles/globals.css';

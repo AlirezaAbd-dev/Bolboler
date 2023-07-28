@@ -1,7 +1,7 @@
-import { LoadingSpinner } from '~/components/LoadingSpinner';
-import { api } from '~/utils/api';
-
 import FollowList from './FollowList';
+
+import { LoadingSpinner } from '~/components/ui/LoadingSpinner';
+import { api } from '~/utils/api';
 
 type FollowersSectionProps = {
     userId: string;

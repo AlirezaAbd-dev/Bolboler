@@ -6,8 +6,9 @@ import type {
 } from 'next';
 import ErrorPage from 'next/error';
 import Head from 'next/head';
-import { InfiniteTweetList } from '~/components/InfiniteTweetList';
-import ProfileHeader from '~/components/ProfileHeader';
+import { InfiniteTweetList } from '~/components/layouts/InfiniteTweetList';
+
+import ProfileHeader from '~/components/profilePage/ProfileHeader';
 import { ssgHelper } from '~/server/api/ssgHelper';
 import { api } from '~/utils/api';
 

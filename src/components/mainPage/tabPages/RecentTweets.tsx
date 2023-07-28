@@ -1,13 +1,12 @@
+import { InfiniteTweetList } from '../../layouts/InfiniteTweetList';
+
 import { api } from '~/utils/api';
-import { InfiniteTweetList } from '../layouts/InfiniteTweetList';
 
-
-function FollowingTweets() {
+function RecentTweets() {
     const tweets = api.tweet.infiniteFeed.useInfiniteQuery(
-        { onlyFollowing: true },
+        {},
         { getNextPageParam: (lastPage) => lastPage.nextCursor },
     );
-
     return (
         <InfiniteTweetList
             tweets={tweets.data?.pages.flatMap((page) => page.tweets)}
@@ -19,4 +18,4 @@ function FollowingTweets() {
     );
 }
 
-export default FollowingTweets;
+export default RecentTweets;

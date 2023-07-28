@@ -1,9 +1,10 @@
 import { useState } from 'react';
+
+import SubTweetCard from '../card/SubTweetCard';
+import { LoadingSpinner } from '../ui/LoadingSpinner';
+
 import useTimeline from '~/hooks/useTimeline';
 import { api } from '~/utils/api';
-
-import { LoadingSpinner } from '../LoadingSpinner';
-import SubTweetCard from '../card/SubTweetCard';
 
 type SubTweetsProps = {
     tweetId: string;

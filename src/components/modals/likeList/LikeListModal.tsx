@@ -1,9 +1,9 @@
-import { api } from '~/utils/api';
-
-import { LoadingSpinner } from '../../LoadingSpinner';
 import InfiniteScroll from '../../ui/InfiniteScroll';
-import LikeList from './LikeList';
+import { LoadingSpinner } from '../../ui/LoadingSpinner';
 import ModalLayout from '../ModalLayout';
+import LikeList from './LikeList';
+
+import { api } from '~/utils/api';
 
 type LikeListModalProps = {
     openModal: () => void;

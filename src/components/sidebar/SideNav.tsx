@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react';
 import { VscAccount, VscHome, VscSignIn, VscSignOut } from 'react-icons/vsc';
 
-import SidebarButton from './ui/SidebarButton';
+import SidebarButton from './SidebarButton';
 
 import useNavButtonsAnimation from '~/hooks/useNavButtonsAnimation';
 

@@ -3,7 +3,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { PacmanLoader } from 'react-spinners';
 
-import { updateTextAreaSize } from '../mainPageForm/Form';
+import { updateTextAreaSize } from '../mainPage/mainPageForm/Form';
 import { Button } from '../ui/Button';
 
 import { api } from '~/utils/api';

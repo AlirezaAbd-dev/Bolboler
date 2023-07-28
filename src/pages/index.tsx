@@ -2,11 +2,11 @@ import { type NextPage } from 'next';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
-import Tab from '~/components/Tab';
-import { NewTweetForm } from '~/components/mainPageForm/NewTweetForm';
-import FollowingTweets from '~/components/tabPages/FollowingTweets';
-import RecentTweets from '~/components/tabPages/RecentTweets';
-import Logo from '~/components/ui/Logo';
+import Logo from '~/components/mainPage/Logo';
+import Tab from '~/components/mainPage/Tab';
+import { NewTweetForm } from '~/components/mainPage/mainPageForm/NewTweetForm';
+import FollowingTweets from '~/components/mainPage/tabPages/FollowingTweets';
+import RecentTweets from '~/components/mainPage/tabPages/RecentTweets';
 import useLogoAnimation from '~/hooks/useLogoAnimation';
 
 const TABS = ['Recent', 'Following'] as const;
