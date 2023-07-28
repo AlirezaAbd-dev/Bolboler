@@ -23,6 +23,25 @@ type SubTweetCardDetailsProps = {
 
 const SubTweetCardDetails = (props: SubTweetCardDetailsProps) => {
     const session = useSession();
+
+    const editAndDeleteButtons = (session.data?.user.role?.toString() ===
+        'ADMIN' ||
+        session.data?.user.id === props.user.id) && (
+        <>
+            <EditSubTweetButton
+                editMode={props.editMode}
+                setEditMode={props.setEditMode}
+            />
+            <DeleteSubTweetButton
+                id={props.subTweet.id}
+                openModal={props.openModal}
+                setSelectedSubTweetForDelete={
+                    props.setSelectedSubTweetForDelete
+                }
+            />
+        </>
+    );
+
     return (
         <>
             <Link href={`/profiles/${props.subTweet.id}`}>
@@ -34,22 +53,7 @@ const SubTweetCardDetails = (props: SubTweetCardDetailsProps) => {
                         createdAt={props.subTweet.createdAt}
                         user={props.user}
                     />
-                    {(session.data?.user.role?.toString() === 'ADMIN' ||
-                        session.data?.user.id === props.user.id) && (
-                        <>
-                            <EditSubTweetButton
-                                editMode={props.editMode}
-                                setEditMode={props.setEditMode}
-                            />
-                            <DeleteSubTweetButton
-                                id={props.subTweet.id}
-                                openModal={props.openModal}
-                                setSelectedSubTweetForDelete={
-                                    props.setSelectedSubTweetForDelete
-                                }
-                            />
-                        </>
-                    )}
+                    {editAndDeleteButtons}
                 </div>
                 <p className="whitespace-pre-wrap dark:text-white text-xs md:text-base">
                     {props.subTweet.content}
