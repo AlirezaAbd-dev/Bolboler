@@ -3,7 +3,7 @@ import { VscAccount, VscHome, VscSignIn, VscSignOut } from 'react-icons/vsc';
 
 import SidebarButton from './SidebarButton';
 
-import useNavButtonsAnimation from '~/hooks/useNavButtonsAnimation';
+import useNavButtonsAnimation from '~/hooks/animations/useNavButtonsAnimation';
 
 export function SideNav() {
     const session = useSession();
