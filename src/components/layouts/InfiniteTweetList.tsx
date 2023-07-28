@@ -6,7 +6,7 @@ import TweetCard from '../card/tweet/TweetCard';
 import { LoadingSpinner } from '../ui/LoadingSpinner';
 
 import InfiniteScroll from '~/components/ui/InfiniteScroll';
-import useTimeline from '~/hooks/useTimeline';
+import useTimeline from '~/hooks/animations/useTimeline';
 
 type Tweet = {
     id: string;

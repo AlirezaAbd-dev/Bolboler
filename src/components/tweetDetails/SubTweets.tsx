@@ -3,7 +3,7 @@ import { useState } from 'react';
 import SubTweetCard from '../card/subTweet/SubTweetCard';
 import { LoadingSpinner } from '../ui/LoadingSpinner';
 
-import useTimeline from '~/hooks/useTimeline';
+import useTimeline from '~/hooks/animations/useTimeline';
 import { api } from '~/utils/api';
 
 type SubTweetsProps = {
