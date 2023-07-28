@@ -6,7 +6,7 @@ import { PacmanLoader } from 'react-spinners';
 import { Button } from '../../ui/Button';
 import { ProfileImage } from '../../ui/ProfileImage';
 
-import useCreateTweetMutation from '~/hooks/useCreateTweetMutation';
+import useCreateTweetMutation from '~/hooks/mutations/useCreateTweetMutation';
 
 export function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
     if (textArea == null) return;

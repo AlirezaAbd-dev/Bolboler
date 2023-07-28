@@ -7,7 +7,7 @@ import FollowButton from '../ui/FollowButton';
 import { IconHoverEffect } from '../ui/IconHoverEffect';
 import { ProfileImage } from '../ui/ProfileImage';
 
-import useToggleFollowMutation from '~/hooks/useToggleFollowMutation';
+import useToggleFollowMutation from '~/hooks/mutations/useToggleFollowMutation';
 import { api } from '~/utils/api';
 import getPlural from '~/utils/getPlural';
 

@@ -7,7 +7,7 @@ import { updateTextAreaSize } from '../mainPage/mainPageForm/Form';
 import { Button } from '../ui/Button';
 import { ProfileImage } from '../ui/ProfileImage';
 
-import useCreateSubTweetMutation from '~/hooks/useCreateSubTweetMutation';
+import useCreateSubTweetMutation from '~/hooks/mutations/useCreateSubTweetMutation';
 
 type SubTweetFormProps = {
     tweetId: string;

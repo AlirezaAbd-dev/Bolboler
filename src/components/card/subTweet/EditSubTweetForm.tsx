@@ -3,10 +3,9 @@ import React, { useCallback, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { PacmanLoader } from 'react-spinners';
 
-import { updateTextAreaSize } from '../mainPage/mainPageForm/Form';
-import { Button } from '../ui/Button';
-
-import useEditSubTweetMutation from '~/hooks/useEditSubTweetMutation';
+import { updateTextAreaSize } from '~/components/mainPage/mainPageForm/Form';
+import { Button } from '~/components/ui/Button';
+import useEditSubTweetMutation from '~/hooks/mutations/useEditSubTweetMutation';
 
 type EditSubTweetFormProps = {
     subTweetId: string;

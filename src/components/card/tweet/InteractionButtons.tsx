@@ -2,7 +2,7 @@ import React from 'react';
 
 import HeartButton from '~/components/ui/HeartButton';
 import ReplyButton from '~/components/ui/ReplyButton';
-import useToggleLikeMutation from '~/hooks/useToggleLikeMutation';
+import useToggleLikeMutation from '~/hooks/mutations/useToggleLikeMutation';
 
 type InteractionButtonsProps = {
     id: string;
