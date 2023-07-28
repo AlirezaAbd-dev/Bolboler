@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { VscReply } from 'react-icons/vsc';
 
-import { IconHoverEffect } from '../IconHoverEffect';
+import { IconHoverEffect } from './IconHoverEffect';
 import Tooltip from './Tooltip';
 
 type ReplyButtonProps = {

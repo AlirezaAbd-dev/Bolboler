@@ -5,7 +5,7 @@ import { SessionProvider } from 'next-auth/react';
 import { type AppType } from 'next/app';
 import Head from 'next/head';
 
-import AppLayout from '~/components/AppLayout';
+import AppLayout from '~/components/layouts/AppLayout';
 import { SideNav } from '~/components/SideNav';
 import ChangeThemeButton from '~/components/ui/ChangeThemeButton';
 import ThemeContextProvider from '~/context/ThemeContext';

@@ -2,8 +2,8 @@
 
 import { useRef } from 'react';
 
-import { LoadingSpinner } from './LoadingSpinner';
-import TweetCard from './card/TweetCard';
+import { LoadingSpinner } from '../LoadingSpinner';
+import TweetCard from '../card/TweetCard';
 
 import InfiniteScroll from '~/components/ui/InfiniteScroll';
 import useTimeline from '~/hooks/useTimeline';

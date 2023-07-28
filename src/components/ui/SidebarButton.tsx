@@ -2,7 +2,7 @@ import { signIn, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import type { IconType } from 'react-icons/lib';
 
-import { IconHoverEffect } from '../IconHoverEffect';
+import { IconHoverEffect } from './IconHoverEffect';
 
 type SidebarButtonProps = {
     children: React.ReactNode;

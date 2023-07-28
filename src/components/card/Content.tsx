@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { VscClose, VscEdit } from 'react-icons/vsc';
 
-import { IconHoverEffect } from '../IconHoverEffect';
 import HeartButton from '../ui/HeartButton';
+import { IconHoverEffect } from '../ui/IconHoverEffect';
 import ReplyButton from '../ui/ReplyButton';
 import Tooltip from '../ui/Tooltip';
 import type { Tweet } from './TweetCard';

@@ -3,8 +3,8 @@ import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { PacmanLoader } from 'react-spinners';
 
-import { Button } from './Button';
-import { ProfileImage } from './ProfileImage';
+import { Button } from '../ui/Button';
+import { ProfileImage } from '../ui/ProfileImage';
 
 import useCreateTweetMutation from '~/hooks/useCreateTweetMutation';
 
@@ -78,9 +78,7 @@ function Form() {
                     cssOverride={{ marginRight: '40px' }}
                 />
             ) : (
-                <Button className="items-center self-end">
-                    Tweet
-                </Button>
+                <Button className="items-center self-end">Tweet</Button>
             )}
         </form>
     );

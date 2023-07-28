@@ -1,6 +1,6 @@
 import { api } from '~/utils/api';
+import { InfiniteTweetList } from '../layouts/InfiniteTweetList';
 
-import { InfiniteTweetList } from '../InfiniteTweetList';
 
 function FollowingTweets() {
     const tweets = api.tweet.infiniteFeed.useInfiniteQuery(

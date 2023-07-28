@@ -1,6 +1,6 @@
 import { useSession } from 'next-auth/react';
 
-import { Button } from '../Button';
+import { Button } from './Button';
 
 function FollowButton({
     userId,

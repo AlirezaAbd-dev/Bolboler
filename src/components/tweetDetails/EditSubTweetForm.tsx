@@ -3,8 +3,8 @@ import React, { useCallback, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { PacmanLoader } from 'react-spinners';
 
-import { Button } from '../Button';
-import { updateTextAreaSize } from '../Form';
+import { updateTextAreaSize } from '../mainPageForm/Form';
+import { Button } from '../ui/Button';
 
 import useEditSubTweetMutation from '~/hooks/useEditSubTweetMutation';
 

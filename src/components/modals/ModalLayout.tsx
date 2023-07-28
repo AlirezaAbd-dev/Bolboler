@@ -2,7 +2,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { VscClose } from 'react-icons/vsc';
 
-import { IconHoverEffect } from '~/components/IconHoverEffect';
+import { IconHoverEffect } from '~/components/ui/IconHoverEffect';
 import useTheme from '~/hooks/theme/useTheme';
 
 type ModalLayoutProps = {

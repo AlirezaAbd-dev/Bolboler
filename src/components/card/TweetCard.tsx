@@ -5,8 +5,8 @@ import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
-import { ProfileImage } from '../ProfileImage';
 import DeleteModal from '../modals/DeleteModal';
+import { ProfileImage } from '../ui/ProfileImage';
 import Content from './Content';
 import EditTweetForm from './EditTweetForm';
 
@@ -116,7 +116,8 @@ const TweetCard = ({
                 />
 
                 {/* //* Form for editing tweet */}
-                {session.status === 'authenticated' && (
+                {(session.data?.user.role?.toString() === 'ADMIN' ||
+                    session.status === 'authenticated') && (
                     <Transition
                         show={editMode}
                         enter="transition ease-in-out duration-300 transform"

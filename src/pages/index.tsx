@@ -2,8 +2,8 @@ import { type NextPage } from 'next';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
-import { NewTweetForm } from '~/components/NewTweetForm';
 import Tab from '~/components/Tab';
+import { NewTweetForm } from '~/components/mainPageForm/NewTweetForm';
 import FollowingTweets from '~/components/tabPages/FollowingTweets';
 import RecentTweets from '~/components/tabPages/RecentTweets';
 import Logo from '~/components/ui/Logo';

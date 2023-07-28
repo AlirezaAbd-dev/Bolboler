@@ -2,8 +2,8 @@ import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { VscHeart, VscHeartFilled } from 'react-icons/vsc';
 
-import { IconHoverEffect } from '../IconHoverEffect';
 import LikeListModal from '../modals/likeList/LikeListModal';
+import { IconHoverEffect } from './IconHoverEffect';
 import Tooltip from './Tooltip';
 
 type HeartButtonProps = {

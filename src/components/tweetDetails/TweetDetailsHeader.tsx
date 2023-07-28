@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { VscArrowLeft } from 'react-icons/vsc';
 
-import { IconHoverEffect } from '../IconHoverEffect';
+import { IconHoverEffect } from '../ui/IconHoverEffect';
 
 const TweetDetailsHeader = () => {
     return (

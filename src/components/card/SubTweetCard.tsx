@@ -57,7 +57,8 @@ const SubTweetCard = (props: SubTweetCardProps) => {
             </li>
 
             {/* From for editing sub tweet */}
-            {session.status === 'authenticated' && (
+            {(session.data?.user.role?.toString() === 'ADMIN' ||
+                session.status === 'authenticated') && (
                 <Transition
                     show={editMode}
                     enter="transition ease-in-out duration-300 transform"

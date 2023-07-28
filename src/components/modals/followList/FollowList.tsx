@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { ProfileImage } from '~/components/ProfileImage';
+import { ProfileImage } from '~/components/ui/ProfileImage';
 import useTheme from '~/hooks/theme/useTheme';
 
 type FolloweLsitProps = {

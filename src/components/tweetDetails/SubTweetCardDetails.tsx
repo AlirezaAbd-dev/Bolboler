@@ -4,8 +4,8 @@ import type { Dispatch, SetStateAction } from 'react';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { VscClose, VscEdit } from 'react-icons/vsc';
 
-import { IconHoverEffect } from '../IconHoverEffect';
-import { ProfileImage } from '../ProfileImage';
+import { IconHoverEffect } from '../ui/IconHoverEffect';
+import { ProfileImage } from '../ui/ProfileImage';
 import Tooltip from '../ui/Tooltip';
 import type { SubTweetType } from './SubTweets';
 
@@ -50,7 +50,8 @@ const SubTweetCardDetails = (props: SubTweetCardDetailsProps) => {
                     <span className="text-gray-500 dark:text-gray-300 text-xs md:text-base">
                         {dateTimeFormatter.format(props.subTweet.createdAt)}
                     </span>
-                    {session.data?.user.id === props.user.id && (
+                    {(session.data?.user.role?.toString() === 'ADMIN' ||
+                        session.data?.user.id === props.user.id) && (
                         <>
                             <span
                                 className="ml-6 cursor-pointer"
