@@ -1,7 +1,7 @@
 import ErrorPage from 'next/error';
 import Head from 'next/head';
 
-import TweetCard from '../card/TweetCard';
+import TweetCard from '../card/tweet/TweetCard';
 import SubTweetForm from './SubTweetForm';
 import SubTweets from './SubTweets';
 

@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 
-import TweetCard from '../card/TweetCard';
+import TweetCard from '../card/tweet/TweetCard';
 import { LoadingSpinner } from '../ui/LoadingSpinner';
 
 import InfiniteScroll from '~/components/ui/InfiniteScroll';

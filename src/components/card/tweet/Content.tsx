@@ -4,10 +4,11 @@ import { useRouter } from 'next/router';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { VscClose, VscEdit } from 'react-icons/vsc';
 
-import HeartButton from '../ui/HeartButton';
-import { IconHoverEffect } from '../ui/IconHoverEffect';
-import ReplyButton from '../ui/ReplyButton';
-import Tooltip from '../ui/Tooltip';
+import HeartButton from '../../ui/HeartButton';
+import { IconHoverEffect } from '../../ui/IconHoverEffect';
+import ReplyButton from '../../ui/ReplyButton';
+import Tooltip from '../../ui/Tooltip';
+import InteractionButtons from './InteractionButtons';
 import type { Tweet } from './TweetCard';
 
 import useToggleLikeMutation from '~/hooks/useToggleLikeMutation';
@@ -23,15 +24,6 @@ type ContentProps = {
 const Content = (props: ContentProps) => {
     const session = useSession();
     const router = useRouter();
-
-    const toggleLike = useToggleLikeMutation({
-        id: props.id,
-        user: { id: props.user.id },
-    });
-
-    function handleToggleLike() {
-        toggleLike.mutate({ id: props.id });
-    }
 
     return (
         <>
@@ -99,19 +91,13 @@ const Content = (props: ContentProps) => {
             <p className="text-xs md:text-base font-normal whitespace-pre-wrap dark:text-white">
                 {props.content}
             </p>
-            <div className="flex items-center gap-3">
-                <HeartButton
-                    onClick={handleToggleLike}
-                    isLoading={toggleLike.isLoading}
-                    likedByMe={props.likedByMe}
-                    likeCount={props.likeCount}
-                    tweetId={props.id}
-                />
-                <ReplyButton
-                    subTweetCount={props.subTweetCount}
-                    id={props.id}
-                />
-            </div>
+            <InteractionButtons
+                id={props.id}
+                user={props.user}
+                likeCount={props.likeCount}
+                likedByMe={props.likedByMe}
+                subTweetCount={props.subTweetCount}
+            />
         </>
     );
 };

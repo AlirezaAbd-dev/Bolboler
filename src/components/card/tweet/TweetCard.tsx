@@ -5,8 +5,8 @@ import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
-import DeleteModal from '../modals/DeleteModal';
-import { ProfileImage } from '../ui/ProfileImage';
+import DeleteModal from '../../modals/DeleteModal';
+import { ProfileImage } from '../../ui/ProfileImage';
 import Content from './Content';
 import EditTweetForm from './EditTweetForm';
 
