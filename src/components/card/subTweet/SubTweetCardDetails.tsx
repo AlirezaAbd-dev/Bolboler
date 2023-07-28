@@ -8,8 +8,7 @@ import type { SubTweetType } from '../../tweetDetails/SubTweets';
 import { IconHoverEffect } from '../../ui/IconHoverEffect';
 import { ProfileImage } from '../../ui/ProfileImage';
 import Tooltip from '../../ui/Tooltip';
-
-import dateTimeFormatter from '~/utils/dateTimeFormatter';
+import Header from './Header';
 
 type SubTweetCardDetailsProps = {
     user: {
@@ -33,23 +32,10 @@ const SubTweetCardDetails = (props: SubTweetCardDetailsProps) => {
             </Link>
             <div className="flex flex-grow flex-col">
                 <div className="flex gap-[2px] ">
-                    <Tooltip
-                        content="View Profile"
-                        place="bottom"
-                        id="view tweet"
-                        delayShow={1000}
-                    >
-                        <Link
-                            href={`/profiles/${props.user.id}`}
-                            className="text-sm md:text-base font-bold outline-none hover:underline focus-visible:underline dark:text-white"
-                        >
-                            {props.user.name}
-                        </Link>
-                    </Tooltip>
-                    <span className="text-gray-500 dark:text-gray-300">-</span>
-                    <span className="text-gray-500 dark:text-gray-300 text-xs md:text-base">
-                        {dateTimeFormatter.format(props.subTweet.createdAt)}
-                    </span>
+                    <Header
+                        createdAt={props.subTweet.createdAt}
+                        user={props.user}
+                    />
                     {(session.data?.user.role?.toString() === 'ADMIN' ||
                         session.data?.user.id === props.user.id) && (
                         <>
