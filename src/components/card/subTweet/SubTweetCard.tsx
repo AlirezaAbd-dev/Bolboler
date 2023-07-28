@@ -2,10 +2,10 @@ import { Transition } from '@headlessui/react';
 import { useSession } from 'next-auth/react';
 import { useLayoutEffect, useState } from 'react';
 
-import DeleteSubTweetModal from '../modals/DeleteSubTweetModal';
-import EditSubTweetForm from '../tweetDetails/EditSubTweetForm';
-import SubTweetCardDetails from '../tweetDetails/SubTweetCardDetails';
-import type { SubTweetType } from '../tweetDetails/SubTweets';
+import DeleteSubTweetModal from '../../modals/DeleteSubTweetModal';
+import type { SubTweetType } from '../../tweetDetails/SubTweets';
+import EditSubTweetForm from './EditSubTweetForm';
+import SubTweetCardDetails from './SubTweetCardDetails';
 
 type SubTweetCardProps = {
     user: {

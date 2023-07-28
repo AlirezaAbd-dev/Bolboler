@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import SubTweetCard from '../card/SubTweetCard';
+import SubTweetCard from '../card/subTweet/SubTweetCard';
 import { LoadingSpinner } from '../ui/LoadingSpinner';
 
 import useTimeline from '~/hooks/useTimeline';

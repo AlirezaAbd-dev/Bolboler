@@ -4,10 +4,10 @@ import type { Dispatch, SetStateAction } from 'react';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { VscClose, VscEdit } from 'react-icons/vsc';
 
-import { IconHoverEffect } from '../ui/IconHoverEffect';
-import { ProfileImage } from '../ui/ProfileImage';
-import Tooltip from '../ui/Tooltip';
-import type { SubTweetType } from './SubTweets';
+import type { SubTweetType } from '../../tweetDetails/SubTweets';
+import { IconHoverEffect } from '../../ui/IconHoverEffect';
+import { ProfileImage } from '../../ui/ProfileImage';
+import Tooltip from '../../ui/Tooltip';
 
 import dateTimeFormatter from '~/utils/dateTimeFormatter';
 
