@@ -1,13 +1,10 @@
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import type { Dispatch, SetStateAction } from 'react';
-import { RiDeleteBin2Line } from 'react-icons/ri';
-import { VscClose, VscEdit } from 'react-icons/vsc';
 
 import type { SubTweetType } from '../../tweetDetails/SubTweets';
-import { IconHoverEffect } from '../../ui/IconHoverEffect';
 import { ProfileImage } from '../../ui/ProfileImage';
-import Tooltip from '../../ui/Tooltip';
+import DeleteSubTweetButton from './DeleteSubTweetButton';
 import EditSubTweetButton from './EditSubTweetButton';
 import Header from './Header';
 
@@ -44,25 +41,13 @@ const SubTweetCardDetails = (props: SubTweetCardDetailsProps) => {
                                 editMode={props.editMode}
                                 setEditMode={props.setEditMode}
                             />
-                            <span
-                                className="cursor-pointer"
-                                onClick={() => {
-                                    props.openModal();
-                                    props.setSelectedSubTweetForDelete(
-                                        props.subTweet.id,
-                                    );
-                                }}
-                            >
-                                <Tooltip
-                                    content="Delete"
-                                    place="bottom"
-                                    id="delete"
-                                >
-                                    <IconHoverEffect>
-                                        <RiDeleteBin2Line className="h-3 w-3 md:h-4 md:w-4 text-red-500" />
-                                    </IconHoverEffect>
-                                </Tooltip>
-                            </span>
+                            <DeleteSubTweetButton
+                                id={props.subTweet.id}
+                                openModal={props.openModal}
+                                setSelectedSubTweetForDelete={
+                                    props.setSelectedSubTweetForDelete
+                                }
+                            />
                         </>
                     )}
                 </div>
