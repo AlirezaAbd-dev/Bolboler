@@ -8,6 +8,7 @@ import type { SubTweetType } from '../../tweetDetails/SubTweets';
 import { IconHoverEffect } from '../../ui/IconHoverEffect';
 import { ProfileImage } from '../../ui/ProfileImage';
 import Tooltip from '../../ui/Tooltip';
+import EditSubTweetButton from './EditSubTweetButton';
 import Header from './Header';
 
 type SubTweetCardDetailsProps = {
@@ -39,26 +40,10 @@ const SubTweetCardDetails = (props: SubTweetCardDetailsProps) => {
                     {(session.data?.user.role?.toString() === 'ADMIN' ||
                         session.data?.user.id === props.user.id) && (
                         <>
-                            <span
-                                className="ml-6 cursor-pointer"
-                                onClick={() =>
-                                    props.setEditMode((prevState) => !prevState)
-                                }
-                            >
-                                <Tooltip
-                                    content="Edit"
-                                    place="bottom"
-                                    id="edit"
-                                >
-                                    <IconHoverEffect>
-                                        {!props.editMode ? (
-                                            <VscEdit className="h-3 w-3 md:h-4 md:w-4 text-gray-500 dark:text-gray-300" />
-                                        ) : (
-                                            <VscClose className="h-3 w-3 md:h-4 md:w-4 text-red-500" />
-                                        )}
-                                    </IconHoverEffect>
-                                </Tooltip>
-                            </span>
+                            <EditSubTweetButton
+                                editMode={props.editMode}
+                                setEditMode={props.setEditMode}
+                            />
                             <span
                                 className="cursor-pointer"
                                 onClick={() => {
